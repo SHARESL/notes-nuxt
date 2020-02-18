@@ -1,0 +1,91 @@
+.u-frame {
+  @include min-screen($bp_sp_h) {
+    max-width: sizeCalc($frame_w, $w, 'vw');
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  @include min-screen($bp_tb_v) {
+    max-width: calc(100% - 120px);
+  }
+
+  @include min-screen($bp_lpc) {
+    max-width: calc(100% - 200px);
+  }
+
+  @include min-screen($bp_base) {
+    //max-width: #{$frame_w}px;
+  }
+}
+
+.u-noscroll {
+  overflow: hidden;
+  height: 100%;
+}
+
+.u-overflowHidden {
+  overflow: hidden;
+}
+
+.u-noevent {
+  pointer-events: none;
+}
+
+.u-exSp {
+  display: none;
+  @include min-screen($bp_sp_h) {
+    display: block;
+  }
+}
+
+.u-sp {
+  @include min-screen($bp_sp_h) {
+    display: none;
+  }
+}
+
+.u-preload {
+  * {
+    transition: none !important;
+  }
+}
+
+.u-preline {
+  white-space: pre-line;
+}
+
+.u-text-center{
+  text-align: center;
+}
+
+.u-center {
+  margin-right: auto !important;
+  margin-left: auto !important;
+}
+
+.u-futura-pt {
+  font-family: $futura-pt;
+}
+
+.u-futura-pt-condensed{
+  font-family: $futura-pt-condensed;
+  font-weight: 700;
+}
+
+.u-svg {
+  position: relative;
+}
+
+.u-try{
+  color:$orange;
+}
+
+.u-column{
+  color:$purple;
+}
+
+.u-tips{
+  color:$green;
+}
+
+

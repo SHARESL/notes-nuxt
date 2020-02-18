@@ -1,6 +1,6 @@
 # notes-nuxt
 
-> Nuxt.js + WordPress + netlify でテックブログを作成
+> Nuxt.js + WordPress + netlify でTechブログをリニューアル
 
 ## Build Setup
 
