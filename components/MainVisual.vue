@@ -42,6 +42,7 @@
 
     &__sub{
       display: block;
+      margin-top: 9px;
       @include fz(18);
       font-weight: 400;
       letter-spacing: .06em;

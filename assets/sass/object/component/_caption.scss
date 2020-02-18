@@ -13,4 +13,9 @@
     background: $link-color;
     border-radius:3px;
   }
+
+  &--ja{
+    @include fz(27);
+    letter-spacing: .03em;
+  }
 }

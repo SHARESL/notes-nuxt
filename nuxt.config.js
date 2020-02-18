@@ -26,7 +26,7 @@ export default {
   '~/assets/sass/foundation/_reset.scss',
   '~/assets/sass/foundation/_font.scss',
   '~/assets/sass/foundation/_setting.scss',
-  '~/assets/sass/object/component/_caption.scss',
+  '~/assets/sass/common.scss',
   '~/assets/sass/object/utility/_utility.scss'
   ],
   /*
