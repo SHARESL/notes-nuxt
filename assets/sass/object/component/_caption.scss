@@ -1,0 +1,16 @@
+.c-caption{
+  text-align: center;
+  @include fz(36);
+  letter-spacing: .06em;
+
+  &::after{
+    content:"";
+    display: block;
+    vertical-align: middle;
+    width: 60px;
+    height: 2px;
+    margin: 15px auto 0;
+    background: $link-color;
+    border-radius:3px;
+  }
+}

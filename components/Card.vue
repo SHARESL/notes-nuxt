@@ -31,14 +31,14 @@
 <style lang="scss" scoped>
 .c-card{
   position: relative;
-  overflow: hidden;
   width: calc(33% - 6px);
   background: #fff;
-  border-radius:3px;
 
   &__image{
     overflow: hidden;
     position: relative;
+    border-radius:3px;
+    backface-visibility: hidden;
 
     &::before{
       opacity: 0;
@@ -73,6 +73,8 @@
     }
 
     &:hover{
+      box-shadow: $boxshadow6;
+
       img{
         transform: scale(1.1);
       }

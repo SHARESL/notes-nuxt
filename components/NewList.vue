@@ -1,6 +1,6 @@
 <template>
   <div class="c-new">
-    <h1 class="c-new__caption u-futura-pt-condensed">NEW</h1>
+    <h1 class="c-caption c-new__caption u-futura-pt-condensed">NEW</h1>
     <div class="c-new__list">
       <Card v-for="post in posts" :post="post" />
     </div>
@@ -11,27 +11,17 @@
 
 <style lang="scss" scoped>
 .c-new{
-  padding:30px;
+  padding:60px 30px;
   // background: $lgray2;
 
   &__caption{
-    @include fz(36);
 
-    &::after{
-      content:"";
-      display: inline-block;
-      vertical-align: middle;
-      width: 60px;
-      height: 1px;
-      margin-left: 15px;
-      background: $link-color;
-    }
   }
 
   &__list{
     display: flex;
     justify-content: space-between;
-    margin-top: 9px;
+    margin-top: 30px;
   }
 }
 </style>

@@ -1,6 +1,6 @@
 <template>
   <div class="p-top">
-    <MainVisual />
+    <MainVisual :title="'SHARESL TECH BLOG'" />
     <PickUp />
     <NewList />
   </div>
