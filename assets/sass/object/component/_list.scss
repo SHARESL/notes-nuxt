@@ -1,0 +1,26 @@
+.c-list{
+  padding:60px 30px;
+
+  &:first-child{
+    //padding-top: 30px;
+  }
+
+  &__inner{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-top: 30px;
+
+    &::before,
+    &::after{
+      order:10;
+      content:"";
+      display: block;
+      width: calc(33% - 6px);
+    }
+  }
+
+  &__btn{
+    margin-top: 60px;
+  }
+}

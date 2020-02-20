@@ -2,7 +2,7 @@
   <footer class="l-footer">
     <div class="l-footer__inner">
       <nav class="l-footer__nav">
-        <nuxt-link to="/about">当サイトについて</nuxt-link>
+        <nuxt-link to="/about/">当サイトについて</nuxt-link>
         <a href="https://sharesl.net/policy/" target="_blank" rel="noopener noreferrer">プライバシーポリシー</a>
         <a href="https://sharesl.net/" target="_blank" rel="noopener noreferrer">運営会社</a>
       </nav>
@@ -35,6 +35,7 @@
   align-items: center;
 
   a{
+    font-weight: 600;
     color:$dgray;
 
     + a{
@@ -43,6 +44,22 @@
 
     &:hover{
       color:$purple;
+    }
+
+    &[target="_blank"]{
+      display: flex;
+      align-items: center;
+
+      &::after{
+        content: "";
+        display: block;
+        width: 9px;
+        height: 9px;
+        margin-top: 2px;
+        margin-left: 6px;
+        background: url('~assets/svg/outlink.svg?inline') no-repeat center center;
+        background-size: contain;
+      }
     }
   }
 }

@@ -1,8 +1,7 @@
 <template>
   <div class="c-mv">
     <h1 class="c-mv__title">
-      <span class="c-mv__title__main u-futura-pt-condensed">{{title}}</span>
-      <span class="c-mv__title__sub">{{subtitle}}</span>
+      <span class="c-mv__title__main">{{title}}</span>
     </h1>
     <img
     class="c-mv__image"
@@ -13,9 +12,14 @@
 
 <style lang="scss" scoped>
 .c-mv{
+  display: flex;
+  align-items: center;
+  justify-content: center;
   position: relative;
-  padding: 150px 30px;
+  min-height:380px;
   text-align: center;
+  padding: 120px 30px;
+
 
   &::before{
     opacity: .7;
@@ -33,19 +37,13 @@
   &__title{
     position: relative;
     z-index: 10;
-    color:#fff;
+    line-height: 2.7;
 
     &__main{
-      @include fz(54);
-      letter-spacing: .06em;
-    }
-
-    &__sub{
-      display: block;
-      margin-top: 9px;
-      @include fz(18);
-      font-weight: 600;
-      letter-spacing: .03em;
+      @include fz(30);
+      font-weight: 900;
+      background: #fff;
+      box-shadow: 0 0 0 0.5em #fff;
     }
   }
 
@@ -64,8 +62,7 @@
   export default {
     props :{
       slug     : String,
-      title    : String,
-      subtitle : String
+      title    : String
     },
     methods : {
       /*

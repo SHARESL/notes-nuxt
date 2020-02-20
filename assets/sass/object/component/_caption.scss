@@ -8,14 +8,19 @@
     display: block;
     vertical-align: middle;
     width: 60px;
-    height: 2px;
+    height: 6px;
     margin: 15px auto 0;
     background: $link-color;
-    border-radius:3px;
+    border-radius:6px;
   }
 
   &--ja{
+    font-weight: 600;
     @include fz(27);
     letter-spacing: .03em;
+
+    &::after{
+      margin-top: 24px;
+    }
   }
 }

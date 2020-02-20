@@ -9,7 +9,7 @@ $font-path: '../../fonts' !default;
   url('#{$font-path}/futura/futura-pt-light.woff2') format('woff2'),
   url('#{$font-path}/futura/futura-pt-light.woff') format('woff'),
   url('#{$font-path}/futura/futura-pt-light.otf') format('opentype');
-  font-display: optional;
+  font-display: block;
 }
 
 @font-face {
@@ -20,7 +20,7 @@ $font-path: '../../fonts' !default;
   url('#{$font-path}/futura/futura-pt-book.woff2') format('woff2'),
   url('#{$font-path}/futura/futura-pt-book.woff') format('woff'),
   url('#{$font-path}/futura/futura-pt-book.otf') format('opentype');
-  font-display: optional;
+  font-display: block;
 }
 
 @font-face {
@@ -31,7 +31,7 @@ $font-path: '../../fonts' !default;
   url('#{$font-path}/futura/futura-pt-medium.woff2') format('woff2'),
   url('#{$font-path}/futura/futura-pt-medium.woff') format('woff'),
   url('#{$font-path}/futura/futura-pt-medium.otf') format('opentype');
-  font-display: optional;
+  font-display: block;
 }
 
 @font-face {
@@ -42,7 +42,7 @@ $font-path: '../../fonts' !default;
   url('#{$font-path}/futura/futura-pt-demibold.woff2') format('woff2'),
   url('#{$font-path}/futura/futura-pt-demibold.woff') format('woff'),
   url('#{$font-path}/futura/futura-pt-demibold.otf') format('opentype');
-  font-display: optional;
+  font-display: block;
 }
 
 @font-face {
@@ -53,7 +53,7 @@ $font-path: '../../fonts' !default;
   url('#{$font-path}/futura/futura-pt-heavy.woff2') format('woff2'),
   url('#{$font-path}/futura/futura-pt-heavy.woff') format('woff'),
   url('#{$font-path}/futura/futura-pt-heavy.otf') format('opentype');
-  font-display: optional;
+  font-display: block;
 }
 
 @font-face {
@@ -64,7 +64,7 @@ $font-path: '../../fonts' !default;
   url('#{$font-path}/futura/futura-pt-extrabold.woff2') format('woff2'),
   url('#{$font-path}/futura/futura-pt-extrabold.woff') format('woff'),
   url('#{$font-path}/futura/futura-pt-extrabold.otf') format('opentype');
-  font-display: optional;
+  font-display: block;
 }
 
 //futura-pt-condensed
@@ -76,7 +76,7 @@ $font-path: '../../fonts' !default;
   url('#{$font-path}/futura/futura-condensed-light.woff2') format('woff2'),
   url('#{$font-path}/futura/futura-condensed-light.woff') format('woff'),
   url('#{$font-path}/futura/futura-condensed-light.otf') format('opentype');
-  font-display: optional;
+  font-display: block;
 }
 
 @font-face {
@@ -87,7 +87,7 @@ $font-path: '../../fonts' !default;
   url('#{$font-path}/futura/futura-condensed-medium.woff2') format('woff2'),
   url('#{$font-path}/futura/futura-condensed-medium.woff') format('woff'),
   url('#{$font-path}/futura/futura-condensed-medium.otf') format('opentype');
-  font-display: optional;
+  font-display: block;
 }
 
 @font-face {
@@ -98,7 +98,7 @@ $font-path: '../../fonts' !default;
   url('#{$font-path}/futura/futura-condensed-bold.woff2') format('woff2'),
   url('#{$font-path}/futura/futura-condensed-bold.woff') format('woff'),
   url('#{$font-path}/futura/futura-condensed-bold.otf') format('opentype');
-  font-display: optional;
+  font-display: block;
 }
 
 @font-face {
@@ -109,7 +109,7 @@ $font-path: '../../fonts' !default;
   url('#{$font-path}/futura/futura-condensed-extrabold.woff2') format('woff2'),
   url('#{$font-path}/futura/futura-condensed-extrabold.woff') format('woff'),
   url('#{$font-path}/futura/futura-condensed-extrabold.otf') format('opentype');
-  font-display: optional;
+  font-display: block;
 }
 
 //Noto Sans JP
@@ -117,7 +117,7 @@ $font-path: '../../fonts' !default;
   font-family: 'Noto Sans JP';
   font-style: normal;
   font-weight: 100;
-  font-display: optional;
+  font-display: block;
   src:
   local("Noto Sans CJK JP Thin"),
   url(#{$font-path}/NotoSansCJKjp-Thin.woff2) format('woff2'),
@@ -128,7 +128,7 @@ $font-path: '../../fonts' !default;
   font-family: 'Noto Sans JP';
   font-style: normal;
   font-weight: 300;
-  font-display: optional;
+  font-display: block;
   src:
   local("Noto Sans CJK JP Light"),
   url(#{$font-path}/NotoSansCJKjp-Light.woff2) format('woff2'),
@@ -139,7 +139,7 @@ $font-path: '../../fonts' !default;
   font-family: 'Noto Sans JP';
   font-style: normal;
   font-weight: 350;
-  font-display: optional;
+  font-display: block;
   src:
   local("Noto Sans CJK JP DemiLight"),
   url(#{$font-path}/NotoSansCJKjp-DemiLight.woff2) format('woff2'),
@@ -150,7 +150,7 @@ $font-path: '../../fonts' !default;
   font-family: 'Noto Sans JP';
   font-style: normal;
   font-weight: 400;
-  font-display: optional;
+  font-display: block;
   src:
   local("Noto Sans CJK JP Regular"),
   url(#{$font-path}/NotoSansCJKjp-Regular.woff2) format('woff2'),
@@ -161,7 +161,7 @@ $font-path: '../../fonts' !default;
   font-family: 'Noto Sans JP';
   font-style: normal;
   font-weight: 500;
-  font-display: optional;
+  font-display: block;
   src:
   local("Noto Sans CJK JP Medium"),
   url(#{$font-path}/NotoSansCJKjp-Medium.woff2) format('woff2'),
@@ -172,7 +172,7 @@ $font-path: '../../fonts' !default;
   font-family: 'Noto Sans JP';
   font-style: normal;
   font-weight: 700;
-  font-display: optional;
+  font-display: block;
   src:
   local("Noto Sans CJK JP Bold"),
   url(#{$font-path}/NotoSansCJKjp-Bold.woff2) format('woff2'),
@@ -183,7 +183,7 @@ $font-path: '../../fonts' !default;
   font-family: 'Noto Sans JP';
   font-style: normal;
   font-weight: 900;
-  font-display: optional;
+  font-display: block;
   src:
   local("Noto Sans CJK JP Black"),
   url(#{$font-path}/NotoSansCJKjp-Black.woff2) format('woff2'),

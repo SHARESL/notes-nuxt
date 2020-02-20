@@ -4,10 +4,10 @@ $black      : #111;
 $green      : #81cf7a;
 $blue       : #25bdcf;
 $blue2      : #61d8ff;
+$blue3      : #00B0FF;
 $orange     : #ff6f61;
-$purple     : #6002ee;
-$purple2    : #8E24AA;
-$purple3    : #E040FB;
+$purple     : #6200EA;
+$pink       : #FF4081;
 $gray       : #ccc;
 $lgray      : #eee;
 $lgray2     : #fafafa;
@@ -26,7 +26,7 @@ $boxshadow2: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
 $boxshadow3: 0 3px 3px 0 rgba(#000, 0.15);
 $boxshadow4: 12px 12px 3px 0 rgba(#000, 0.15);
 $boxshadow5: 3px 3px 2px 0 rgba(#000, 0.15);
-$boxshadow6: 4px 4px 4px 0 rgba(#000, 0.3);
+$boxshadow6: 4px 4px 4px 0 rgba(#000, 0.3), 0 0 9px 9px rgba(#000, .1);
 
 //fonts
 $futura-pt: 'futura-pt', 'arial narrow', 'Roboto';
@@ -45,8 +45,8 @@ $gradient3   : linear-gradient(to bottom, $green 0%, $blue 100%);
 $gradient4   : linear-gradient(to bottom, $blue 0%, $green 100%);
 $gradient5   : linear-gradient(to bottom, #fff 60%, rgba(#fff,0) 100%);
 $gradient6   : linear-gradient(to right, $orange 0%, $purple 100%);
-$gradient7   : linear-gradient(to right, $purple 0%, $purple2 100%);
-$gradient8   : linear-gradient(to right, rgba($purple, .3) 0%, rgba($purple2, .3) 100%);
+$gradient7   : linear-gradient(to right, $purple 0%, $blue3 100%);
+$gradient8   : linear-gradient(to right, rgba($purple, .7) 0%, rgba($blue3, .7) 100%);
 
 //breakpoint
 $bp_i5: 320px;

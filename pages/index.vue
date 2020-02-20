@@ -1,6 +1,6 @@
 <template>
   <div class="p-top">
-    <MainVisual :title="'SHARESL TECH BLOG'" />
+    <MainVisual :title="title" :subtitle="subtitle" :slug="slug" />
     <PickUp />
     <NewList />
   </div>
@@ -14,7 +14,15 @@
   import MainVisual from '~/components/MainVisual.vue'
   import PickUp from '~/components/PickUp.vue'
   import NewList from '~/components/NewList.vue'
+
   export default {
+    data() {
+      return {
+        title    : 'SHARESL TECH BLOG',
+        subtitle : 'SHARESLの開発者ブログ',
+        slug     : 'top'
+      }
+    },
     components : {
       MainVisual,
       PickUp,

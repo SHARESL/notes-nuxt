@@ -1,5 +1,5 @@
 <template>
-  <div class="l-cover">
+  <div class="l-cover" v-cloak>
     <div class="l-cover__inner">
       <Header />
       <nuxt class="l-cover__main" />
@@ -11,6 +11,9 @@
 </template>
 
 <style lang="scss" scoped>
+[v-cloak] {
+  display:none;
+}
 .l-cover{
   position: relative;
   min-height:100vh;
@@ -38,6 +41,7 @@
 
 .l-cover__main{
   min-height:100vh;
+  padding-bottom: 90px;
 }
 </style>
 

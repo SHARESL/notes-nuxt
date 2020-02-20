@@ -11,13 +11,26 @@
 
 <style lang="scss" scoped>
 .l-header{
-  padding:30px;
-}
+  &__inner{
 
-.l-header__inner{
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  }
+  &__logo{
+    position: fixed;
+    top:30px;
+    left:30px;
+    z-index: 1000;
+  }
+
+  &__nav{
+    position: fixed;
+    top:30px;
+    right:30px;
+    z-index: 1000;
+
+    a{
+      box-shadow:$boxshadow6;
+    }
+  }
 }
 </style>
 

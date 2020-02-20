@@ -1,4 +1,13 @@
 .c-summary{
   @include fz(15);
-  line-height: 1.6;
+  line-height: 2;
+
+  a{
+    display: inline;
+    border-bottom:1px solid currentColor;
+
+    &:hover{
+      border-bottom-color:transparent;
+    }
+  }
 }

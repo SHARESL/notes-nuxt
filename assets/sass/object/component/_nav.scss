@@ -1,0 +1,31 @@
+.c-nav{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  a{
+    padding:8px 14px;
+    @include fz(12);
+    font-weight: 600;
+    color:#fff;
+    background: $purple;
+    border:2px solid $link-color;
+    border-radius: 60px;
+
+    & + a{
+      margin-left:15px;
+    }
+
+    &:hover{
+      color:$link-color;
+      background: #fff;
+    }
+  }
+
+  .nuxt-link-exact-active{
+    pointer-events: none;
+    color:$blue3;
+    background:#fff;
+    border-color:$blue3;
+  }
+}
