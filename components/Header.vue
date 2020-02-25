@@ -9,31 +9,6 @@
   <!-- /.l-header -->
 </template>
 
-<style lang="scss" scoped>
-.l-header{
-  &__inner{
-
-  }
-  &__logo{
-    position: fixed;
-    top:30px;
-    left:30px;
-    z-index: 1000;
-  }
-
-  &__nav{
-    position: fixed;
-    top:30px;
-    right:30px;
-    z-index: 1000;
-
-    a{
-      box-shadow:$boxshadow6;
-    }
-  }
-}
-</style>
-
 <script>
   import Logo from '~/components/Logo.vue'
   import Nav from '~/components/Nav.vue'

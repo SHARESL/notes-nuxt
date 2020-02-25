@@ -1,0 +1,63 @@
+.c-share{
+  padding:60px 0;
+
+  &__caption{
+    text-align: center;
+    @include fz(30);
+    font-weight: 600;
+  }
+  &__list{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 30px;
+
+    svg{
+      transition:$transition;
+    }
+
+    a{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 60px;
+      height:60px;
+      margin:0 6px;
+      border-radius:50%;
+      background: $lgray;
+
+      &:hover{
+        box-shadow:$boxshadow6;
+
+        svg{
+          fill:#fff;
+        }
+      }
+    }
+
+    .icon{
+      position: relative;
+      width: 30px;
+      height: 0;
+      padding-top:30px;
+    }
+
+    .fb{
+      &:hover{
+        background: $fb;
+      }
+    }
+
+    .tw{
+      &:hover{
+        background: $tw;
+      }
+    }
+
+    .hatena{
+      &:hover{
+        background: $hatena;
+      }
+    }
+  }
+}

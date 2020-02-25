@@ -1,0 +1,204 @@
+.p-post{
+  padding:150px 0;
+
+  &__inner{
+    max-width:690px;
+    margin:auto;
+  }
+
+  &__title{
+    @include fz(42);
+    font-weight: 900;
+    line-height: 1.6;
+  }
+
+  &__row{
+    display: flex;
+    align-items: center;
+    margin-top: 30px;
+  }
+
+  &__date{
+    @include fz(15);
+    padding-right: 15px;
+    border-right:1px solid $gray;
+  }
+
+  &__category{
+    position: relative;
+    z-index: 1;
+    margin-left:15px;
+    @include fz(15);
+    font-weight: 600;
+
+    &::before{
+      content:"";
+      position: absolute;
+      bottom:0;
+      left:0;
+      z-index: -1;
+      width: 100%;
+      height: 1px;
+      background: $link-color;
+      transform-origin: left center;
+      transform: scaleX(0);
+      transition:$transition;
+    }
+
+    &:hover{
+      &::before{
+        transform:none;
+      }
+    }
+  }
+
+  &__author{
+    display: flex;
+    align-items: center;
+    flex-direction: row-reverse;
+    margin-left:auto;
+    color:#000;
+
+    &__name{
+      text-align: right;
+      max-width:90px;
+      margin-right: .5em;
+      font-weight: 600;
+      line-height: 1.2;
+    }
+
+    img{
+      width: 36px;
+      height:36px;
+      border-radius:50%;
+      object-fit: cover;
+      font-family: 'object-fit: cover;';
+      border:1px solid $gray;
+      will-change: box-shadow;
+      backface-visibility: hidden;
+    }
+
+    &:hover{
+      color:$link-color;
+      img{
+        border-color:$link-color;
+        box-shadow:0 0 0 3px $link-color, $boxshadow6;
+      }
+    }
+  }
+
+  &__visual{
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 30px;
+
+    img{
+      border-radius:9px;
+    }
+  }
+
+  &__contents{
+    margin-top: 30px;
+    h2,
+    h3,
+    h4,
+    h5,
+    h6
+    {
+      margin-top: 60px;
+      margin-bottom: 30px;
+      font-weight: 900;
+      line-height: 1.6;
+      background: $gradient7;
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+
+      /* IE10,11用 */
+      @media all and (-ms-high-contrast: none) {
+        h2,
+        h3,
+        h4,
+        h5,
+        h6
+        {
+          background: none;
+          color: $purple;
+        }
+      }
+    }
+
+    h2{
+      @include fz(30);
+      &::after{
+        content:"";
+        display: block;
+        width: 100%;
+        height: 3px;
+        margin-top: 1em;
+        background: $gradient7;
+        border-radius: 6px;
+      }
+    }
+
+    h3{
+      @include fz(27);
+      &::after{
+        content:"";
+        display: block;
+        width: 100%;
+        height: 1px;
+        margin-top: 1em;
+        background: $gradient7;
+        border-radius: 6px;
+      }
+    }
+
+    h4{
+      @include fz(24);
+      padding-bottom: 1em;
+      border-bottom:1px solid $gray;
+    }
+
+    h5{
+      @include fz(21);
+      padding-bottom: 1em;
+      border-bottom:1px solid $gray;
+    }
+
+    h6{
+      @include fz(18);
+      padding-bottom: 1em;
+      border-bottom:1px solid $gray;
+    }
+
+    p{
+      margin-top: 30px;
+      margin-bottom: 30px;
+      @include fz(18);
+      line-height: 1.9;
+    }
+
+    a{
+      display:inline;
+      border-bottom:1px solid currentColor;
+
+      &[target="_blank"]{
+        &::after{
+          content: "";
+          display: inline-block;
+          vertical-align: middle;
+          width: 12px;
+          height: 12px;
+          margin-left: 3px;
+          background: url('~assets/svg/outlink.svg?inline') no-repeat center center;
+          background-size: contain;
+        }
+      }
+
+      &:hover{
+        border-color:transparent;
+      }
+    }
+  }
+}

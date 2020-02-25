@@ -1,15 +1,14 @@
 .c-list{
   padding:60px 30px;
 
-  &:first-child{
-    //padding-top: 30px;
+  &__nav{
+    margin-bottom: 30px;
   }
 
   &__inner{
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
-    margin-top: 30px;
 
     &::before,
     &::after{
@@ -18,6 +17,10 @@
       display: block;
       width: calc(33% - 6px);
     }
+  }
+
+  &__item{
+    width: calc(33% - 6px);
   }
 
   &__btn{

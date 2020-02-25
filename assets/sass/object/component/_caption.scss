@@ -1,7 +1,7 @@
 .c-caption{
   text-align: center;
   @include fz(36);
-  letter-spacing: .06em;
+  margin-bottom: 30px;
 
   &::after{
     content:"";
@@ -10,14 +10,13 @@
     width: 60px;
     height: 6px;
     margin: 15px auto 0;
-    background: $link-color;
+    background: $gradient7;
     border-radius:6px;
   }
 
   &--ja{
     font-weight: 600;
     @include fz(27);
-    letter-spacing: .03em;
 
     &::after{
       margin-top: 24px;

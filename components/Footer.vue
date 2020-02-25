@@ -16,62 +16,6 @@
   <!-- /.l-footer -->
 </template>
 
-<style lang="scss" scoped>
-.l-footer{
-  padding:30px;
-}
-
-.l-footer__inner{
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.l-footer__logo{
-}
-
-.l-footer__nav{
-  display: flex;
-  align-items: center;
-
-  a{
-    font-weight: 600;
-    color:$dgray;
-
-    + a{
-      margin-left:30px;
-    }
-
-    &:hover{
-      color:$purple;
-    }
-
-    &[target="_blank"]{
-      display: flex;
-      align-items: center;
-
-      &::after{
-        content: "";
-        display: block;
-        width: 9px;
-        height: 9px;
-        margin-top: 2px;
-        margin-left: 6px;
-        background: url('~assets/svg/outlink.svg?inline') no-repeat center center;
-        background-size: contain;
-      }
-    }
-  }
-}
-
-.l-footer__copyright{
-  margin-top: 15px;
-  text-align: center;
-  font-weight: 600;
-  color:$dgray;
-}
-</style>
-
 <script>
   import Logo from '~/components/Logo.vue'
 

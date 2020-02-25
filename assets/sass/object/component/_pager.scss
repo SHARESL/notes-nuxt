@@ -1,0 +1,76 @@
+.c-pager{
+  display: flex;
+  justify-content: space-between;
+  margin-top:60px;
+  padding-top:60px;
+  border-top:1px solid $lgray;
+
+  &__item{
+    width: 48%;
+  }
+
+  &__link{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 30px;
+    @include fz(15);
+    font-weight: 900;
+    letter-spacing: .09em;
+  }
+
+  &__prev,
+  &__next
+  {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding:6px 9px;
+    color:#000;
+    border-bottom:2px solid currentColor;
+
+    &:hover{
+      color:$link-color;
+    }
+  }
+
+  &__prev{
+    &::before{
+      content:"";
+      display: inline-block;
+      vertical-align: middle;
+      width: 15px;
+      height:15px;
+      margin-right:15px;
+      background: url(../svg/icon-prev.svg?inline) no-repeat center center;
+      background-size: 100%;
+      transition: $transition;
+    }
+
+    &:hover{
+      &::before{
+        background-image: url(../svg/icon-prev-on.svg?inline);
+      }
+    }
+  }
+
+  &__next{
+    &::after{
+      content:"";
+      display: inline-block;
+      vertical-align: middle;
+      width: 15px;
+      height:15px;
+      margin-left:15px;
+      background: url(../svg/icon-next.svg?inline) no-repeat center center;
+      background-size: 100%;
+      transition: $transition;
+    }
+
+    &:hover{
+      &::after{
+        background-image: url(../svg/icon-next-on.svg?inline);
+      }
+    }
+  }
+}

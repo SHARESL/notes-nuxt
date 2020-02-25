@@ -1,13 +1,12 @@
 .c-card{
   position: relative;
-  width: calc(33% - 6px);
   margin-bottom: 60px;
   background: #fff;
 
   &__image{
     overflow: hidden;
     position: relative;
-    border-radius:3px;
+    border-radius:9px;
     backface-visibility: hidden;
 
     &::before{
@@ -122,7 +121,7 @@
       border-radius:50%;
       object-fit: cover;
       font-family: 'object-fit: cover;';
-      border:1px solid $link-color;
+      border:1px solid $gray;
       will-change: box-shadow;
       backface-visibility: hidden;
     }
@@ -131,7 +130,6 @@
       text-align: right;
       max-width:90px;
       margin-right: .5em;
-      @include fz(12);
       font-weight: 600;
       line-height: 1.2;
     }
@@ -139,6 +137,7 @@
     &:hover{
       color:$link-color;
       img{
+        border-color:$link-color;
         box-shadow:0 0 0 3px $link-color, $boxshadow6;
       }
     }

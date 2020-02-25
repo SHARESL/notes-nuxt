@@ -1,8 +1,10 @@
 <template>
   <div class="p-top">
-    <MainVisual :title="title" :subtitle="subtitle" :slug="slug" />
-    <PickUp />
-    <NewList />
+    <MainVisual />
+    <div id="main">
+      <PickUp />
+      <NewList />
+    </div>
   </div>
   <!-- /.p-top -->
 </template>
@@ -20,7 +22,6 @@
       return {
         title    : 'SHARESL TECH BLOG',
         subtitle : 'SHARESLの開発者ブログ',
-        slug     : 'top'
       }
     },
     components : {

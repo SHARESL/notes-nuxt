@@ -1,0 +1,60 @@
+.c-author{
+  display: flex;
+  align-items: center;
+  padding:30px 60px;
+  background: $lgray2;
+  border-radius:9px;
+
+  &__avatar{
+    flex-shrink: 0;
+    img{
+      width: 90px;
+      height:90px;
+      border-radius:50%;
+      object-fit: cover;
+      font-family: 'object-fit: cover;';
+      border:1px solid $gray;
+      will-change: box-shadow;
+      backface-visibility: hidden;
+    }
+
+    a{
+      &:hover{
+        img{
+          border-color:$link-color;
+          box-shadow:0 0 0 3px $link-color, $boxshadow6;
+        }
+      }
+    }
+  }
+
+  &__author{
+
+  }
+
+  &__detail{
+    padding-left:30px;
+  }
+
+  &__name{
+    display: inline;
+    @include fz(21);
+
+    &:hover{
+      color:$blue3;
+    }
+  }
+
+  &__job{
+    font-weight: 600;
+  }
+
+  &__text{
+    padding: 9px;
+    margin-top:9px;
+    font-weight: 600;
+    background: #fff;
+    line-height: 1.6;
+    border-radius: 9px;
+  }
+}

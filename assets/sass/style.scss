@@ -12,37 +12,28 @@ Foundation
 /* ---------------------------------------------------------
 Layout
 --------------------------------------------------------- */
-@import 'layout/body';
-@import 'layout/wrapper';
+@import 'layout/cover';
 @import 'layout/header';
 @import 'layout/footer';
-@import 'layout/main';
-
 
 /* ---------------------------------------------------------
 Object
 --------------------------------------------------------- */
 //component
-@import 'object/component/btn';
+//@import 'object/component/mv';
+@import 'object/component/nav';
+@import 'object/component/title';
 @import 'object/component/caption';
-@import 'object/component/pagetop';
-@import 'object/component/searchform';
+@import 'object/component/summary';
+@import 'object/component/btn';
+@import 'object/component/list';
+@import 'object/component/card';
+@import 'object/component/share';
+@import 'object/component/author';
 @import 'object/component/pager';
-@import 'object/component/logo';
-@import 'object/component/overlay';
-@import "object/component/pan";
 
 //project
-@import 'object/project/sidenav';
-@import 'object/project/hero';
 @import 'object/project/post';
-@import 'object/project/feature';
-@import 'object/project/bg';
-@import 'object/project/content';
-@import 'object/project/member';
-@import 'object/project/form';
-@import 'object/project/article';
-@import 'object/project/404';
 
 //utility
 @import 'object/utility/utility';

@@ -14,35 +14,6 @@
 [v-cloak] {
   display:none;
 }
-.l-cover{
-  position: relative;
-  min-height:100vh;
-  padding:15px;
-  background: $lgray;
-
-  &::before{
-    pointer-events:none;
-    content:"";
-    position: fixed;
-    top:0;
-    left:0;
-    z-index: 100;
-    display: block;
-    width: 100%;
-    height: 100%;
-    border:15px solid $link-color;
-    //border-image: $gradient7 1;
-  }
-}
-
-.l-cover__inner{
-  background: #fff;
-}
-
-.l-cover__main{
-  min-height:100vh;
-  padding-bottom: 90px;
-}
 </style>
 
 <script>

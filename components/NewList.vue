@@ -2,7 +2,7 @@
   <div class="c-list">
     <h1 class="c-caption u-futura-pt-condensed">NEW</h1>
     <div class="c-list__inner">
-      <Card v-for="post in posts" :key="post.id" :post="post" />
+      <Card class="c-list__item" v-for="post in posts" :key="post.id" :post="post" />
     </div>
     <!-- /.c-list__inner -->
     <Button :url="buttonUrl" :text="buttonText" />
@@ -29,8 +29,11 @@
           title        : '1interact.jsを使ってcanvas上で画像を位置移動させてみる',
           category     : 'TRY',
           date         : '2020.01.14',
-          author       : 'INOUE 1',
-          author_image : '~/assets/images/author.png',
+          author       : {
+            name  : 'INOUE 1',
+            image : '~/assets/images/author.png',
+            slug  : 'inoue-1'
+          },
           tags         : [
           {
             id   : 1,
@@ -50,8 +53,11 @@
           title        : '2interact.jsを使ってcanvas上で画像を位置移動させてみる',
           category     : 'TRY',
           date         : '2020.01.14',
-          author       : 'INOUE 2',
-          author_image : '~/assets/images/author.png',
+          author       : {
+            name  : 'INOUE 2',
+            image : '~/assets/images/author.png',
+            slug  : 'inoue-2'
+          },
           tags         : [
           {
             id   : 1,
@@ -71,8 +77,11 @@
           title        : '3interact.jsを使ってcanvas上で画像を位置移動させてみる',
           category     : 'TRY',
           date         : '2020.01.14',
-          author       : 'INOUE 3',
-          author_image : '~/assets/images/author.png',
+          author       : {
+            name  : 'INOUE 3',
+            image : '~/assets/images/author.png',
+            slug  : 'inoue-3'
+          },
           tags         : [
           {
             id   : 1,

@@ -23,16 +23,13 @@ export default {
   ** Global CSS
   */
   css: [
-  '~/assets/sass/foundation/_reset.scss',
-  '~/assets/sass/foundation/_font.scss',
-  '~/assets/sass/foundation/_setting.scss',
-  '~/assets/sass/common.scss',
-  '~/assets/sass/object/utility/_utility.scss'
+  '~/assets/sass/style.scss',
   ],
   /*
   ** Plugins to load before mounting the App
   */
   plugins: [
+  '~/plugins/vue-scrollto'
   ],
   /*
   ** Nuxt.js modules

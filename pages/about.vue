@@ -1,6 +1,6 @@
 <template>
   <div class="p-about">
-    <MainVisual :title="title" :subtitle="subtitle" :slug="slug"/>
+    <Title :title="title" :subtitle="subtitle"/>
     <section class="p-about__block">
       <h2 class="c-caption c-caption--ja">このブログについて</h2>
       <p class="p-about__summary c-summary">notes by sharesl（以下「当ブログ」）は、株式会社SHARESLが運営している開発者ブログです。<br>開発者が日々考えていることのアウトプットやメモとして残しておきたい備忘録としての記事を更新していきます。<br>最新技術やトレンドの記事というよりは、WEBサイト制作の実務の中で気づいたことをまとめて後で見返せるノートのような役割を目的としています。</p>
@@ -84,7 +84,7 @@
     td{
       text-align:left;
       padding:15px;
-      @include fz(15);
+      @include fz(18);
       line-height: 2;
       border: 6px solid $lgray;
     }
@@ -101,18 +101,17 @@
 </style>
 
 <script>
-  import MainVisual from '~/components/MainVisual.vue'
+  import Title from '~/components/Title.vue'
 
   export default {
    data() {
     return {
       title    : 'ABOUT',
-      subtitle : '当サイトについて',
-      slug     : 'about'
+      subtitle : '当サイトについて'
     }
   },
   components : {
-    MainVisual
+    Title
   }
 }
 </script>

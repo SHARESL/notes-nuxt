@@ -1,6 +1,6 @@
 <template>
   <div class="p-category">
-    <MainVisual :title="title" :subtitle="subtitle" :slug="slug" />
+    <Title :title="title" :subtitle="subtitle"/>
     <div class="p-category__inner">
       <CategoryList />
     </div>
@@ -10,20 +10,18 @@
 </template>
 
 <script>
-  import MainVisual from '~/components/MainVisual.vue'
+  import Title from '~/components/Title.vue'
   import CategoryList from '~/components/CategoryList.vue'
 
   export default {
     data() {
       return {
         title           : 'ARTICLES',
-        subtitle        : 'すべての記事',
-        slug            : 'articles',
-        caption         : 'ALL'
+        subtitle        : 'すべての記事'
       }
     },
     components : {
-      MainVisual,
+      Title,
       CategoryList
     }
   }

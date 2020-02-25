@@ -7,25 +7,28 @@
     padding:8px 14px;
     @include fz(12);
     font-weight: 600;
-    color:#fff;
-    background: $purple;
+    color:$link-color;
+    background: transparent;
     border:2px solid $link-color;
     border-radius: 60px;
+    backdrop-filter: blur(3px);
 
     & + a{
       margin-left:15px;
     }
 
+    &.nuxt-link-exact-active,
     &:hover{
-      color:$link-color;
-      background: #fff;
+      color:#fff;
+      background: $purple;
+    }
+
+    &:hover{
+      box-shadow:$boxshadow6;
     }
   }
 
   .nuxt-link-exact-active{
-    pointer-events: none;
-    color:$blue3;
-    background:#fff;
-    border-color:$blue3;
+    pointer-events: none
   }
 }

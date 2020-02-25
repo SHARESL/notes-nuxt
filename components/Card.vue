@@ -15,9 +15,9 @@
       <!-- /.c-card__tags -->
       <div class="c-card__row">
         <div class="c-card__date u-futura-pt-condensed"><time>{{post.date}}</time></div>
-        <nuxt-link to="/author" class="c-card__author">
+        <nuxt-link :to="{ name : 'member-name', params: { name : post.author.slug}}" class="c-card__author">
           <img src="~/assets/images/author.png">
-          <p class="c-card__author__name u-futura-pt-condensed">{{post.author}}</p>
+          <p class="c-card__author__name u-futura-pt-condensed">{{post.author.name}}</p>
         </nuxt-link>
         <!-- /.c-card__author -->
       </div>
