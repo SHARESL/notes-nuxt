@@ -29,7 +29,10 @@ export default {
   ** Plugins to load before mounting the App
   */
   plugins: [
-  '~/plugins/vue-scrollto'
+  '~/plugins/vue-scrollto',
+  {
+    src: '~/plugins/vee-validate'
+  }
   ],
   /*
   ** Nuxt.js modules
@@ -50,6 +53,7 @@ export default {
   ** Build configuration
   */
   build: {
+    transpile: ["vee-validate/dist/rules"],
     extractCSS: true,
     postcss: {
       preset: {

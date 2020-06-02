@@ -28,9 +28,9 @@
       letter-spacing: .3em;
       color:#fff;
       background: $gradient8;
+      will-change:transform;
       transition:.3s $ease-out-sine;
       transform: scale(1.2);
-      backdrop-filter: blur(3px);
     }
 
     img{
