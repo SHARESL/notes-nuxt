@@ -33,6 +33,10 @@ export default {
   '~/plugins/vue-scrollto',
   {
     src: '~/plugins/vee-validate'
+  },
+  {
+    src: "~/plugins/axios.js",
+    mode: "client"
   }
   ],
   /*

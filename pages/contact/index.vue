@@ -72,6 +72,9 @@
       <!-- /.p-contact__form -->
     </div>
     <!-- /.p-contact__inner -->
+    <transition name="toast">
+      <div class="p-contact__toast" v-if="isSubmit || isSending" @click="hideToast" :class="sendingClass">{{completeMessage}}</div>
+    </transition>
   </div>
   <!-- /.p-contact -->
 </template>
@@ -106,8 +109,9 @@
     computed: {
       sendingClass(){
         return {
-          'is-sending' : this.isSending,
-          'is-error'   : this.isError
+          'is-sending'  : this.isSending,
+          'is-error'    : this.isError,
+          'is-complete' : this.isSubmit
         };
       }
     },
@@ -117,6 +121,7 @@
           return;
         }
         this.isSending = true;
+        this.completeMessage = '送信処理中…';
         const params = new URLSearchParams();
         params.append('form-name', 'contact');
         params.append('username', this.username);
@@ -128,12 +133,12 @@
         this.axios
         .post('/', params)
         .then(() => {
-          this.completeMessage = 'フォームを送信しました！';
+          this.completeMessage = 'お問い合わせを送信しました！';
           this.resetForm();
           this.isSubmit  = true;
         })
         .catch(err => {
-          this.completeMessage = 'フォームの送信が失敗しました';
+          this.completeMessage = 'お問い合わせの送信が失敗しました';
           this.isError   = true;
         })
         .finally(() => {
@@ -148,7 +153,35 @@
         this.message         = '';
         this.isError         = false;
         this.$refs.observer.reset();
+      },
+
+      hideToast(){
+        this.isSubmit = false;
+      },
+
+      toastTimer() {
+        if(!this.isSubmit){
+          return;
+        }
+        this.timer = setTimeout(() => {
+          this.hideToast();
+          clearTimeout(this.timer);
+        }, 8000);
       }
     }
   }
 </script>
+
+<style lang="scss" scoped>
+.toast-enter-active,
+.toast-leave-active {
+  transition: .6s $ease-out-expo;
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+.toast-enter,
+.toast-leave-to {
+  transform:translateY(100%);
+}
+</style>
