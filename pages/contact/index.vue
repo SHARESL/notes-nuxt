@@ -10,6 +10,7 @@
               <label for="username">お名前</label>
             </div>
             <!-- /.p-contact__label -->
+
             <div class="p-contact__content">
               <validation-provider v-slot="{ errors }" rules="required|max:100" name="お名前">
                 <input type="text" id="username" name="username" v-model="username" autocomplete="name">
