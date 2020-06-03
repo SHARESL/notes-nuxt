@@ -3,7 +3,9 @@
   align-items: center;
   justify-content: center;
 
-  a {
+  a,
+  input[type="submit"],
+  button {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -21,7 +23,7 @@
 
     &:hover{
       padding:24px 45px;
-      letter-spacing: .15em;
+      letter-spacing: .3em;
       color:#fff;
       background: $purple;
       transform: translateY(-2px);
