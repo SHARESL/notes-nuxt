@@ -23,6 +23,23 @@
         <!-- /.p-contact__item -->
         <div class="p-contact__item">
           <div class="p-contact__label">
+            <label for="katakana">フリガナ</label>
+          </div>
+          <!-- /.p-contact__label -->
+
+          <div class="p-contact__content">
+            <validation-provider v-slot="{ errors }" rules="required|katakana" name="フリガナ">
+              <input type="text" id="katakana" name="katakana" v-model="katakana" autocomplete="name">
+              <transition name="error">
+                <p v-show="errors.length" class="p-contact__error">{{ errors[0] }}</p>
+              </transition>
+            </validation-provider>
+          </div>
+          <!-- /.p-contact__content -->
+        </div>
+        <!-- /.p-contact__item -->
+        <div class="p-contact__item">
+          <div class="p-contact__label">
             <label for="useremail">メールアドレス</label>
           </div>
           <!-- /.p-contact__label -->
@@ -96,6 +113,7 @@
         title           : 'CONTACT',
         subtitle        : 'お問い合わせ',
         username        : '',
+        katakana        : '',
         useremail       : '',
         message         : '',
         botField        : '',
@@ -125,6 +143,7 @@
         const params = new URLSearchParams();
         params.append('form-name', 'contact');
         params.append('username', this.username);
+        params.append('katakana', this.katakana);
         params.append('useremail', this.useremail);
         params.append('message', this.message);
         if(this.botField){
@@ -149,6 +168,7 @@
 
       resetForm() {
         this.username        = '';
+        this.katakana        = '';
         this.useremail       = '';
         this.message         = '';
         this.isError         = false;
