@@ -20,6 +20,11 @@
         subtitle        : 'すべての記事'
       }
     },
+    head() {
+      return {
+        title: `${this.subtitle}｜notes by SHARESL`
+      }
+    },
     components : {
       Title,
       CategoryList

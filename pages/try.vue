@@ -20,6 +20,11 @@
         subtitle : '「TRY」の記事一覧'
       }
     },
+    head() {
+      return {
+        title: `${this.subtitle}｜notes by SHARESL`
+      }
+    },
     components : {
       Title,
       CategoryList

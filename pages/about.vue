@@ -104,14 +104,19 @@
   import Title from '~/components/Title.vue'
 
   export default {
-   data() {
-    return {
-      title    : 'ABOUT',
-      subtitle : '当サイトについて'
+    data() {
+      return {
+        title    : 'ABOUT',
+        subtitle : '当サイトについて'
+      }
+    },
+    head() {
+      return {
+        title: `${this.subtitle}｜notes by SHARESL`
+      }
+    },
+    components : {
+      Title
     }
-  },
-  components : {
-    Title
   }
-}
 </script>

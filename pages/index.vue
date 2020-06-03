@@ -24,6 +24,11 @@
         subtitle : 'SHARESLの開発者ブログ',
       }
     },
+    head() {
+      return {
+        title: `notes by SHARESL`
+      }
+    },
     components : {
       MainVisual,
       PickUp,

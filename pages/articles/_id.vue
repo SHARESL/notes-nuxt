@@ -84,6 +84,11 @@
   import Author from '~/components/Author.vue'
 
   export default {
+    head() {
+      return {
+        title: `${this.title}｜notes by SHARESL`
+      }
+    },
     components: {
       FacebookSvg,
       TwitterSvg,

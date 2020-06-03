@@ -20,6 +20,11 @@
         subtitle : `# ${this.$route.params.slug}`
       }
     },
+    head() {
+      return {
+        title: `${this.subtitle}タグの記事｜notes by SHARESL`
+      }
+    },
     components : {
       Title,
       CategoryList

@@ -80,6 +80,11 @@
   import Title from '~/components/Title.vue'
 
   export default {
+    head() {
+      return {
+        title: 'CONTACT｜notes by SHARESL'
+      }
+    },
     components : {
       Title
     },
