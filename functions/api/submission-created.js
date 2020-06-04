@@ -29,7 +29,7 @@ exports.handler = function(event, context, callback) {
     from    : `notes by SHARESL <ysk.inoue@sharesl.net>`,
     to      : `${useremail}`,
     subject : '【notes by SHARESL】お問い合わせありがとうございます',
-    text    : `${username} 様\n\nお問い合わせありがとうございます。\n以下の内容でフォームを送信いたしました。\n数日中に追って担当者よりメールにて回答をお送りいたします。\n今しばらくお待ちください。\n\n------ 送信内容 ------\n【お名前】\n${username}\n【フリガナ】\n${katakana}\n【メールアドレス】\n${useremail}\n【お問い合わせ内容】\n${message}\n--------------------\nnotes by SHARESL\n${url}\n`,
+    text    : `${username} 様\n\nお問い合わせありがとうございます。\n以下の内容でフォームを送信いたしました。\n数日中に追って担当者よりメールにて回答をお送りいたします。\n今しばらくお待ちください。\n\n------ 送信内容 ------\n【お名前】\n${username}\n\n【フリガナ】\n${katakana}\n\n【メールアドレス】\n${useremail}\n\n【お問い合わせ内容】\n${message}\n\n--------------------\nnotes by SHARESL\n${url}\n`,
   };
 
   transporter.sendMail(mailOptions, function(error, info) {
