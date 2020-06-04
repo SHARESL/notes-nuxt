@@ -2,7 +2,7 @@
   <div class="p-contact">
     <Title :title="title" :subtitle="subtitle"/>
     <div class="p-contact__inner">
-      <validation-observer ref="observer" v-slot="{ invalid, validated }" tag="form" class="p-contact__form" name="contact" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" @submit.prevent="onSubmit" :class="sendingClass">
+      <validation-observer ref="observer" v-slot="{ invalid, validated }" tag="form" class="p-contact__form" name="contact" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" @submit.prevent="onSubmit" :class="sendingClass" novalidate>
         <input type="hidden" name="form-name" value="contact">
         <div class="p-contact__item">
           <div class="p-contact__label">
@@ -76,7 +76,7 @@
           </div>
           <!-- /.p-contact__label -->
           <div class="p-contact__content">
-            <input type="text" name="bot-field" v-model="botField"/>
+            <input type="text" name="bot-field" v-model="botField">
           </div>
           <!-- /.p-contact__content -->
         </div>
