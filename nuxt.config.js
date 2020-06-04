@@ -36,13 +36,8 @@ export default {
   */
   plugins: [
   '~/plugins/vue-scrollto',
-  {
-    src: '~/plugins/vee-validate'
-  },
-  {
-    src: "~/plugins/axios.js",
-    mode: "client"
-  }
+  '~/plugins/vee-validate',
+  '~/plugins/axios.js'
   ],
   /*
   ** Nuxt.js modules

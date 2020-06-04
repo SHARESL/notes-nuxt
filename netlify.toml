@@ -1,4 +1,4 @@
 [build]
-Command = "yarn build"
+command = "yarn build"
 functions = "functions"
 publish = "dist"
