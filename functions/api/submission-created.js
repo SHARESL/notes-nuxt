@@ -14,6 +14,7 @@ exports.handler = function(event, context, callback) {
     refreshToken : process.env.OAUTH_REFRESH_TOKEN
   };
 
+
   // トランスポート
   const transport = {
     service : 'gmail',
