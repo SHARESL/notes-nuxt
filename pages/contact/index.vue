@@ -3,7 +3,6 @@
     <Title :title="title" :subtitle="subtitle"/>
     <div class="p-contact__inner">
       <validation-observer ref="observer" v-slot="{ invalid, validated }" tag="form" class="p-contact__form" name="contact" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" @submit.prevent="onSubmit" :class="sendingClass">
-        <input type="hidden" name="form-name" value="contact">
         <div class="p-contact__item">
           <div class="p-contact__label">
             <label for="username">お名前</label>
@@ -29,7 +28,7 @@
 
           <div class="p-contact__content">
             <validation-provider v-slot="{ errors }" rules="required|katakana" name="フリガナ">
-              <input type="text" id="katakana" name="katakana" v-model="katakana" autocomplete="name">
+              <input type="text" id="katakana" name="katakana" v-model="katakana">
               <transition name="error">
                 <p v-show="errors.length" class="p-contact__error">{{ errors[0] }}</p>
               </transition>
@@ -45,7 +44,7 @@
           <!-- /.p-contact__label -->
           <div class="p-contact__content">
             <validation-provider v-slot="{ errors }" rules="required|email|max:256" name="メールアドレス">
-              <input type="text" id="useremail" name="useremail" v-model="useremail" autocomplete="email" required>
+              <input type="text" id="useremail" name="useremail" v-model="useremail" autocomplete="email">
               <transition name="error">
                 <p v-show="errors.length" class="p-contact__error">{{ errors[0] }}</p>
               </transition>
@@ -61,7 +60,7 @@
           <!-- /.p-contact__label -->
           <div class="p-contact__content">
             <validation-provider v-slot="{ errors }" rules="required|max:1000" name="ご質問・ご要望など">
-              <textarea id="message" name="message" v-model="message" required></textarea>
+              <textarea id="message" name="message" v-model="message"></textarea>
               <transition name="error">
                 <p v-show="errors.length" class="p-contact__error">{{ errors[0] }}</p>
               </transition>
