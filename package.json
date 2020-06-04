@@ -5,8 +5,8 @@
   "author": "Yosuke Inoue",
   "private": true,
   "scripts": {
-    "dev": "nuxt",
-    "build": "nuxt build",
+    "dev": "netlify-lambda serve functions/api & nuxt",
+    "build": "netlify-lambda build functions/api && nuxt generate",
     "start": "nuxt start",
     "generate": "nuxt generate"
   },
