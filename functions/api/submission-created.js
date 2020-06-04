@@ -5,7 +5,7 @@ const nodemailer = require('nodemailer');
 exports.handler = function(event, context, callback) {
   const { username, katakana, useremail, message } = JSON.parse(event.body).payload.data;
 
-  // 認証情報
+  // OAuth認証情報
   const auth = {
     type         : 'OAuth2',
     user         : process.env.OAUTH_USER,
