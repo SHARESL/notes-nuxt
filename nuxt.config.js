@@ -36,13 +36,13 @@ export default {
   */
   plugins: [
   '~/plugins/vue-scrollto',
-  '~/plugins/vee-validate',
-  '~/plugins/axios.js'
+  '~/plugins/vee-validate'
   ],
   /*
   ** Nuxt.js modules
   */
   modules: [
+  "@nuxtjs/axios",
   '@nuxtjs/style-resources',
   'nuxt-svg-loader'
   ],

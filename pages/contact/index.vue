@@ -149,8 +149,8 @@
         if(this.botField){
           params.append('bot-field', this.botField);
         }
-        this.axios
-        .post('/', params)
+        this.$axios
+        .$post('/', params)
         .then(() => {
           this.completeMessage = 'お問い合わせを送信しました！';
           this.resetForm();

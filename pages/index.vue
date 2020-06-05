@@ -2,22 +2,26 @@
   <div class="p-top">
     <MainVisual />
     <div id="main">
-      <PickUp />
       <NewList />
     </div>
   </div>
   <!-- /.p-top -->
 </template>
 
-<style lang="scss" scoped>
-</style>
-
 <script>
   import MainVisual from '~/components/MainVisual.vue'
-  import PickUp from '~/components/PickUp.vue'
+  // import PickUp from '~/components/PickUp.vue'
   import NewList from '~/components/NewList.vue'
 
   export default {
+    components : {
+      MainVisual,
+      // PickUp,
+      NewList
+    },
+    async fetch({ store }){
+      await store.dispatch('fetchNewPosts');
+    },
     data() {
       return {
         title    : 'SHARESL TECH BLOG',
@@ -28,11 +32,6 @@
       return {
         title: `notes by SHARESL`
       }
-    },
-    components : {
-      MainVisual,
-      PickUp,
-      NewList
     }
   }
 </script>
