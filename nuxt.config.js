@@ -30,6 +30,7 @@ export default {
   */
   css: [
   '~/assets/sass/style.scss',
+  { src: '~/node_modules/highlight.js/styles/monokai-sublime.css', lang: 'css' }
   ],
   /*
   ** Plugins to load before mounting the App

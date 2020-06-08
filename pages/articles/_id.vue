@@ -21,7 +21,7 @@
         :alt="post.title.rendered">
       </div>
       <!-- /.p-post__visual -->
-      <div class="p-post__contents" v-html="post.content.rendered"></div>
+      <div class="p-post__contents" v-html="post.content.rendered" ref="post_contents"></div>
       <!-- /.p-post__contents -->
       <aside class="c-share">
         <p class="c-share__caption u-futura-pt-condensed">SHARE</p>
@@ -66,6 +66,15 @@
 </template>
 
 <script>
+  import hljs from 'highlight.js/lib/core';
+  hljs.registerLanguage('javascript', javascript);
+  hljs.registerLanguage('xml', xml);
+  hljs.registerLanguage('scss', scss);
+
+  import javascript from 'highlight.js/lib/languages/javascript';
+  import xml from 'highlight.js/lib/languages/xml';
+  import scss from 'highlight.js/lib/languages/scss';
+
   import FacebookSvg from '~/assets/svg/icon-facebook.svg'
   import TwitterSvg from '~/assets/svg/icon-twitter.svg'
   import HatenaSvg from '~/assets/svg/icon-hatebu.svg'
@@ -118,6 +127,25 @@
         category_slug : 'tips',
         prev          : null,
         next          : null
+      }
+    },
+    mounted(){
+      this.replaceTocLink();
+      this.highlightCode();
+    },
+    methods : {
+      highlightCode(){
+        const codeblock = this.$refs.post_contents.querySelectorAll('pre code');
+        [...codeblock].forEach((block) => {
+          hljs.highlightBlock(block);
+        });
+      },
+      replaceTocLink(){
+        const toc = this.$refs.post_contents.querySelectorAll('#ez-toc-container a');
+        [...toc].forEach((link) => {
+          const hash = link.hash;
+          link.setAttribute('href', hash);
+        });
       }
     }
   }

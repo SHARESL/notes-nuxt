@@ -105,7 +105,7 @@
     h5,
     h6
     {
-      margin-top: 60px;
+      margin-top: 30px;
       margin-bottom: 30px;
       font-weight: 900;
       line-height: 1.6;
@@ -125,6 +125,11 @@
           background: none;
           color: $purple;
         }
+      }
+
+      .ez-toc-section{
+        display: block;
+        padding-top: 60px;
       }
     }
 
@@ -172,11 +177,27 @@
       border-bottom:1px solid $gray;
     }
 
-    p{
+    p,
+    ul,
+    ol{
       margin-top: 30px;
       margin-bottom: 30px;
       @include fz(18);
       line-height: 1.9;
+    }
+
+    ol{
+      padding-left: 2em;
+      li{
+        list-style-type: decimal;
+      }
+    }
+
+    ul{
+      padding-left: 2em;
+      li{
+        list-style-type: disc;
+      }
     }
 
     a{
@@ -200,5 +221,109 @@
         border-color:transparent;
       }
     }
+
+    .ads{
+      text-align: center;
+      margin:2em 0;
+      a{
+        display: block;
+        border-bottom:none;
+        &[target="_blank"]{
+          &::after{
+            content:none;
+          }
+        }
+      }
+    }
+
+    pre code{
+      display: block;
+      overflow-x: auto;
+      padding: 1em;
+      @include fz(15);
+      line-height: 1.6;
+      color: #b9b5b8;
+      background: #322931;
+    }
+
+    code{
+      padding:3px 6px;
+      color:$purple;
+      background:$lgray;
+    }
+  }
+
+  #ez-toc-container{
+    padding:30px;
+    border:3px solid $purple;
+    border-radius: 6px;
+
+    ul{
+      margin:0;
+      line-height: 2.4;
+    }
+
+    li{
+      line-height: 2.4;
+    }
+
+    .ez-toc-title-container{
+
+    }
+
+    .ez-toc-title{
+      margin:0;
+      padding-bottom: 15px;
+      @include fz(21);
+      font-weight: 600;
+      border-bottom:3px solid $purple;
+    }
+
+    .ez-toc-list{
+      padding-top: 15px;
+      padding-bottom: 15px;
+      line-height: 2.4;
+    }
+
+    .ez-toc-link{
+
+    }
+
+    .ez-toc-list-level-1,
+    .ez-toc-list-level-2,
+    .ez-toc-list-level-3,
+    .ez-toc-list-level-4,
+    .ez-toc-list-level-5,
+    .ez-toc-list-level-6
+    {
+      padding-left: 1em;
+    }
+
+    .ez-toc-heading-level-2{
+      list-style-type: disc;
+      @include fz(15);
+    }
+
+    .ez-toc-heading-level-3{
+      list-style-type: circle;
+      @include fz(12);
+    }
+
+    .ez-toc-heading-level-4{
+      list-style-type: square;
+      @include fz(12);
+    }
+
+    .ez-toc-heading-level-5{
+      list-style-type: square;
+      @include fz(12);
+    }
+
+    .ez-toc-heading-level-6{
+      list-style-type: square;
+      @include fz(12);
+    }
+
+
   }
 }

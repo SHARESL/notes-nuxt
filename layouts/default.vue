@@ -21,6 +21,7 @@
   import Footer from '~/components/Footer'
 
   export default {
+    scrollToTop: true,
     components: {
       Header,
       Footer

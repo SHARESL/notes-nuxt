@@ -2,7 +2,7 @@
   <div class="c-card" v-if="post">
     <nuxt-link class="c-card__image" :to="{ name: 'articles-id', params: { id : post.id}}">
       <img
-      :src="post.featured_image.blog_thm.src"
+      :src="post.featured_image.medium.src"
       :alt="post.title.rendered">
     </nuxt-link>
     <div class="c-card__content">

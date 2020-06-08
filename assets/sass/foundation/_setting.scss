@@ -1,5 +1,7 @@
 html {
   font-size: 62.5%;
+  // scroll-behavior: smooth;
+  // text-rendering: optimizeSpeed;
 }
 
 body {
@@ -7,7 +9,6 @@ body {
   font-family: $gothic;
   font-weight: 400;
   font-kerning: normal;
-  //font-feature-settings: "palt" 1;
   color: #000;
   background: #fff;
   word-wrap: break-word;
