@@ -48,6 +48,10 @@ export default {
   'nuxt-svg-loader'
   ],
 
+  axios: {
+    baseURL: process.env.BASE_API_URL || 'http://localhost/notes/wp-json'
+  },
+
   styleResources: {
     scss: [
     '~/assets/sass/foundation/_variable.scss',

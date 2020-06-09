@@ -19,9 +19,6 @@
       // PickUp,
       NewList
     },
-    async fetch({ store }){
-      await store.dispatch('fetchNewPosts');
-    },
     data() {
       return {
         title    : 'SHARESL TECH BLOG',
@@ -32,6 +29,9 @@
       return {
         title: `notes by SHARESL`
       }
-    }
+    },
+    async fetch({ store }){
+      await store.dispatch('fetchNewPosts', { paged : 1 });
+    },
   }
 </script>

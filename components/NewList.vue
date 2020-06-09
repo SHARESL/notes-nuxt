@@ -2,7 +2,7 @@
   <div class="c-list">
     <h1 class="c-caption u-futura-pt-condensed">NEW</h1>
     <div class="c-list__inner">
-      <Card class="c-list__item" v-for="post in posts" :key="post.id" :post="post" />
+      <Card class="c-list__item" v-if="posts" v-for="post in posts" :key="post.id" :post="post" />
     </div>
     <!-- /.c-list__inner -->
     <Button :url="buttonUrl" :text="buttonText" />

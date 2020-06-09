@@ -14,6 +14,10 @@
   import CategoryList from '~/components/CategoryList.vue'
 
   export default {
+    components : {
+      Title,
+      CategoryList
+    },
     data() {
       return {
         title    : 'ARTICLES',
@@ -25,9 +29,11 @@
         title: `${this.subtitle}｜notes by SHARESL`
       }
     },
-    components : {
-      Title,
-      CategoryList
+    async fetch({ store, route }){
+      await store.dispatch('fetchCategoryPosts', {
+        categorySlug : route.name,
+        paged        : 1
+      });
     }
   }
 </script>
