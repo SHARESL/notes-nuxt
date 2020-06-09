@@ -39,7 +39,7 @@
         <!-- /.c-share__list -->
       </aside>
       <!-- /.c-share -->
-      <Author :author="author" />
+      <Author :post="post" />
       <div class="c-pager">
         <div class="c-pager__item">
           <div class="c-pager__link">
@@ -89,11 +89,6 @@
       Card,
       Author
     },
-    head() {
-      return {
-        title: `${this.title}｜notes by SHARESL`
-      }
-    },
     async asyncData({ params, error, payload, $axios }) {
       if (payload)
       {
@@ -105,7 +100,7 @@
         error({ statusCode: 404, message: 'Post not found' });
         return;
       }
-      const res = await $axios.$get(`http://localhost/notes/wp-json/wp/v2/posts/${params.id}`)
+      const res = await $axios.$get(`/wp/v2/posts/${params.id}`)
       .catch((err) => {
         console.error(err)
       });
@@ -115,18 +110,18 @@
     },
     data() {
       return {
-        title         : 'Rellax.jsを使って簡単パララックス',
-        slug          : 'top',
-        date          : '2020.02.20',
         author       : {
           name  : 'INOUE',
           image : '~/assets/images/author.png',
           slug  : 'inoue'
         },
-        category      : 'TIPS',
-        category_slug : 'tips',
         prev          : null,
         next          : null
+      }
+    },
+    head() {
+      return {
+        title: `${this.post.title.rendered}｜notes by SHARESL`
       }
     },
     mounted(){
