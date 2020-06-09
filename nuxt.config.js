@@ -1,4 +1,5 @@
 require("dotenv").config()
+import axios from 'axios';
 
 export default {
   mode: 'universal',
@@ -50,21 +51,46 @@ export default {
   'nuxt-svg-loader'
   ],
 
-  env: {
-    BASE_API_URL: process.env.BASE_API_URL
-  },
+  generate: {
+    interval: 1000,
+    routes (callback) {
+      // WordPressの総記事数を取得
+      const totalPosts = response.headers['x-wp-total']
+      return Promise.all([
+        axios.get(`${process.env.BASE_API_URL}/wp/v2/posts?per_page=${totalPosts}`),
+        axios.get(`${process.env.BASE_API_URL}/wp/v2/categories`)
+        ]).then((data) => {
+          let routes1 = posts.data.map((post) => {
+            return {
+              route: `/articles/${post.id}`,
+              payload: post
+            }
+          })
 
-  axios: {
-    baseURL: process.env.BASE_API_URL
-  },
+          let routes2 = categories.data.map((category) => {
+            return `${category.slug}`
+          })
 
-  styleResources: {
-    scss: [
-    '~/assets/sass/foundation/_variable.scss',
-    '~/assets/sass/foundation/_mixin.scss',
-    '~/assets/sass/foundation/_function.scss'
-    ]
-  },
+          callback (null, routes1.concat(routes2))
+        })
+      }
+    },
+
+    env: {
+      BASE_API_URL: process.env.BASE_API_URL
+    },
+
+    axios: {
+      baseURL: process.env.BASE_API_URL
+    },
+
+    styleResources: {
+      scss: [
+      '~/assets/sass/foundation/_variable.scss',
+      '~/assets/sass/foundation/_mixin.scss',
+      '~/assets/sass/foundation/_function.scss'
+      ]
+    },
   /*
   ** Build configuration
   */
