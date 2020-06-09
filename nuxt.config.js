@@ -54,7 +54,8 @@ export default {
   generate: {
     interval: 1000,
     routes (callback) {
-      axios.get(`${apiURL}posts`).then(response => {
+      axios.get(`${process.env.BASE_API_URL}/wp/v2/posts`)
+      .then(response => {
         // WordPressの総記事数を取得
         const totalPosts = response.headers['x-wp-total']
 
