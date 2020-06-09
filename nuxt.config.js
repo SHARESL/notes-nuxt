@@ -1,3 +1,4 @@
+require("dotenv").config()
 
 export default {
   mode: 'universal',
@@ -43,13 +44,18 @@ export default {
   ** Nuxt.js modules
   */
   modules: [
-  "@nuxtjs/axios",
+  '@nuxtjs/dotenv',
+  '@nuxtjs/axios',
   '@nuxtjs/style-resources',
   'nuxt-svg-loader'
   ],
 
+  env: {
+    BASE_API_URL: process.env.BASE_API_URL
+  },
+
   axios: {
-    baseURL: process.env.BASE_API_URL || 'http://localhost/notes/wp-json'
+    baseURL: process.env.BASE_API_URL
   },
 
   styleResources: {
