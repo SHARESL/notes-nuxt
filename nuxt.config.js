@@ -54,12 +54,15 @@ export default {
   generate: {
     interval: 1000,
     routes (callback) {
-      // WordPressの総記事数を取得
-      const totalPosts = response.headers['x-wp-total']
-      return Promise.all([
-        axios.get(`${process.env.BASE_API_URL}/wp/v2/posts?per_page=${totalPosts}`),
-        axios.get(`${process.env.BASE_API_URL}/wp/v2/categories`)
-        ]).then((data) => {
+      axios.get(`${apiURL}posts`).then(response => {
+        // WordPressの総記事数を取得
+        const totalPosts = response.headers['x-wp-total']
+
+        Promise.all([
+          axios.get(`${process.env.BASE_API_URL}/wp/v2/posts?per_page=${totalPosts}`),
+          axios.get(`${process.env.BASE_API_URL}/wp/v2/categories`)
+          ])
+        .then (axios.spread(function (posts, categories) {
           let routes1 = posts.data.map((post) => {
             return {
               route: `/articles/${post.id}`,
@@ -72,25 +75,26 @@ export default {
           })
 
           callback (null, routes1.concat(routes2))
-        })
-      }
-    },
+        }))
+      })
+    }
+  },
 
-    env: {
-      BASE_API_URL: process.env.BASE_API_URL
-    },
+  env: {
+    BASE_API_URL: process.env.BASE_API_URL
+  },
 
-    axios: {
-      baseURL: process.env.BASE_API_URL
-    },
+  axios: {
+    baseURL: process.env.BASE_API_URL
+  },
 
-    styleResources: {
-      scss: [
-      '~/assets/sass/foundation/_variable.scss',
-      '~/assets/sass/foundation/_mixin.scss',
-      '~/assets/sass/foundation/_function.scss'
-      ]
-    },
+  styleResources: {
+    scss: [
+    '~/assets/sass/foundation/_variable.scss',
+    '~/assets/sass/foundation/_mixin.scss',
+    '~/assets/sass/foundation/_function.scss'
+    ]
+  },
   /*
   ** Build configuration
   */
