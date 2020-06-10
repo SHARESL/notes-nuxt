@@ -52,23 +52,27 @@
     },
     data() {
       return {
-        title    : 'ARTICLES',
-        subtitle : `${this.$route.params.name}の書いた記事`
-      }
-    },
-    head() {
-      return {
-        title: `${this.subtitle}｜notes by SHARESL`
+        title    : 'ARTICLES'
       }
     },
     computed: {
       ...mapGetters(['allPosts']),
+      subtitle(){
+        if(this.post){
+          return `${this.post.author_name}の書いた記事`
+        }
+      },
       post(){
         const posts = Vue.util.extend([], this.allPosts);
         const post = posts.find( (post) => {
           return post.author_slug === this.$route.params.name
         });
         return post;
+      }
+    },
+    head() {
+      return {
+        title: `${this.subtitle}｜notes by SHARESL`
       }
     },
   }

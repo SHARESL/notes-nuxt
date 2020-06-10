@@ -26,7 +26,8 @@
     async fetch({ store, route, payload }){
       if (payload)
       {
-        await store.commit('saveAllPosts', payload);
+        await store.commit('saveAllPosts', payload.allPosts);
+        await store.commit('saveMembers', payload.members);
         return;
       }
       if(store.getters.allPosts){

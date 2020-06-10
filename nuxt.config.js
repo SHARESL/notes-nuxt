@@ -57,9 +57,10 @@ export default {
     routes (callback) {
       Promise.all([
         axios.get(`${process.env.BASE_API_URL}/custom/v0/all`),
-        axios.get(`${process.env.BASE_API_URL}/wp/v2/categories`)
+        axios.get(`${process.env.BASE_API_URL}/wp/v2/categories`),
+        axios.get(`${process.env.BASE_API_URL}/custom/v0/members`)
         ])
-      .then (axios.spread( (allPosts, categories) => {
+      .then (axios.spread( (allPosts, categories, members) => {
 
         //記事詳細ページ
         const route_post = allPosts.data.map((post) => {
@@ -89,7 +90,24 @@ export default {
           payload : allPosts.data
         }]
 
-        callback (null, route_post.concat(route_category, route_all, route_top))
+        //メンバー一覧
+        const route_members = [{
+          route   : '/member',
+          payload : {
+            members  : members.data,
+            allPosts : allPosts.data
+          }
+        }]
+
+        //メンバー詳細
+        const route_member = members.data.map((member) => {
+          return {
+            route   : `/member/${member.author_slug}`,
+            payload : allPosts.data
+          }
+        })
+
+        callback (null, route_post.concat(route_category, route_all, route_top, route_members, route_member))
       }))
     },
   },
