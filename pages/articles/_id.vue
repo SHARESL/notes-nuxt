@@ -96,17 +96,19 @@
           post: payload
         }
       }
-      if(!params.id){
+      else if(!params.id){
         error({ statusCode: 404, message: 'Post not found' });
         return;
       }
-      const res = await $axios.$get(`/wp/v2/posts/${params.id}`)
-      .catch((err) => {
-        console.error(err)
-      });
-      return {
-        post: res
-      };
+      else {
+        const res = await $axios.$get(`/wp/v2/posts/${params.id}`)
+        .catch((err) => {
+          console.error(err)
+        });
+        return {
+          post: res
+        };
+      }
     },
     data() {
       return {

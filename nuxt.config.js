@@ -52,7 +52,8 @@ export default {
   ],
 
   generate: {
-    interval: 1000,
+    fallback : true,
+    interval : 1000,
     routes (callback) {
       axios.get(`${process.env.BASE_API_URL}/wp/v2/posts`)
       .then(response => {
@@ -78,7 +79,7 @@ export default {
           callback (null, routes1.concat(routes2))
         }))
       })
-    }
+    },
   },
 
   env: {

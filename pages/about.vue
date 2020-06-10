@@ -61,45 +61,6 @@
   <!-- /.p-about -->
 </template>
 
-<style lang="scss" scoped>
-.p-about{
-  a{
-    display: inline;
-  }
-  &__block{
-    max-width:690px;
-    margin:auto;
-    padding:60px 0;
-  }
-  &__summary{
-    margin-top: 30px;
-  }
-  &__table{
-    overflow: hidden;
-    width: 100%;
-    max-width:600px;
-    margin:30px auto 0;
-
-    th,
-    td{
-      text-align:left;
-      padding:15px;
-      @include fz(18);
-      line-height: 2;
-      border: 6px solid $lgray;
-    }
-
-    th{
-
-    }
-
-    td{
-
-    }
-  }
-}
-</style>
-
 <script>
   import Title from '~/components/Title.vue'
 

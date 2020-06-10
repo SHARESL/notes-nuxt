@@ -1,0 +1,14 @@
+.p-404{
+  &__inner{
+    max-width:690px;
+    margin:auto;
+    padding:60px 0;
+  }
+  &__summary{
+    text-align: center;
+    margin-top: 30px;
+  }
+  &__btn{
+    margin-top:30px;
+  }
+}
