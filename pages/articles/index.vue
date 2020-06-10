@@ -18,6 +18,17 @@
       Title,
       CategoryList
     },
+    async fetch({ store, route, payload }){
+      if (payload)
+      {
+        await store.commit('saveAllPosts', payload);
+        return;
+      }
+      if(store.getters.allPosts){
+        return;
+      }
+      await store.dispatch('fetchAllPost');
+    },
     data() {
       return {
         title    : 'ARTICLES',
@@ -28,12 +39,6 @@
       return {
         title: `${this.subtitle}｜notes by SHARESL`
       }
-    },
-    async fetch({ store }){
-      await store.dispatch('fetchCategoryPosts', {
-        categorySlug : 'all',
-        paged        : 1
-      });
     }
   }
 </script>

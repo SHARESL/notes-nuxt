@@ -2,11 +2,11 @@
   <div class="p-category">
     <Title :title="title" :subtitle="subtitle"/>
     <div class="p-category__author">
-      <Author :author="author" />
+      <Author :post="post" />
     </div>
     <!-- /.p-category__author -->
     <div class="p-category__inner">
-      <CategoryList :hide-nav="false" />
+      <CategoryList :hideNav="true" />
     </div>
     <!-- /.p-category__inner -->
   </div>
@@ -23,20 +23,37 @@
 </style>
 
 <script>
+  import Vue from 'vue'
   import Title from '~/components/Title.vue'
   import CategoryList from '~/components/CategoryList.vue'
   import Author from '~/components/Author.vue'
+  import { mapGetters } from 'vuex'
 
   export default {
+    components : {
+      Title,
+      CategoryList,
+      Author
+    },
+    async fetch({ params, error, payload, store, $axios }) {
+      if (payload){
+        await store.commit('saveAllPosts', payload);
+        return
+      }
+      if(!params.name){
+        await error({ statusCode: 404, message: 'Page not found' });
+        return;
+      }
+      if(store.getters.allPosts){
+        return;
+      }
+      await store.dispatch('fetchAllPost');
+      return;
+    },
     data() {
       return {
         title    : 'ARTICLES',
-        subtitle : `${this.$route.params.name}の書いた記事`,
-        author   : {
-          name  : 'INOUE',
-          image : '~/assets/images/author.png',
-          slug  : this.$route.params.name
-        }
+        subtitle : `${this.$route.params.name}の書いた記事`
       }
     },
     head() {
@@ -44,10 +61,15 @@
         title: `${this.subtitle}｜notes by SHARESL`
       }
     },
-    components : {
-      Title,
-      CategoryList,
-      Author
-    }
+    computed: {
+      ...mapGetters(['allPosts']),
+      post(){
+        const posts = Vue.util.extend([], this.allPosts);
+        const post = posts.find( (post) => {
+          return post.author_slug === this.$route.params.name
+        });
+        return post;
+      }
+    },
   }
 </script>

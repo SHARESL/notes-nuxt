@@ -53,32 +53,44 @@ export default {
 
   generate: {
     fallback : true,
-    interval : 1000,
+    interval : 100,
     routes (callback) {
-      axios.get(`${process.env.BASE_API_URL}/wp/v2/posts`)
-      .then(response => {
-        // WordPressの総記事数を取得
-        const totalPosts = response.headers['x-wp-total']
+      Promise.all([
+        axios.get(`${process.env.BASE_API_URL}/custom/v0/all`),
+        axios.get(`${process.env.BASE_API_URL}/wp/v2/categories`)
+        ])
+      .then (axios.spread( (allPosts, categories) => {
 
-        Promise.all([
-          axios.get(`${process.env.BASE_API_URL}/wp/v2/posts?per_page=${totalPosts}`),
-          axios.get(`${process.env.BASE_API_URL}/wp/v2/categories`)
-          ])
-        .then (axios.spread(function (posts, categories) {
-          let routes1 = posts.data.map((post) => {
-            return {
-              route: `/articles/${post.id}`,
-              payload: post
-            }
-          })
+        //記事詳細ページ
+        const route_post = allPosts.data.map((post) => {
+          return {
+            route   : `/articles/${post.id}`,
+            payload : post
+          }
+        })
 
-          let routes2 = categories.data.map((category) => {
-            return `${category.slug}`
-          })
+        //カテゴリーページ
+        const route_category = categories.data.map((category) => {
+          return {
+            route   : `${category.slug}`,
+            payload : allPosts.data
+          }
+        })
 
-          callback (null, routes1.concat(routes2))
-        }))
-      })
+        //新着一覧
+        const route_all = [{
+          route   : '/articles',
+          payload : allPosts.data
+        }]
+
+        //TOP新着記事一覧
+        const route_top = [{
+          route   : '/',
+          payload : allPosts.data
+        }]
+
+        callback (null, route_post.concat(route_category, route_all, route_top))
+      }))
     },
   },
 

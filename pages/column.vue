@@ -29,11 +29,16 @@
         title: `${this.subtitle}｜notes by SHARESL`
       }
     },
-    async fetch({ store, route }){
-      await store.dispatch('fetchCategoryPosts', {
-        categorySlug : route.name,
-        paged        : 1
-      });
+    async fetch({ store, route, payload }){
+      if (payload)
+      {
+        await store.commit('saveAllPosts', payload);
+        return;
+      }
+      if(store.getters.allPosts){
+        return;
+      }
+      await store.dispatch('fetchAllPost');
     }
   }
 </script>

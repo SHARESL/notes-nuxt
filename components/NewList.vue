@@ -10,6 +10,7 @@
   <!-- /.p-list -->
 </template>
 <script>
+  import Vue from 'vue'
   import { mapGetters } from 'vuex'
   import Card from '~/components/Card.vue'
   import Button from '~/components/Button.vue'
@@ -26,9 +27,11 @@
       }
     },
     computed: {
-      ...mapGetters({
-        posts : 'newPosts'
-      })
+      ...mapGetters(['allPosts']),
+      posts() {
+        const posts = Vue.util.extend([], this.allPosts);
+        return posts.slice(0,6);
+      }
     }
   }
 </script>

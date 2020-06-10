@@ -1,60 +1,59 @@
 const state = () => ({
-  newPosts      : null,
-  categoryPosts : {}
+  //すべての記事
+  allPosts : null,
+  //メンバー一覧
+  members  : null
 });
 
 const getters = {
-  newPosts(state){
-    return state.newPosts;
+  //すべての記事
+  allPosts(state){
+    return state.allPosts;
   },
-  categoryPosts(state){
-    return state.categoryPosts;
+  //メンバー一覧
+  members(state){
+    return state.members;
   }
 }
 
 const mutations = {
-  saveNewPosts(state, newPosts) {
-    state.newPosts = newPosts;
+  //すべての記事を保存
+  saveAllPosts(state, allPosts){
+    state.allPosts = allPosts;
   },
-  saveCategoryPosts(state, {categoryPosts, categorySlug}) {
-    state.categoryPosts[categorySlug] = categoryPosts;
+  //メンバー一覧を保存
+  saveMembers(state, members){
+    state.members = members;
   }
 }
 
 const actions = {
   /*
-  * 新着一覧
+  * 全記事取得
   */
-  async fetchNewPosts({ commit }, {paged}){
-    const res = await this.$axios.$get('/custom/v0/feed', {
-      params: {
-        per_page : 9,
-        paged    : paged ? paged : 1
-      }
-    })
+  async fetchAllPost({ state, commit }){
+    if(state.allPosts){
+      return;
+    }
+    const res = await this.$axios.$get('/custom/v0/all')
     .catch((err) => {
       console.error(err)
     });
-    await commit('saveNewPosts', res);
+    await commit('saveAllPosts', res);
     return res;
   },
   /*
-  * カテゴリー一覧取得
+  * メンバー一覧取得
   */
-  async fetchCategoryPosts({ commit }, {categorySlug, paged}){
-    const res = await this.$axios.$get(`/custom/v0/category/${categorySlug}`, {
-      params: {
-        per_page   : 9,
-        paged      : paged ? paged : 1
-      }
-    })
+  async fetchMembers({ state, commit }){
+    if(state.members){
+      return;
+    }
+    const res = await this.$axios.$get('/custom/v0/members')
     .catch((err) => {
       console.error(err)
     });
-    await commit('saveCategoryPosts', {
-      categoryPosts : res,
-      categorySlug
-    });
+    await commit('saveMembers', res);
     return res;
   }
 }

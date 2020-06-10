@@ -1,0 +1,13 @@
+.p-member{
+  &__inner{
+    max-width:690px;
+    margin:auto;
+    padding:60px 0;
+  }
+
+  &__item{
+    + .p-member__item{
+      margin-top: 60px;
+    }
+  }
+}

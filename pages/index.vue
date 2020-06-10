@@ -30,8 +30,16 @@
         title: `notes by SHARESL`
       }
     },
-    async fetch({ store }){
-      await store.dispatch('fetchNewPosts', { paged : 1 });
+    async asyncData({ store, payload }){
+      if (payload)
+      {
+        await store.commit('saveAllPosts', payload);
+        return;
+      }
+      if(store.getters.allPosts){
+        return;
+      }
+      await store.dispatch('fetchAllPost');
     },
   }
 </script>
