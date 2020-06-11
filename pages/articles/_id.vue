@@ -26,22 +26,7 @@
       <!-- /.p-post__visual -->
       <div class="p-post__contents" v-html="post.content" ref="post_contents"></div>
       <!-- /.p-post__contents -->
-      <aside class="c-share">
-        <p class="c-share__caption u-futura-pt-condensed">SHARE</p>
-        <div class="c-share__list">
-          <a class="fb" href="./" target="_blank" rel="noopener">
-            <span class="icon"><FacebookSvg/></span>
-          </a>
-          <a class="tw" href="./" target="_blank" rel="noopener">
-            <span class="icon"><TwitterSvg/></span>
-          </a>
-          <a class="hatena hatena-bookmark-button" href="./" target="_blank" rel="noopener">
-            <span class="icon"><HatenaSvg/></span>
-          </a>
-        </div>
-        <!-- /.c-share__list -->
-      </aside>
-      <!-- /.c-share -->
+      <ShareButton :title="post.title" />
       <Author :post="post" />
       <div class="c-pager" v-if="post.prev || post.next">
         <div class="c-pager__item" v-if="post.prev">
@@ -85,20 +70,16 @@
   hljs.registerLanguage('bash', bash);
 
   import Vue from 'vue'
-  import FacebookSvg from '~/assets/svg/icon-facebook.svg'
-  import TwitterSvg from '~/assets/svg/icon-twitter.svg'
-  import HatenaSvg from '~/assets/svg/icon-hatebu.svg'
   import Card from '~/components/Card.vue'
+  import ShareButton from '~/components/ShareButton.vue'
   import Author from '~/components/Author.vue'
 
   import { mapGetters } from 'vuex'
 
   export default {
     components: {
-      FacebookSvg,
-      TwitterSvg,
-      HatenaSvg,
       Card,
+      ShareButton,
       Author
     },
     async fetch({ params, error, payload, store, $axios }) {
@@ -142,7 +123,7 @@
     },
     head() {
       return {
-        title: this.post ? `${this.post.title}｜notes by SHARESL` : 'notes by SHARESL'
+        title: this.post ? `${this.post.title}` : ''
       }
     },
     mounted(){

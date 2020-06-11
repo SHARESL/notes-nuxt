@@ -27,6 +27,7 @@
     },
     head() {
       return {
+        titleTemplate: null,
         title: `notes by SHARESL`
       }
     },

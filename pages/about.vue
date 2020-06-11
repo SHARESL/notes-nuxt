@@ -73,7 +73,7 @@
     },
     head() {
       return {
-        title: `${this.subtitle}｜notes by SHARESL`
+        title: `${this.subtitle}`
       }
     },
     components : {

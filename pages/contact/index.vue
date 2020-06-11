@@ -102,7 +102,7 @@
   export default {
     head() {
       return {
-        title: 'CONTACT｜notes by SHARESL'
+        title: 'CONTACT'
       }
     },
     components : {

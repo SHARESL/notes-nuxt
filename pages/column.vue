@@ -26,7 +26,7 @@
     },
     head() {
       return {
-        title: `${this.subtitle}｜notes by SHARESL`
+        title: `${this.subtitle}`
       }
     },
     async fetch({ store, route, payload }){
