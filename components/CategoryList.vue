@@ -38,11 +38,22 @@
       ...mapGetters(['allPosts']),
       posts(){
         const posts = Vue.util.extend([], this.allPosts);
+        //メンバー検索
         if(this.routeName === 'member-name' ){
           return posts.filter( (post) => {
             return post.author_slug === this.$route.params.name
           })
         }
+        //タグ検索
+        else if(this.routeName === 'tag-slug' ){
+          return posts.filter( (post) => {
+            const matchTag = post.tags.find((tag) => {
+              return tag.slug === this.$route.params.slug;
+            })
+            return matchTag;
+          })
+        }
+        //カテゴリー検索
         else if(this.routeName !== 'all'){
           return posts.filter( (post) => {
             return post.category_slug === this.$route.name
