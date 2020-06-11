@@ -130,7 +130,7 @@ export default {
   },
 
   env: {
-    baseUrl      : process.env.BASE_URL || 'http://localhost:3000',
+    baseUrl      : baseUrl,
     BASE_API_URL : process.env.BASE_API_URL
   },
 
