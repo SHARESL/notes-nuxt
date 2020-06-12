@@ -75,9 +75,10 @@ export default {
       Promise.all([
         axios.get(`${process.env.BASE_API_URL}/custom/v0/all`),
         axios.get(`${process.env.BASE_API_URL}/wp/v2/categories`),
+        axios.get(`${process.env.BASE_API_URL}/wp/v2/tags?per_page=100`),
         axios.get(`${process.env.BASE_API_URL}/custom/v0/members`)
         ])
-      .then (axios.spread( (allPosts, categories, members) => {
+      .then (axios.spread( (allPosts, categories, tags, members) => {
 
         //記事詳細ページ
         const route_post = allPosts.data.map((post) => {
@@ -85,7 +86,10 @@ export default {
             route   : `/articles/${post.id}`,
             payload : {
               allPosts    : allPosts.data,
-              currentPost : post
+              currentPost : post,
+              categories  : categories.data,
+              allTags     : tags.data,
+              members     : members.data
             }
           }
         })
@@ -93,10 +97,27 @@ export default {
         //カテゴリーページ
         const route_category = categories.data.map((category) => {
           return {
-            route   : `${category.slug}`,
+            route   : `/${category.slug}`,
             payload : {
               allPosts        : allPosts.data,
-              currentCategory : category
+              categories      : categories.data,
+              currentCategory : category,
+              allTags         : tags.data,
+              members         : members.data
+            }
+          }
+        })
+
+        //タグページ
+        const route_tag = tags.data.map((tag) => {
+          return {
+            route   : `/tag/${tag.slug}`,
+            payload : {
+              allPosts    : allPosts.data,
+              categories  : categories.data,
+              allTags     : tags.data,
+              currentTag  : tag,
+              members     : members.data
             }
           }
         })
@@ -104,21 +125,22 @@ export default {
         //新着一覧
         const route_all = [{
           route   : '/articles',
-          payload : allPosts.data
-        }]
-
-        //TOP新着記事一覧
-        const route_top = [{
-          route   : '/',
-          payload : allPosts.data
+          payload : {
+            allPosts    : allPosts.data,
+            categories  : categories.data,
+            allTags     : tags.data,
+            members     : members.data
+          }
         }]
 
         //メンバー一覧
         const route_members = [{
           route   : '/member',
           payload : {
-            members  : members.data,
-            allPosts : allPosts.data
+            allPosts    : allPosts.data,
+            categories  : categories.data,
+            allTags     : tags.data,
+            members     : members.data
           }
         }]
 
@@ -127,13 +149,36 @@ export default {
           return {
             route   : `/member/${member.author_slug}`,
             payload : {
+              allPosts      : allPosts.data,
+              categories    : categories.data,
+              allTags       : tags.data,
+              members       : members.data,
               currentMember : member,
-              allPosts      : allPosts.data
             }
           }
         })
 
-        callback (null, route_post.concat(route_category, route_all, route_top, route_members, route_member))
+        //その他固定ページ
+        const other_pages = ['/', '/contact', '/about'];
+        const route_page = other_pages.map((page) => {
+          return {
+            route   : page,
+            payload : {
+              allPosts    : allPosts.data,
+              categories  : categories.data,
+              allTags     : tags.data,
+              members     : members.data
+            }
+          }
+        })
+
+        callback (null, route_post.concat(
+          route_category,
+          route_tag,
+          route_all,
+          route_members,
+          route_member,
+          route_page,))
       }))
     },
   },

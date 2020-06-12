@@ -22,11 +22,16 @@
     async asyncData({ store, payload }){
       if (payload)
       {
-        await store.commit('saveAllPosts', payload);
+        await store.commit('saveAllPosts', payload.allPosts);
+        await store.commit('saveAllCategories', payload.categories);
+        await store.commit('saveAllTags', payload.allTags);
+        await store.commit('saveMembers', payload.members);
         return;
       }
-      if(!store.getters.allPosts){
-        await store.dispatch('fetchAllPost');
+      else{
+        if(!store.getters.allPosts){
+          await store.dispatch('fetchAllPost');
+        }
       }
     },
     data() {

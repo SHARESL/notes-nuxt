@@ -20,40 +20,55 @@
       Title,
       CategoryList
     },
-    async fetch({ store, route, payload }){
+    async fetch({ params, store, route, payload }){
       if (payload)
       {
-        await store.commit('saveAllPosts', payload);
+        await store.commit('saveAllPosts', payload.allPosts);
+        await store.commit('saveAllCategories', payload.categories);
+        await store.commit('saveAllTags', payload.allTags);
+        await store.commit('saveCurrentTag', payload.currentTag);
+        await store.commit('saveMembers', payload.members);
         return;
       }
-      if(!store.getters.allPosts){
-        await store.dispatch('fetchAllPost');
+      else {
+        if(!params.slug){
+          await error({ statusCode: 404, message: 'Page not found' });
+          return;
+        }
+        if(store.getters.allTags){
+          await store.commit('saveCurrentTagBySlug', params.slug);
+        }
+        if(!store.getters.allTags && !store.getters.currentTag){
+          await store.dispatch('fetchTags', params.slug);
+        }
+        if(!store.getters.allPosts){
+          await store.dispatch('fetchAllPost');
+        }
+        if(!store.getters.allCategories){
+          await store.dispatch('fetchCategories');
+        }
+        if(!store.getters.members){
+          await store.dispatch('fetchMembers');
+        }
       }
     },
     data() {
       return {
-        title    : 'ARTICLES',
-        tag      : null
+        title    : 'ARTICLES'
       }
     },
     head() {
-      const allPosts = this.$store.getters.allPosts;
-      if(!allPosts){
+      const tag = this.$store.getters.currentTag;
+      if(!tag){
         return;
       }
-      const tagPost = allPosts.find( (post) => {
-        this.tag = post.tags.find((tag) => {
-          return tag.slug === this.$route.params.slug;
-        });
-        return this.tag;
-      });
-      const description = `# ${this.tag.name}タグのブログ記事一覧です。notes by SHARESLは大阪のWeb制作会社・株式会社SHARESLの開発者ブログです。制作者が日々考えていることのアウトプットやメモとして残しておきたい備忘録としての記事を更新していきます。`;
+      const description = `# ${tag.name}タグのブログ記事一覧です。notes by SHARESLは大阪のWeb制作会社・株式会社SHARESLの開発者ブログです。制作者が日々考えていることのアウトプットやメモとして残しておきたい備忘録としての記事を更新していきます。`;
       return {
-        title: `# ${this.tag.name}タグの記事｜notes by SHARESL`,
+        title: `# ${tag.name}タグの記事｜notes by SHARESL`,
         meta  : [
         { hid: 'description', name: 'description', content: description },
         { hid: 'og:type', property: 'og:type', content: 'article' },
-        { hid: 'og:title', property: 'og:title', content: `# ${this.tag.name}タグの記事｜notes by SHARESL` },
+        { hid: 'og:title', property: 'og:title', content: `# ${tag.name}タグの記事｜notes by SHARESL` },
         { hid: 'og:description', property: 'og:description', description },
         { hid: 'og:url', property: 'og:url', content: `${process.env.baseUrl}/tag/${this.$route.params.slug}` },
         { hid: 'og:image', property: 'og:image', content: '/img/ogp.png' }
@@ -61,7 +76,9 @@
       }
     },
     computed : {
-      ...mapGetters(['allPosts']),
+      ...mapGetters({
+        tag : 'currentTag'
+      }),
       subtitle() {
         //タグ名を反映
         if(this.tag){

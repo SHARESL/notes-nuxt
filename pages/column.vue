@@ -21,21 +21,35 @@
     async fetch({ store, route, payload }){
       if (payload)
       {
-        await store.commit('saveCurrentCategory', payload.currentCategory);
         await store.commit('saveAllPosts', payload.allPosts);
+        await store.commit('saveAllCategories', payload.categories);
+        await store.commit('saveCurrentCategory', payload.currentCategory);
+        await store.commit('saveAllTags', payload.allTags);
+        await store.commit('saveMembers', payload.members);
         return;
       }
-      if(!store.getters.allPosts){
-        await store.dispatch('fetchAllPost');
-      }
-      if(!store.getters.currentCategory){
-        await store.dispatch('fetchCategories', route.name);
+      else {
+        if(store.getters.allCategories){
+          await store.commit('saveCurrentCategoryBySlug', route.name);
+        }
+        if(!store.getters.allCategories && !store.getters.currentCategory){
+          await store.dispatch('fetchCategories', route.name);
+        }
+        if(!store.getters.allPosts){
+          await store.dispatch('fetchAllPost');
+        }
+        if(!store.getters.members){
+          await store.dispatch('fetchMembers');
+        }
+        if(!store.getters.allTags){
+          await store.dispatch('fetchTags');
+        }
       }
     },
     data() {
       return {
         title    : 'ARTICLES',
-        subtitle : '「COLUMN」の記事一覧｜notes by SHARESL'
+        subtitle : '「COLUMN」の記事一覧'
       }
     },
     head() {

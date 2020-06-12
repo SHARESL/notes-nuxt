@@ -105,6 +105,30 @@
     components : {
       Title
     },
+    async fetch({ store, payload }){
+      if (payload)
+      {
+        await store.commit('saveAllPosts', payload.allPosts);
+        await store.commit('saveAllCategories', payload.categories);
+        await store.commit('saveAllTags', payload.allTags);
+        await store.commit('saveMembers', payload.members);
+        return;
+      }
+      else{
+        if(!store.getters.allPosts){
+          await store.dispatch('fetchAllPost');
+        }
+        if(!store.getters.allCategories){
+          await store.dispatch('fetchCategories');
+        }
+        if(!store.getters.members){
+          await store.dispatch('fetchMembers');
+        }
+        if(!store.getters.allTags){
+          await store.dispatch('fetchTags');
+        }
+      }
+    },
     data() {
       return {
         title           : 'CONTACT',

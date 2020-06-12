@@ -85,19 +85,33 @@
     //mixins: [Meta],
     async fetch({ params, error, payload, store, $axios }) {
       if (payload){
-        await store.commit('saveCurrentPost', payload.currentPost);
         await store.commit('saveAllPosts', payload.allPosts);
+        await store.commit('saveCurrentPost', payload.currentPost);
+        await store.commit('saveAllCategories', payload.categories);
+        await store.commit('saveAllTags', payload.allTags);
+        await store.commit('saveMembers', payload.members);
         return;
       }
-      if(!params.id){
-        await error({ statusCode: 404, message: 'Post not found' });
-        return;
-      }
-      if(store.getters.allPosts){
-        await store.commit('saveCurrentPostById', params.id);
-      }
-      if(!store.getters.allPosts && !store.getters.currentPost){
-        await store.dispatch('fetchAllPost', params.id);
+      else {
+        if(!params.id){
+          await error({ statusCode: 404, message: 'Post not found' });
+          return;
+        }
+        if(store.getters.allPosts){
+          await store.commit('saveCurrentPostById', params.id);
+        }
+        if(!store.getters.allPosts && !store.getters.currentPost){
+          await store.dispatch('fetchAllPost', params.id);
+        }
+        if(!store.getters.allCategories){
+          await store.dispatch('fetchCategories');
+        }
+        if(!store.getters.members){
+          await store.dispatch('fetchMembers');
+        }
+        if(!store.getters.allTags){
+          await store.dispatch('fetchTags');
+        }
       }
     },
     head() {

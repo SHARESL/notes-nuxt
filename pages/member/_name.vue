@@ -35,21 +35,35 @@
       CategoryList,
       Author
     },
-    async fetch({ params, error, payload, store, $axios }) {
+    async fetch({ params, error, payload, store }) {
       if (payload){
-        await store.commit('saveCurrentMember', payload.currentMember);
         await store.commit('saveAllPosts', payload.allPosts);
+        await store.commit('saveAllCategories', payload.categories);
+        await store.commit('saveAllTags', payload.allTags);
+        await store.commit('saveMembers', payload.members);
+        await store.commit('saveCurrentMember', payload.currentMember);
         return
       }
-      if(!params.name){
-        await error({ statusCode: 404, message: 'Page not found' });
-        return;
-      }
-      if(!store.getters.allPosts){
-        await store.dispatch('fetchAllPost');
-      }
-      if(!store.getters.currentMember){
-        await store.dispatch('fetchMembers', params.name);
+      else{
+        if(!params.name){
+          await error({ statusCode: 404, message: 'Page not found' });
+          return;
+        }
+        if(store.getters.members){
+          await store.commit('saveCurrentMemberBySlug', params.name);
+        }
+        if(!store.getters.members && !store.getters.currentMember){
+          await store.dispatch('fetchMembers', params.name);
+        }
+        if(!store.getters.allPosts){
+          await store.dispatch('fetchAllPost');
+        }
+        if(!store.getters.allCategories){
+          await store.dispatch('fetchCategories');
+        }
+        if(!store.getters.allTags){
+          await store.dispatch('fetchTags');
+        }
       }
     },
     data() {

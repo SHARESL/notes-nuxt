@@ -10,7 +10,11 @@ const state = () => ({
   //メンバー一覧
   members         : null,
   //現在のメンバー
-  currentMember   : null
+  currentMember   : null,
+  //タグ一覧
+  allTags         : null,
+  //現在のタグ
+  currentTag      : null
 });
 
 const getters = {
@@ -37,6 +41,14 @@ const getters = {
   //カテゴリーページ 現在のカテゴリー
   currentCategory(state){
     return state.currentCategory;
+  },
+  //すべてのタグ
+  allTags(state){
+    return state.allTags;
+  },
+  //現在のタグ
+  currentTag(state){
+    return state.currentTag;
   }
 }
 
@@ -90,6 +102,23 @@ const mutations = {
   //現在のメンバーを保存
   saveCurrentMember(state, currentMember){
     state.currentMember = currentMember;
+  },
+
+  //すべてのタグを保存
+  saveAllTags(state, allTags){
+    state.allTags = allTags;
+  },
+  saveCurrentTagBySlug(state, tagSlug){
+    if(!state.allTags){
+      return;
+    }
+    state.currentTag = state.allTags.find( (tag) => {
+      return tag.slug === tagSlug
+    });
+  },
+  //現在のメンバーを保存
+  saveCurrentTag(state, currentTag){
+    state.currentTag = currentTag;
   }
 }
 
@@ -119,6 +148,20 @@ const actions = {
     await commit('saveAllCategories', res);
     if(categorySlug){
       await commit('saveCurrentCategoryBySlug', categorySlug);
+    }
+    return res;
+  },
+  /*
+  * 全タグ取得
+  */
+  async fetchTags({ state, commit }, tagSlug = null){
+    const res = await this.$axios.$get('/wp/v2/tags?per_page=100')
+    .catch((err) => {
+      console.error(err)
+    });
+    await commit('saveAllTags', res);
+    if(tagSlug){
+      await commit('saveCurrentTagBySlug', tagSlug);
     }
     return res;
   },
