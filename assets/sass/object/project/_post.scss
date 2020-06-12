@@ -330,7 +330,13 @@
 
   .wp-block-image{
     text-align: center;
-
+    figure{
+      a[target="_blank"]{
+        &::after{
+          content:none;
+        }
+      }
+    }
     figcaption{
       margin-top: 9px;
       font-weight: 600;

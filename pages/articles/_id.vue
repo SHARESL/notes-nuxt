@@ -82,31 +82,46 @@
       ShareButton,
       Author
     },
-    mixins: [Meta],
+    //mixins: [Meta],
     async fetch({ params, error, payload, store, $axios }) {
       if (payload){
-        await store.commit('saveAllPosts', payload);
+        await store.commit('saveCurrentPost', payload.currentPost);
+        await store.commit('saveAllPosts', payload.allPosts);
         return
       }
       if(!params.id){
         await error({ statusCode: 404, message: 'Post not found' });
         return;
       }
-      if(store.getters.allPosts){
+      if(store.getters.currentPost){
         return;
       }
-      await store.dispatch('fetchAllPost');
+      await store.dispatch('fetchAllPost', params.id);
       return;
     },
+    head() {
+      const article = this.$store.getters.currentPost;
+      if(!article){
+        return
+      }
+      const description = article.description ? article.description : process.env.BASE_DESC;
+      return {
+        title : article.title,
+        meta  : [
+        { hid: 'description', name: 'description', content: description },
+        { hid: 'og:type', property: 'og:type', content: 'article' },
+        { hid: 'og:title', property: 'og:title', content: article.title },
+        { hid: 'og:description', property: 'og:description', description },
+        { hid: 'og:url', property: 'og:url', content: `${process.env.baseUrl}/articles/${article.id}` },
+        { hid: 'og:image', property: 'og:image', content: article.ogp_img },
+        ]
+      }
+    },
     computed: {
-      ...mapGetters(['allPosts']),
-      //記事情報
-      post(){
-        const posts = Vue.util.extend([], this.allPosts);
-        return posts.find( (post) => {
-          return post.id === Number(this.$route.params.id)
-        });
-      },
+      ...mapGetters({
+        allPosts : 'allPosts',
+        post     : 'currentPost'
+      }),
       //次の記事
       prev(){
         const posts = Vue.util.extend([], this.allPosts);
@@ -120,13 +135,6 @@
         return posts.find( (post) => {
           return post.id === this.post.next
         });
-      },
-      //metaタグ
-      meta(){
-        return {
-          title : this.post ? `${this.post.title}` : '',
-          url   : this.post ? `${process.env.baseUrl}/articles/${this.post.id}` : ''
-        }
       }
     },
     mounted(){
@@ -136,14 +144,26 @@
     methods : {
       //シンタックスハイライト
       highlightCode(){
+        if(!('post_contents' in this.$refs)){
+          return
+        }
         const codeblock = this.$refs.post_contents.querySelectorAll('pre code');
+        if(!codeblock){
+          return;
+        }
         [...codeblock].forEach((block) => {
           hljs.highlightBlock(block);
         });
       },
       //目次のリンクをハッシュ以下のみに置き換え
       replaceTocLink(){
+        if(!('post_contents' in this.$refs)){
+          return
+        }
         const toc = this.$refs.post_contents.querySelectorAll('#ez-toc-container a');
+        if(!toc){
+          return;
+        }
         [...toc].forEach((link) => {
           const hash = link.hash;
           link.setAttribute('href', hash);

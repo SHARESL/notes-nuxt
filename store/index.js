@@ -1,14 +1,20 @@
 const state = () => ({
   //すべての記事
-  allPosts : null,
+  allPosts    : null,
+  //現在の記事
+  currentPost : null,
   //メンバー一覧
-  members  : null
+  members     : null
 });
 
 const getters = {
   //すべての記事
   allPosts(state){
     return state.allPosts;
+  },
+  //現在の記事
+  currentPost(state){
+    return state.currentPost;
   },
   //メンバー一覧
   members(state){
@@ -21,6 +27,17 @@ const mutations = {
   saveAllPosts(state, allPosts){
     state.allPosts = allPosts;
   },
+  saveCurrentPostById(state, postId){
+    if(!state.allPosts){
+      return;
+    }
+    state.currentPost = state.allPosts.find( (post) => {
+      return Number(post.id) === Number(postId)
+    });
+  },
+  saveCurrentPost(state, currentPost){
+    state.currentPost = currentPost;
+  },
   //メンバー一覧を保存
   saveMembers(state, members){
     state.members = members;
@@ -31,7 +48,7 @@ const actions = {
   /*
   * 全記事取得
   */
-  async fetchAllPost({ state, commit }){
+  async fetchAllPost({ state, commit }, postId = null){
     if(state.allPosts){
       return;
     }
@@ -40,6 +57,9 @@ const actions = {
       console.error(err)
     });
     await commit('saveAllPosts', res);
+    if(postId){
+      await commit('saveCurrentPostById', postId);
+    }
     return res;
   },
   /*
