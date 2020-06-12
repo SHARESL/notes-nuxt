@@ -73,8 +73,8 @@
   import Card from '~/components/Card.vue'
   import ShareButton from '~/components/ShareButton.vue'
   import Author from '~/components/Author.vue'
-
   import { mapGetters } from 'vuex'
+  import Meta from '~/mixins/meta'
 
   export default {
     components: {
@@ -82,6 +82,7 @@
       ShareButton,
       Author
     },
+    mixins: [Meta],
     async fetch({ params, error, payload, store, $axios }) {
       if (payload){
         await store.commit('saveAllPosts', payload);
@@ -119,11 +120,13 @@
         return posts.find( (post) => {
           return post.id === this.post.next
         });
-      }
-    },
-    head() {
-      return {
-        title: this.post ? `${this.post.title}` : ''
+      },
+      //metaタグ
+      meta(){
+        return {
+          title : this.post ? `${this.post.title}` : '',
+          url   : this.post ? `${process.env.baseUrl}/articles/${this.post.id}` : ''
+        }
       }
     },
     mounted(){
