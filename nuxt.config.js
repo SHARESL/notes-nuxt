@@ -94,7 +94,10 @@ export default {
         const route_category = categories.data.map((category) => {
           return {
             route   : `${category.slug}`,
-            payload : allPosts.data
+            payload : {
+              allPosts        : allPosts.data,
+              currentCategory : category
+            }
           }
         })
 
@@ -123,7 +126,10 @@ export default {
         const route_member = members.data.map((member) => {
           return {
             route   : `/member/${member.author_slug}`,
-            payload : allPosts.data
+            payload : {
+              currentMember : member,
+              allPosts      : allPosts.data
+            }
           }
         })
 
@@ -135,7 +141,8 @@ export default {
   env: {
     baseUrl      : baseUrl,
     BASE_API_URL : process.env.BASE_API_URL,
-    BASE_DESC    : baseDesc
+    BASE_DESC    : baseDesc,
+    BASE_OGP     : baseOgp,
   },
 
   axios: {

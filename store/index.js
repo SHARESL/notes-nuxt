@@ -1,10 +1,16 @@
 const state = () => ({
   //すべての記事
-  allPosts    : null,
+  allPosts        : null,
   //現在の記事
-  currentPost : null,
+  currentPost     : null,
+  //カテゴリーページ すべて
+  allCategories   : null,
+  //カテゴリーページ 現在のカテゴリー
+  currentCategory : null,
   //メンバー一覧
-  members     : null
+  members         : null,
+  //現在のメンバー
+  currentMember   : null
 });
 
 const getters = {
@@ -19,6 +25,18 @@ const getters = {
   //メンバー一覧
   members(state){
     return state.members;
+  },
+  //現在のメンバー
+  currentMember(state){
+    return state.currentMember;
+  },
+  //カテゴリーページ すべて
+  allCategories(state){
+    return state.allCategories;
+  },
+  //カテゴリーページ 現在のカテゴリー
+  currentCategory(state){
+    return state.currentCategory;
   }
 }
 
@@ -27,6 +45,7 @@ const mutations = {
   saveAllPosts(state, allPosts){
     state.allPosts = allPosts;
   },
+  //現在の記事をすべての記事からIDで検索して現在の記事を保存
   saveCurrentPostById(state, postId){
     if(!state.allPosts){
       return;
@@ -35,12 +54,42 @@ const mutations = {
       return Number(post.id) === Number(postId)
     });
   },
+  //現在の記事を保存
   saveCurrentPost(state, currentPost){
     state.currentPost = currentPost;
+  },
+  //すべてのカテゴリーを保存
+  saveAllCategories(state, allCategories){
+    state.allCategories = allCategories;
+  },
+  //すべてのカテゴリーからスラッグ名で検索して現在のカテゴリーを保存
+  saveCurrentCategoryBySlug(state, categorySlug){
+    if(!state.allCategories){
+      return;
+    }
+    state.currentCategory = state.allCategories.find( (post) => {
+      return post.slug === categorySlug
+    });
+  },
+  //現在のカテゴリーを保存
+  saveCurrentCategory(state, currentCategory){
+    state.currentCategory = currentCategory;
   },
   //メンバー一覧を保存
   saveMembers(state, members){
     state.members = members;
+  },
+  saveCurrentMemberBySlug(state, memberSlug){
+    if(!state.members){
+      return;
+    }
+    state.currentMember = state.members.find( (post) => {
+      return post.author_slug === memberSlug
+    });
+  },
+  //現在のメンバーを保存
+  saveCurrentMember(state, currentMember){
+    state.currentMember = currentMember;
   }
 }
 
@@ -49,9 +98,6 @@ const actions = {
   * 全記事取得
   */
   async fetchAllPost({ state, commit }, postId = null){
-    if(state.allPosts){
-      return;
-    }
     const res = await this.$axios.$get('/custom/v0/all')
     .catch((err) => {
       console.error(err)
@@ -63,17 +109,31 @@ const actions = {
     return res;
   },
   /*
+  * 全カテゴリー取得
+  */
+  async fetchCategories({ state, commit }, categorySlug = null){
+    const res = await this.$axios.$get('/wp/v2/categories')
+    .catch((err) => {
+      console.error(err)
+    });
+    await commit('saveAllCategories', res);
+    if(categorySlug){
+      await commit('saveCurrentCategoryBySlug', categorySlug);
+    }
+    return res;
+  },
+  /*
   * メンバー一覧取得
   */
-  async fetchMembers({ state, commit }){
-    if(state.members){
-      return;
-    }
+  async fetchMembers({ state, commit }, memberSlug = null){
     const res = await this.$axios.$get('/custom/v0/members')
     .catch((err) => {
       console.error(err)
     });
     await commit('saveMembers', res);
+    if(memberSlug){
+      await commit('saveCurrentMemberBySlug', memberSlug);
+    }
     return res;
   }
 }

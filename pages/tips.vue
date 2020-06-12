@@ -18,6 +18,20 @@
       Title,
       CategoryList
     },
+    async fetch({ store, route, payload }){
+      if (payload)
+      {
+        await store.commit('saveCurrentCategory', payload.currentCategory);
+        await store.commit('saveAllPosts', payload.allPosts);
+        return;
+      }
+      if(!store.getters.allPosts){
+        await store.dispatch('fetchAllPost');
+      }
+      if(!store.getters.currentCategory){
+        await store.dispatch('fetchCategories', route.name);
+      }
+    },
     data() {
       return {
         title    : 'ARTICLES',
@@ -25,20 +39,21 @@
       }
     },
     head() {
+      const category = this.$store.getters.currentCategory;
+      if(!category){
+        return;
+      }
       return {
-        title: `${this.subtitle}`
+        title : this.subtitle,
+        meta  : [
+        { hid: 'description', name: 'description', content: category.description },
+        { hid: 'og:type', property: 'og:type', content: 'article' },
+        { hid: 'og:title', property: 'og:title', content: this.subtitle },
+        { hid: 'og:description', property: 'og:description', content:category.description },
+        { hid: 'og:url', property: 'og:url', content: `${process.env.baseUrl}/${this.$route.name}` },
+        { hid: 'og:image', property: 'og:image', content: category.fields.ogp_img },
+        ]
       }
-    },
-    async fetch({ store, route, payload }){
-      if (payload)
-      {
-        await store.commit('saveAllPosts', payload);
-        return;
-      }
-      if(store.getters.allPosts){
-        return;
-      }
-      await store.dispatch('fetchAllPost');
     }
   }
 </script>

@@ -2,7 +2,7 @@
   <div class="p-category">
     <Title :title="title" :subtitle="subtitle"/>
     <div class="p-category__author">
-      <Author :post="post" />
+      <Author :post="member" />
     </div>
     <!-- /.p-category__author -->
     <div class="p-category__inner">
@@ -37,43 +37,52 @@
     },
     async fetch({ params, error, payload, store, $axios }) {
       if (payload){
-        await store.commit('saveAllPosts', payload);
+        await store.commit('saveCurrentMember', payload.currentMember);
+        await store.commit('saveAllPosts', payload.allPosts);
         return
       }
       if(!params.name){
         await error({ statusCode: 404, message: 'Page not found' });
         return;
       }
-      if(store.getters.allPosts){
-        return;
+      if(!store.getters.allPosts){
+        await store.dispatch('fetchAllPost');
       }
-      await store.dispatch('fetchAllPost');
-      return;
+      if(!store.getters.currentMember){
+        await store.dispatch('fetchMembers', params.name);
+      }
     },
     data() {
       return {
         title    : 'ARTICLES'
       }
     },
-    computed: {
-      ...mapGetters(['allPosts']),
-      subtitle(){
-        if(this.post){
-          return `${this.post.author_name}の書いた記事`
-        }
-      },
-      post(){
-        const posts = Vue.util.extend([], this.allPosts);
-        const post = posts.find( (post) => {
-          return post.author_slug === this.$route.params.name
-        });
-        return post;
-      }
-    },
     head() {
+      const member = this.$store.getters.currentMember;
+      if(!member){
+        return;
+      }
       return {
-        title: `${this.subtitle}`
+        title : `${member.author_name}の書いた記事`,
+        meta  : [
+        { hid: 'description', name: 'description', content: member.fields.description },
+        { hid: 'og:type', property: 'og:type', content: 'article' },
+        { hid: 'og:title', property: 'og:title', content: `${member.author_name}の書いた記事` },
+        { hid: 'og:description', property: 'og:description', content:member.fields.description },
+        { hid: 'og:url', property: 'og:url', content: `${process.env.baseUrl}/member/${this.$route.params.name}` },
+        { hid: 'og:image', property: 'og:image', content: member.fields.ogp_img },
+        ]
       }
     },
+    computed: {
+      ...mapGetters({
+        member:'currentMember'
+      }),
+      subtitle(){
+        if(this.member){
+          return `${this.member.author_name}の書いた記事`
+        }
+      }
+    }
   }
 </script>

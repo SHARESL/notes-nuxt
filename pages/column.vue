@@ -10,7 +10,6 @@
 </template>
 
 <script>
-  import Meta from '~/mixins/meta'
   import Title from '~/components/Title.vue'
   import CategoryList from '~/components/CategoryList.vue'
 
@@ -19,29 +18,42 @@
       Title,
       CategoryList
     },
-    mixins: [Meta],
-    data() {
-      return {
-        title    : 'ARTICLES',
-        subtitle : '「COLUMN」の記事一覧',
-        meta: {
-          title: `「COLUMN」の記事一覧`,
-          description: 'notes by SHARESLの「COLUMN」カテゴリのブログ記事一覧です。制作者が実務の中で思っていることや、テクニカルなことでは無いけど制作する上で大切にしていることなど、文章として残しておきたいものを書いているブログ記事の一覧を掲載しています。',
-          type: 'article',
-          url: `${process.env.baseUrl}/column`
-        }
-      }
-    },
     async fetch({ store, route, payload }){
       if (payload)
       {
-        await store.commit('saveAllPosts', payload);
+        await store.commit('saveCurrentCategory', payload.currentCategory);
+        await store.commit('saveAllPosts', payload.allPosts);
         return;
       }
-      if(store.getters.allPosts){
+      if(!store.getters.allPosts){
+        await store.dispatch('fetchAllPost');
+      }
+      if(!store.getters.currentCategory){
+        await store.dispatch('fetchCategories', route.name);
+      }
+    },
+    data() {
+      return {
+        title    : 'ARTICLES',
+        subtitle : '「COLUMN」の記事一覧'
+      }
+    },
+    head() {
+      const category = this.$store.getters.currentCategory;
+      if(!category){
         return;
       }
-      await store.dispatch('fetchAllPost');
+      return {
+        title : this.subtitle,
+        meta  : [
+        { hid: 'description', name: 'description', content: category.description },
+        { hid: 'og:type', property: 'og:type', content: 'article' },
+        { hid: 'og:title', property: 'og:title', content: this.subtitle },
+        { hid: 'og:description', property: 'og:description', content:category.description },
+        { hid: 'og:url', property: 'og:url', content: `${process.env.baseUrl}/${this.$route.name}` },
+        { hid: 'og:image', property: 'og:image', content: category.fields.ogp_img },
+        ]
+      }
     }
   }
 </script>

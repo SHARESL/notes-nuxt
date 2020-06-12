@@ -10,10 +10,12 @@
 </template>
 
 <script>
+  import Meta from '~/mixins/meta'
   import Title from '~/components/Title.vue'
   import CategoryList from '~/components/CategoryList.vue'
 
   export default {
+    mixins     : [Meta],
     components : {
       Title,
       CategoryList
@@ -32,12 +34,13 @@
     data() {
       return {
         title    : 'ARTICLES',
-        subtitle : 'すべての記事'
-      }
-    },
-    head() {
-      return {
-        title: `${this.subtitle}｜notes by SHARESL`
+        subtitle : 'すべての記事',
+        meta     : {
+          title: 'すべての記事',
+          description: 'すべての記事一覧ページです。notes by SHARESLは大阪のWeb制作会社・株式会社SHARESLの開発者ブログです。制作者が日々考えていることのアウトプットやメモとして残しておきたい備忘録としての記事を更新していきます。',
+          type: 'article',
+          url: `${process.env.baseUrl}/articles`
+        }
       }
     }
   }

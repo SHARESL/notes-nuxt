@@ -93,10 +93,13 @@
         await error({ statusCode: 404, message: 'Post not found' });
         return;
       }
-      if(store.getters.currentPost){
+      if(store.getters.allPosts){
+        await store.commit('saveCurrentPostById', params.id);
         return;
       }
-      await store.dispatch('fetchAllPost', params.id);
+      if(!store.getters.allPosts && !store.getters.currentPost){
+        await store.dispatch('fetchAllPost', params.id);
+      }
       return;
     },
     head() {
@@ -111,7 +114,7 @@
         { hid: 'description', name: 'description', content: description },
         { hid: 'og:type', property: 'og:type', content: 'article' },
         { hid: 'og:title', property: 'og:title', content: article.title },
-        { hid: 'og:description', property: 'og:description', description },
+        { hid: 'og:description', property: 'og:description', content:description },
         { hid: 'og:url', property: 'og:url', content: `${process.env.baseUrl}/articles/${article.id}` },
         { hid: 'og:image', property: 'og:image', content: article.ogp_img },
         ]
