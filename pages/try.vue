@@ -35,7 +35,7 @@
     data() {
       return {
         title    : 'ARTICLES',
-        subtitle : '「TRY」の記事一覧'
+        subtitle : '「TRY」の記事一覧｜notes by SHARESL'
       }
     },
     head() {

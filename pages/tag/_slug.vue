@@ -20,6 +20,16 @@
       Title,
       CategoryList
     },
+    async fetch({ store, route, payload }){
+      if (payload)
+      {
+        await store.commit('saveAllPosts', payload);
+        return;
+      }
+      if(!store.getters.allPosts){
+        await store.dispatch('fetchAllPost');
+      }
+    },
     data() {
       return {
         title    : 'ARTICLES',
@@ -27,37 +37,34 @@
       }
     },
     head() {
+      const allPosts = this.$store.getters.allPosts;
+      if(!allPosts){
+        return;
+      }
+      const tagPost = allPosts.find( (post) => {
+        this.tag = post.tags.find((tag) => {
+          return tag.slug === this.$route.params.slug;
+        });
+        return this.tag;
+      });
+      const description = `# ${this.tag.name}タグのブログ記事一覧です。notes by SHARESLは大阪のWeb制作会社・株式会社SHARESLの開発者ブログです。制作者が日々考えていることのアウトプットやメモとして残しておきたい備忘録としての記事を更新していきます。`;
       return {
-        title: `${this.subtitle}タグの記事｜notes by SHARESL`
+        title: `# ${this.tag.name}タグの記事｜notes by SHARESL`,
+        meta  : [
+        { hid: 'description', name: 'description', content: description },
+        { hid: 'og:type', property: 'og:type', content: 'article' },
+        { hid: 'og:title', property: 'og:title', content: `# ${this.tag.name}タグの記事｜notes by SHARESL` },
+        { hid: 'og:description', property: 'og:description', description },
+        { hid: 'og:url', property: 'og:url', content: `${process.env.baseUrl}/tag/${this.$route.params.slug}` },
+        { hid: 'og:image', property: 'og:image', content: '/img/ogp.png' }
+        ]
       }
-    },
-    async fetch({ store, route, payload }){
-      if (payload)
-      {
-        await store.commit('saveAllPosts', payload);
-        return;
-      }
-      if(store.getters.allPosts){
-        return;
-      }
-      await store.dispatch('fetchAllPost');
     },
     computed : {
       ...mapGetters(['allPosts']),
-      post(){
-        //タグがついた記事を検索
-        const posts = Vue.util.extend([], this.allPosts);
-        return posts.find( (post) => {
-          //タグ情報を保存
-          this.tag = post.tags.find((tag) => {
-            return tag.slug === this.$route.params.slug;
-          })
-          return this.tag;
-        })
-      },
       subtitle() {
         //タグ名を反映
-        if(this.post && this.tag){
+        if(this.tag){
           return `# ${this.tag.name}`
         }
       }

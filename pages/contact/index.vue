@@ -97,14 +97,11 @@
 </template>
 
 <script>
+  import Meta from '~/mixins/meta'
   import Title from '~/components/Title.vue'
 
   export default {
-    head() {
-      return {
-        title: 'CONTACT'
-      }
-    },
+    mixins     : [Meta],
     components : {
       Title
     },
@@ -121,7 +118,13 @@
         isSending       : false,
         isError         : false,
         completeMessage : '',
-        timer           : null
+        timer           : null,
+        meta            : {
+          title: 'CONTACT',
+          description: 'お問い合わせはこちらから。notes by SHARESLは大阪の株式会社SHARESLが運営する開発者ブログです。内容についてのご質問やご指摘、その他制作やコーディングのご依頼などはこちらからお問い合わせください。',
+          type: 'article',
+          url: `${process.env.baseUrl}/contact`
+        }
       }
     },
     computed: {

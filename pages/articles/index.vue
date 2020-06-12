@@ -26,15 +26,14 @@
         await store.commit('saveAllPosts', payload);
         return;
       }
-      if(store.getters.allPosts){
-        return;
+      if(!store.getters.allPosts){
+        await store.dispatch('fetchAllPost');
       }
-      await store.dispatch('fetchAllPost');
     },
     data() {
       return {
         title    : 'ARTICLES',
-        subtitle : 'すべての記事',
+        subtitle : 'すべての記事｜notes by SHARESL',
         meta     : {
           title: 'すべての記事',
           description: 'すべての記事一覧ページです。notes by SHARESLは大阪のWeb制作会社・株式会社SHARESLの開発者ブログです。制作者が日々考えていることのアウトプットやメモとして残しておきたい備忘録としての記事を更新していきます。',

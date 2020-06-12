@@ -19,6 +19,16 @@
       // PickUp,
       NewList
     },
+    async asyncData({ store, payload }){
+      if (payload)
+      {
+        await store.commit('saveAllPosts', payload);
+        return;
+      }
+      if(!store.getters.allPosts){
+        await store.dispatch('fetchAllPost');
+      }
+    },
     data() {
       return {
         title    : 'SHARESL TECH BLOG',
@@ -30,17 +40,6 @@
         titleTemplate: null,
         title: `notes by SHARESL`
       }
-    },
-    async asyncData({ store, payload }){
-      if (payload)
-      {
-        await store.commit('saveAllPosts', payload);
-        return;
-      }
-      if(store.getters.allPosts){
-        return;
-      }
-      await store.dispatch('fetchAllPost');
-    },
+    }
   }
 </script>

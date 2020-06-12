@@ -63,11 +63,11 @@
         return;
       }
       return {
-        title : `${member.author_name}の書いた記事`,
+        title : `${member.author_name}の書いた記事｜notes by SHARESL`,
         meta  : [
         { hid: 'description', name: 'description', content: member.fields.description },
         { hid: 'og:type', property: 'og:type', content: 'article' },
-        { hid: 'og:title', property: 'og:title', content: `${member.author_name}の書いた記事` },
+        { hid: 'og:title', property: 'og:title', content: `${member.author_name}の書いた記事｜notes by SHARESL` },
         { hid: 'og:description', property: 'og:description', content:member.fields.description },
         { hid: 'og:url', property: 'og:url', content: `${process.env.baseUrl}/member/${this.$route.params.name}` },
         { hid: 'og:image', property: 'og:image', content: member.fields.ogp_img },
