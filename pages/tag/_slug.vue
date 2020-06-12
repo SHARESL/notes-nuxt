@@ -71,7 +71,7 @@
         { hid: 'og:title', property: 'og:title', content: `# ${tag.name}タグの記事｜notes by SHARESL` },
         { hid: 'og:description', property: 'og:description', description },
         { hid: 'og:url', property: 'og:url', content: `${process.env.baseUrl}/tag/${this.$route.params.slug}` },
-        { hid: 'og:image', property: 'og:image', content: '/img/ogp.png' }
+        { hid: 'og:image', property: 'og:image', content: process.env.BASE_OGP }
         ]
       }
     },
