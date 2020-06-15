@@ -20,9 +20,12 @@
     td{
       text-align:left;
       padding:15px;
-      @include fz(18);
-      line-height: 2;
+      @include fz(12);
+      line-height: 1.9;
       border: 6px solid $lgray;
+      @include min-screen($bp_tb_v) {
+        @include fz(18);
+      }
     }
 
     th{

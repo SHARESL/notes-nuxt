@@ -1,10 +1,15 @@
 .l-footer{
-  padding:30px;
+  padding:18px 18px 60px;
+  @include min-screen($bp_tb_v) {
+    padding:30px;
+  }
 
   &__inner{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    @include min-screen($bp_tb_v) {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
   }
 
   &__logo{
@@ -12,18 +17,28 @@
 
   &__nav{
     display: flex;
+    flex-direction: column;
     align-items: center;
+    @include min-screen($bp_tb_v) {
+      flex-direction: row;
+    }
 
     a{
       font-weight: 600;
       color:#000;
 
       + a{
-        margin-left:30px;
+        margin-top: 30px;
+        @include min-screen($bp_tb_v) {
+          margin-top: 0;
+          margin-left:30px;
+        }
       }
 
       &:hover{
-        color:$purple;
+        @include min-screen($bp_tb_v) {
+          color:$purple;
+        }
       }
 
       &[target="_blank"]{
@@ -45,8 +60,11 @@
   }
 
   &__copyright{
-    margin-top: 15px;
+    margin-top: 60px;
     text-align: center;
     font-weight: 600;
+    @include min-screen($bp_tb_v) {
+      margin-top: 15px;
+    }
   }
 }

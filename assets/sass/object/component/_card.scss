@@ -1,6 +1,5 @@
 .c-card{
   position: relative;
-  margin-bottom: 60px;
   background: #fff;
 
   &__image{
@@ -35,10 +34,14 @@
 
     img{
       width: 100%;
-      height:270px;
+      height:sizeCalc(191, 339, 'vw');
       object-fit: cover;
       font-family: 'object-fit: cover;';
       transition-duration: .3s;
+
+      @include min-screen($bp_tb_v) {
+        height:270px;
+      }
     }
 
     &:hover{
@@ -59,7 +62,10 @@
   }
 
   &__content{
-    padding:15px;
+    padding:15px 0;
+    @include min-screen($bp_tb_v) {
+      padding:15px;
+    }
   }
 
   &__caption{
@@ -78,7 +84,7 @@
 
   &__tags{
     display: flex;
-    margin-top: 21px;
+    margin-top: 15px;
 
     a{
       padding:6px 12px;
@@ -102,7 +108,10 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-top: 15px;
+    margin-top: 9px;
+    @include min-screen($bp_tb_v) {
+      margin-top: 15px;
+    }
   }
 
   &__date{
@@ -135,10 +144,14 @@
     }
 
     &:hover{
-      color:$link-color;
+      @include min-screen($bp_tb_v) {
+        color:$link-color;
+      }
       img{
-        border-color:$link-color;
-        box-shadow:0 0 0 3px $link-color, $boxshadow6;
+        @include min-screen($bp_tb_v) {
+          border-color:$link-color;
+          box-shadow:0 0 0 3px $link-color, $boxshadow6;
+        }
       }
     }
   }

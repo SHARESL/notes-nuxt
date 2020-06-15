@@ -99,11 +99,17 @@
 <script>
   import Meta from '~/mixins/meta'
   import Title from '~/components/Title.vue'
+  import { mapActions } from 'vuex'
 
   export default {
     mixins     : [Meta],
     components : {
       Title
+    },
+    beforeRouteEnter (to, from, next) {
+      next(vm => {
+        vm.closeMenu();
+      })
     },
     async fetch({ store, payload }){
       if (payload)
@@ -161,6 +167,7 @@
       }
     },
     methods: {
+      ...mapActions(['closeMenu']),
       onSubmit() {
         if(this.isSending){
           return;

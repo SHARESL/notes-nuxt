@@ -2,7 +2,7 @@
   <header class="l-header">
     <div class="l-header__inner">
       <Logo class="l-header__logo" />
-      <Nav class="l-header__nav" />
+      <HeaderNav class="l-header__nav" />
     </div>
     <!-- /.l-header__inner -->
   </header>
@@ -11,12 +11,12 @@
 
 <script>
   import Logo from '~/components/Logo.vue'
-  import Nav from '~/components/Nav.vue'
+  import HeaderNav from '~/components/HeaderNav.vue'
 
   export default {
     components: {
       Logo,
-      Nav
+      HeaderNav
     }
   }
 </script>

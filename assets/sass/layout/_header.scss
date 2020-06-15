@@ -4,19 +4,164 @@
   }
   &__logo{
     position: fixed;
-    top:30px;
-    left:30px;
+    top:18px;
+    left:18px;
     z-index: 1000;
+    @include min-screen($bp_tb_v) {
+      top:30px;
+      left:30px;
+    }
+    @include min-screen($bp_base) {
+    }
   }
 
   &__nav{
     position: fixed;
-    top:30px;
-    right:30px;
+    right:12px;
+    bottom:12px;
     z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    @include min-screen($bp_tb_v) {
+      top:30px;
+      right:30px;
+      bottom:auto;
+      display: block;
+    }
+    @include min-screen($bp_base) {
+    }
 
     a{
+      margin-bottom: 18px;
+      padding:8px 14px;
+      @include fz(12);
+      font-weight: 600;
+      color:$link-color;
+      background: transparent;
+      border:2px solid $link-color;
+      border-radius: 60px;
+      backdrop-filter: blur(3px);
+      backface-visibility: hidden;
+      @include min-screen($bp_tb_v) {
+        margin-bottom: 0;
+        box-shadow:$boxshadow5;
+      }
+
+      & + a{
+        @include min-screen($bp_tb_v) {
+          margin-left:15px;
+        }
+      }
+
+      &.nuxt-link-exact-active{
+        color:#fff;
+        background: $purple;
+      }
+
+      &:hover{
+        @include min-screen($bp_tb_v) {
+          color:#fff;
+          background: $purple;
+          box-shadow:$boxshadow6;
+        }
+      }
+    }
+
+    &-inner{
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      text-align: right;
+      pointer-events:none;
+      opacity: 0;
+      transform:scaleY(.98) translateY(90px);
+      transition:$transition;
+      will-change:opacity,transform;
+      backface-visibility: hidden;
+      @include min-screen($bp_tb_v) {
+        text-align: left;
+        pointer-events:auto;
+        opacity: 1;
+        transform:none;
+        transition:none;
+        will-change:auto;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+      }
+      @include min-screen($bp_base) {
+
+      }
+
+      .is-menu-open &{
+        pointer-events:auto;
+        opacity: 1;
+        transform:none;
+      }
+    }
+
+    &-btn{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 48px;
+      height: 48px;
+      background:$purple;
+      border-radius: 50%;
       box-shadow:$boxshadow5;
+      @include min-screen($bp_tb_v) {
+        display: none;
+      }
+      @include min-screen($bp_base) {
+      }
+
+      .is-menu-open &{
+        transform:scale(1.05);
+      }
+
+      &-icon{
+        position: relative;
+        width: 18px;
+        transition:$transition;
+
+        .is-menu-open &{
+          transform:rotate(360deg);
+        }
+
+        &::before,
+        &::after{
+          content:"";
+          position: absolute;
+          top:0;
+          bottom:0;
+          margin:auto;
+          display: block;
+          width: 100%;
+          height: 2px;
+          background:#fff;
+          border-radius: 3px;
+          transition:$transition;
+          backface-visibility: hidden;
+        }
+
+        &::before{
+          transform:translateY(-4px);
+        }
+
+        &::after{
+          transform:translateY(4px);
+        }
+
+        .is-menu-open &{
+          &::before{
+            transform:rotate(45deg);
+          }
+          &::after{
+            transform:rotate(-45deg);
+          }
+        }
+      }
     }
   }
 }

@@ -12,12 +12,18 @@
   import MainVisual from '~/components/MainVisual.vue'
   // import PickUp from '~/components/PickUp.vue'
   import NewList from '~/components/NewList.vue'
+  import { mapActions } from 'vuex'
 
   export default {
     components : {
       MainVisual,
       // PickUp,
       NewList
+    },
+    beforeRouteEnter (to, from, next) {
+      next(vm => {
+        vm.closeMenu();
+      })
     },
     async asyncData({ store, payload }){
       if (payload)
@@ -45,6 +51,9 @@
         titleTemplate: null,
         title: `notes by SHARESL`
       }
+    },
+    methods : {
+      ...mapActions(['closeMenu'])
     }
   }
 </script>

@@ -14,7 +14,9 @@ const state = () => ({
   //タグ一覧
   allTags         : null,
   //現在のタグ
-  currentTag      : null
+  currentTag      : null,
+  //メニューの開閉
+  isMenuOpen      : false
 });
 
 const getters = {
@@ -49,6 +51,9 @@ const getters = {
   //現在のタグ
   currentTag(state){
     return state.currentTag;
+  },
+  isMenuOpen(state){
+    return state.isMenuOpen;
   }
 }
 
@@ -119,6 +124,12 @@ const mutations = {
   //現在のメンバーを保存
   saveCurrentTag(state, currentTag){
     state.currentTag = currentTag;
+  },
+  toggleMenu(state){
+    state.isMenuOpen = !state.isMenuOpen;
+  },
+  closeMenu(state){
+    state.isMenuOpen = false;
   }
 }
 
@@ -178,6 +189,15 @@ const actions = {
       await commit('saveCurrentMemberBySlug', memberSlug);
     }
     return res;
+  },
+
+  //メニュー開閉
+  toggleMenu({ state, commit }){
+    commit('toggleMenu');
+  },
+
+  closeMenu({ state, commit }){
+    commit('closeMenu');
   }
 }
 

@@ -56,7 +56,8 @@ export default {
   */
   plugins: [
   '~/plugins/vue-scrollto',
-  '~/plugins/vee-validate'
+  '~/plugins/vee-validate',
+  { src: "~/plugins/vue2-touch-events.js", ssr: false }
   ],
   /*
   ** Nuxt.js modules

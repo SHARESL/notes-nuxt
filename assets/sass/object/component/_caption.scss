@@ -15,11 +15,15 @@
   }
 
   &--ja{
+    @include fz(24);
     font-weight: 600;
-    @include fz(27);
+    line-height: 1.9;
+    @include min-screen($bp_tb_v) {
+      @include fz(27);
+    }
 
     &::after{
-      margin-top: 24px;
+      margin-top: 18px;
     }
   }
 }

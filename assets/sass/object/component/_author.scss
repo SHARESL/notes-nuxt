@@ -1,10 +1,13 @@
 .c-author{
   display: flex;
   align-items: center;
-  padding:30px 60px;
-  // background: $lgray2;
+  padding:30px 15px;
   border:3px solid $purple;
   border-radius:9px;
+
+  @include min-screen($bp_tb_v) {
+    padding:30px 60px;
+  }
 
   &__avatar{
     flex-shrink: 0;
@@ -34,28 +37,40 @@
   }
 
   &__detail{
-    padding-left:30px;
+    padding-left:15px;
+    @include min-screen($bp_tb_v) {
+      padding-left:30px;
+    }
   }
 
   &__name{
     display: inline;
-    @include fz(21);
+    @include fz(24);
+    @include min-screen($bp_tb_v) {
+      @include fz(21);
+    }
 
     &:hover{
-      color:$blue3;
+      @include min-screen($bp_tb_v) {
+        color:$blue3;
+      }
     }
   }
 
   &__job{
+    @include fz(10);
     font-weight: 600;
+    @include min-screen($bp_tb_v) {
+      @include fz(12);
+    }
   }
 
   &__text{
-    padding: 9px;
-    margin-top:9px;
+    margin-top:15px;
+    @include fz(12);
     font-weight: 600;
-    background: #fff;
     line-height: 1.6;
-    border-radius: 9px;
+    @include min-screen($bp_tb_v) {
+    }
   }
 }

@@ -1,7 +1,12 @@
 .c-title{
   position: relative;
   z-index: 1;
-  padding:150px 0 60px;
+  padding:120px 0 30px;
+  @include min-screen($bp_tb_v) {
+    padding:150px 0 60px;
+  }
+  @include min-screen($bp_base) {
+  }
 
   &__inner{
     display: flex;
@@ -10,18 +15,28 @@
   }
 
   &__main{
-    @include fz(90);
+    @include fz(45);
     background: #000;
     background: $gradient7;
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
+    @include min-screen($bp_tb_v) {
+      @include fz(90);
+    }
+    @include min-screen($bp_base) {
+    }
   }
 
   &__sub{
     margin-top:15px;
-    @include fz(18);
+    @include fz(15);
     font-weight: 600;
+    @include min-screen($bp_tb_v) {
+      @include fz(18);
+    }
+    @include min-screen($bp_base) {
+    }
   }
 
   &__bg{

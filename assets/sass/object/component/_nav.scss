@@ -1,7 +1,9 @@
 .c-nav{
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  @include min-screen($bp_tb_v) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 
   a{
     padding:8px 14px;
@@ -17,14 +19,17 @@
       margin-left:15px;
     }
 
-    &.nuxt-link-exact-active,
-    &:hover{
+    &.nuxt-link-exact-active{
       color:#fff;
       background: $purple;
     }
 
     &:hover{
-      box-shadow:$boxshadow6;
+      @include min-screen($bp_tb_v) {
+        color:#fff;
+        background: $purple;
+        box-shadow:$boxshadow6;
+      }
     }
   }
 

@@ -16,7 +16,7 @@
   import Vue from 'vue'
   import Title from '~/components/Title.vue'
   import Author from '~/components/Author.vue'
-  import { mapGetters } from 'vuex'
+  import { mapGetters, mapActions } from 'vuex'
   import Meta from '~/mixins/meta'
 
   export default {
@@ -24,6 +24,11 @@
     components : {
       Title,
       Author
+    },
+    beforeRouteEnter (to, from, next) {
+      next(vm => {
+        vm.closeMenu();
+      })
     },
     async fetch({ store, route, payload }){
       if (payload)
@@ -63,6 +68,9 @@
     },
     computed: {
       ...mapGetters(['members']),
+    },
+    methods: {
+      ...mapActions(['closeMenu'])
     }
   }
 </script>

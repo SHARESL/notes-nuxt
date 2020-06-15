@@ -13,12 +13,17 @@
   import Vue from 'vue'
   import Title from '~/components/Title.vue'
   import CategoryList from '~/components/CategoryList.vue'
-  import { mapGetters } from 'vuex'
+  import { mapGetters, mapActions } from 'vuex'
 
   export default {
     components : {
       Title,
       CategoryList
+    },
+    beforeRouteEnter (to, from, next) {
+      next(vm => {
+        vm.closeMenu();
+      })
     },
     async fetch({ params, store, route, payload }){
       if (payload)
@@ -85,6 +90,9 @@
           return `# ${this.tag.name}`
         }
       }
+    },
+    methods: {
+      ...mapActions(['closeMenu'])
     }
   }
 </script>

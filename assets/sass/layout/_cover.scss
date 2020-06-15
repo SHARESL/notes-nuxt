@@ -14,8 +14,11 @@
     display: block;
     width: 100%;
     height: 100%;
-    border:9px solid $link-color;
+    border:6px solid $link-color;
     border-image: $gradient7 1;
+    @include min-screen($bp_tb_v) {
+      border-width: 9px;
+    }
   }
 }
 
@@ -25,5 +28,12 @@
 
 .l-cover__main{
   min-height:100vh;
-  padding-bottom: 90px;
+  padding: 18px 18px 60px;
+
+  @include min-screen($bp_tb_v) {
+    padding: 0 0 90px;
+  }
+
+  @include min-screen($bp_base) {
+  }
 }

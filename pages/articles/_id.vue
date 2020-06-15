@@ -73,7 +73,7 @@
   import Card from '~/components/Card.vue'
   import ShareButton from '~/components/ShareButton.vue'
   import Author from '~/components/Author.vue'
-  import { mapGetters } from 'vuex'
+  import { mapGetters, mapActions } from 'vuex'
   import Meta from '~/mixins/meta'
 
   export default {
@@ -81,6 +81,11 @@
       Card,
       ShareButton,
       Author
+    },
+    beforeRouteEnter (to, from, next) {
+      next(vm => {
+        vm.closeMenu();
+      })
     },
     //mixins: [Meta],
     async fetch({ params, error, payload, store, $axios }) {
@@ -157,6 +162,7 @@
       this.highlightCode();
     },
     methods : {
+      ...mapActions(['closeMenu']),
       //シンタックスハイライト
       highlightCode(){
         if(!('post_contents' in this.$refs)){

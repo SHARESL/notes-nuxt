@@ -5,7 +5,7 @@
       <Card class="c-list__item" v-if="posts" v-for="post in posts" :key="post.id" :post="post" />
     </div>
     <!-- /.c-list__inner -->
-    <Button :url="buttonUrl" :text="buttonText" />
+    <Button class="c-list__btn" :url="buttonUrl" :text="buttonText" />
   </div>
   <!-- /.p-list -->
 </template>

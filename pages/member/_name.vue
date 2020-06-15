@@ -27,13 +27,18 @@
   import Title from '~/components/Title.vue'
   import CategoryList from '~/components/CategoryList.vue'
   import Author from '~/components/Author.vue'
-  import { mapGetters } from 'vuex'
+  import { mapGetters, mapActions } from 'vuex'
 
   export default {
     components : {
       Title,
       CategoryList,
       Author
+    },
+    beforeRouteEnter (to, from, next) {
+      next(vm => {
+        vm.closeMenu();
+      })
     },
     async fetch({ params, error, payload, store }) {
       if (payload){
@@ -97,6 +102,9 @@
           return `${this.member.author_name}の書いた記事`
         }
       }
+    },
+    methods: {
+      ...mapActions(['closeMenu'])
     }
   }
 </script>

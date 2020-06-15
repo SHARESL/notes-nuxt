@@ -12,11 +12,17 @@
 <script>
   import Title from '~/components/Title.vue'
   import CategoryList from '~/components/CategoryList.vue'
+  import { mapActions } from 'vuex'
 
   export default {
     components : {
       Title,
       CategoryList
+    },
+    beforeRouteEnter (to, from, next) {
+      next(vm => {
+        vm.closeMenu();
+      })
     },
     async fetch({ store, route, payload }){
       if (payload)
@@ -68,6 +74,9 @@
         { hid: 'og:image', property: 'og:image', content: category.fields.ogp_img },
         ]
       }
+    },
+    methods : {
+      ...mapActions(['closeMenu'])
     }
   }
 </script>
