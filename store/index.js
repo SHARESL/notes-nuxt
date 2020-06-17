@@ -15,8 +15,13 @@ const state = () => ({
   allTags         : null,
   //現在のタグ
   currentTag      : null,
+  //すべての固定ページ
+  allPages        : null,
+  //現在の固定ページ
+  currentPage     : null,
   //メニューの開閉
-  isMenuOpen      : false
+  isMenuOpen      : false,
+  pickup          : null
 });
 
 const getters = {
@@ -52,8 +57,19 @@ const getters = {
   currentTag(state){
     return state.currentTag;
   },
+  //すべての固定ページ
+  allPages(state){
+    return state.allPages;
+  },
+  //現在の固定ページ
+  currentPage(state){
+    return state.currentPage;
+  },
   isMenuOpen(state){
     return state.isMenuOpen;
+  },
+  pickup(state){
+    return state.pickup;
   }
 }
 
@@ -125,11 +141,33 @@ const mutations = {
   saveCurrentTag(state, currentTag){
     state.currentTag = currentTag;
   },
+
+  //すべての固定ページを保存
+  saveAllPages(state, allPages){
+    state.allPages = allPages;
+  },
+  saveCurrentPageBySlug(state, pageSlug){
+    if(!state.allPages){
+      return;
+    }
+    state.currentPage = state.allPages.find( (page) => {
+      return page.slug === pageSlug
+    });
+  },
+  //現在の固定ページを保存
+  saveCurrentPage(state, currentPage){
+    state.currentPage = currentPage;
+  },
+
   toggleMenu(state){
     state.isMenuOpen = !state.isMenuOpen;
   },
   closeMenu(state){
     state.isMenuOpen = false;
+  },
+  //ピックアップを保存
+  savePickup(state, posts){
+    state.pickup = posts
   }
 }
 
@@ -166,7 +204,7 @@ const actions = {
   * 全タグ取得
   */
   async fetchTags({ state, commit }, tagSlug = null){
-    const res = await this.$axios.$get('/wp/v2/tags?per_page=100')
+    const res = await this.$axios.$get('/custom/v0/tags')
     .catch((err) => {
       console.error(err)
     });
@@ -187,6 +225,21 @@ const actions = {
     await commit('saveMembers', res);
     if(memberSlug){
       await commit('saveCurrentMemberBySlug', memberSlug);
+    }
+    return res;
+  },
+
+  /*
+  * 固定ページ一覧取得
+  */
+  async fetchPages({ state, commit }, pageSlug = null){
+    const res = await this.$axios.$get('/custom/v0/pages')
+    .catch((err) => {
+      console.error(err)
+    });
+    await commit('saveAllPages', res);
+    if(pageSlug){
+      await commit('saveCurrentPageBySlug', pageSlug);
     }
     return res;
   },

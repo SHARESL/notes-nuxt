@@ -27,10 +27,13 @@
       }
     },
     computed: {
-      ...mapGetters(['allPosts']),
+      ...mapGetters(['allPosts', 'pickup']),
       posts() {
         const posts = Vue.util.extend([], this.allPosts);
-        return posts.slice(0,6);
+        const excludePickupPosts = posts.filter((post) => {
+          return this.pickup.indexOf(post.id) == -1;
+        });
+        return excludePickupPosts.slice(0,6);
       }
     }
   }

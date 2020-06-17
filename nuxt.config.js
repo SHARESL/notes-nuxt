@@ -76,10 +76,11 @@ export default {
       Promise.all([
         axios.get(`${process.env.BASE_API_URL}/custom/v0/all`),
         axios.get(`${process.env.BASE_API_URL}/wp/v2/categories`),
-        axios.get(`${process.env.BASE_API_URL}/wp/v2/tags?per_page=100`),
-        axios.get(`${process.env.BASE_API_URL}/custom/v0/members`)
+        axios.get(`${process.env.BASE_API_URL}/custom/v0/tags`),
+        axios.get(`${process.env.BASE_API_URL}/custom/v0/members`),
+        axios.get(`${process.env.BASE_API_URL}/custom/v0/pages`)
         ])
-      .then (axios.spread( (allPosts, categories, tags, members) => {
+      .then (axios.spread( (allPosts, categories, tags, members, pages) => {
 
         //記事詳細ページ
         const route_post = allPosts.data.map((post) => {
@@ -90,7 +91,8 @@ export default {
               currentPost : post,
               categories  : categories.data,
               allTags     : tags.data,
-              members     : members.data
+              members     : members.data,
+              pages       : pages.data
             }
           }
         })
@@ -104,7 +106,8 @@ export default {
               categories      : categories.data,
               currentCategory : category,
               allTags         : tags.data,
-              members         : members.data
+              members         : members.data,
+              pages       : pages.data
             }
           }
         })
@@ -118,7 +121,8 @@ export default {
               categories  : categories.data,
               allTags     : tags.data,
               currentTag  : tag,
-              members     : members.data
+              members     : members.data,
+              pages       : pages.data
             }
           }
         })
@@ -130,7 +134,8 @@ export default {
             allPosts    : allPosts.data,
             categories  : categories.data,
             allTags     : tags.data,
-            members     : members.data
+            members     : members.data,
+            pages       : pages.data
           }
         }]
 
@@ -141,7 +146,8 @@ export default {
             allPosts    : allPosts.data,
             categories  : categories.data,
             allTags     : tags.data,
-            members     : members.data
+            members     : members.data,
+            pages       : pages.data
           }
         }]
 
@@ -155,6 +161,7 @@ export default {
               allTags       : tags.data,
               members       : members.data,
               currentMember : member,
+              pages         : pages.data
             }
           }
         })
@@ -168,7 +175,8 @@ export default {
               allPosts    : allPosts.data,
               categories  : categories.data,
               allTags     : tags.data,
-              members     : members.data
+              members     : members.data,
+              pages       : pages.data
             }
           }
         })

@@ -97,12 +97,10 @@
 </template>
 
 <script>
-  import Meta from '~/mixins/meta'
   import Title from '~/components/Title.vue'
   import { mapActions } from 'vuex'
 
   export default {
-    mixins     : [Meta],
     components : {
       Title
     },
@@ -111,16 +109,24 @@
         vm.closeMenu();
       })
     },
-    async fetch({ store, payload }){
+    async fetch({ store, payload, route }){
       if (payload)
       {
         await store.commit('saveAllPosts', payload.allPosts);
         await store.commit('saveAllCategories', payload.categories);
         await store.commit('saveAllTags', payload.allTags);
         await store.commit('saveMembers', payload.members);
+        await store.commit('saveAllPages', payload.pages);
+        await store.commit('saveCurrentPageBySlug', route.name);
         return;
       }
       else{
+        if(store.getters.allPages){
+          await store.commit('saveCurrentPageBySlug', route.name);
+        }
+        if(!store.getters.allPages && !store.getters.currentPage){
+          await store.dispatch('fetchPages', route.name);
+        }
         if(!store.getters.allPosts){
           await store.dispatch('fetchAllPost');
         }
@@ -148,13 +154,25 @@
         isSending       : false,
         isError         : false,
         completeMessage : '',
-        timer           : null,
-        meta            : {
-          title: 'CONTACT',
-          description: 'お問い合わせはこちらから。notes by SHARESLは大阪の株式会社SHARESLが運営する開発者ブログです。内容についてのご質問やご指摘、その他制作やコーディングのご依頼などはこちらからお問い合わせください。',
-          type: 'article',
-          url: `${process.env.baseUrl}/contact`
-        }
+        timer           : null
+      }
+    },
+    head() {
+      const page = this.$store.getters.currentPage;
+      if(!page){
+        return;
+      }
+      return {
+        titleTemplate : null,
+        title : page.title,
+        meta  : [
+        { hid: 'description', name: 'description', content: page.description },
+        { hid: 'og:type', property: 'og:type', content: 'article' },
+        { hid: 'og:title', property: 'og:title', content: page.title },
+        { hid: 'og:description', property: 'og:description', content:page.description },
+        { hid: 'og:url', property: 'og:url', content: `${process.env.baseUrl}/${this.$route.name}` },
+        { hid: 'og:image', property: 'og:image', content: page.ogp_img },
+        ]
       }
     },
     computed: {

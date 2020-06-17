@@ -10,87 +10,27 @@
 </template>
 
 <script>
+  import Vue from 'vue'
   import Card from '~/components/Card.vue'
+  import { mapGetters } from 'vuex'
+
   export default {
     components : {
       Card
     },
-    data(){
-      return{
-        posts : [
-        {
-          id           : 1,
-          eyecatch     : '/assets/images/article-1.jpg',
-          title        : '1interact.jsを使ってcanvas上で画像を位置移動させてみる',
-          category     : 'TRY',
-          date         : '2020.01.14',
-          author       : {
-            name  : 'INOUE 1',
-            image : '~/assets/images/author.png',
-            slug  : 'inoue-1'
-          },
-          tags         : [
-          {
-            id   : 1,
-            name : 'imagesLoaded',
-            slug : 'imagesloaded'
-          },
-          {
-            id   : 2,
-            name : 'JS',
-            slug : 'js'
-          }
-          ]
-        },
-        {
-          id           : 2,
-          eyecatch     : 'assets/images/article-1.jpg',
-          title        : '2interact.jsを使ってcanvas上で画像を位置移動させてみる',
-          category     : 'TRY',
-          date         : '2020.01.14',
-          author       : {
-            name  : 'INOUE 2',
-            image : '~/assets/images/author.png',
-            slug  : 'inoue-2'
-          },
-          tags         : [
-          {
-            id   : 1,
-            name : 'imagesLoaded',
-            slug : 'imagesloaded'
-          },
-          {
-            id   : 2,
-            name : 'JS',
-            slug : 'js'
-          }
-          ]
-        },
-        {
-          id           : 3,
-          eyecatch     : 'assets/images/article-1.jpg',
-          title        : '3interact.jsを使ってcanvas上で画像を位置移動させてみる',
-          category     : 'TRY',
-          date         : '2020.01.14',
-          author       : {
-            name  : 'INOUE 3',
-            image : '~/assets/images/author.png',
-            slug  : 'inoue-3'
-          },
-          tags         : [
-          {
-            id   : 1,
-            name : 'imagesLoaded',
-            slug : 'imagesloaded'
-          },
-          {
-            id   : 2,
-            name : 'JS',
-            slug : 'js'
-          }
-          ]
-        }
-        ]
+    computed: {
+      ...mapGetters(['allPosts']),
+      posts() {
+        const posts = Vue.util.extend([], this.allPosts);
+        const pickup = posts.filter((post) => {
+          return post.pickup === true
+        });
+        const threePickupPosts = pickup.slice(0,3);
+        const threePickupPostsIDs = threePickupPosts.map((post) => {
+          return post.id
+        });
+        this.$store.commit('savePickup', threePickupPostsIDs);
+        return threePickupPosts;
       }
     }
   }
