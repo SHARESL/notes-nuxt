@@ -5,7 +5,8 @@
   align-items: center;
   justify-content: center;
   width: 100%;
-  min-height:100vh;
+  height:100vh;
+  min-height:600px;
   text-align: center;
   padding: 90px 0;
   @include min-screen($bp_tb_v) {
@@ -20,7 +21,7 @@
   }
 
   &__title{
-    @include fz(45);
+    font-size: sizeCalc(90, $w_sp, 'vw');
     background: #000;
     background: $gradient7;
     -webkit-background-clip: text;

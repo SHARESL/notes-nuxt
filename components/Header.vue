@@ -2,7 +2,7 @@
   <header class="l-header">
     <div class="l-header__inner">
       <Logo class="l-header__logo" />
-      <HeaderNav class="l-header__nav" />
+      <HeaderNav />
     </div>
     <!-- /.l-header__inner -->
   </header>

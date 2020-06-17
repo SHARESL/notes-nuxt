@@ -10,9 +10,6 @@
 </template>
 
 <script>
-  // import * as THREE from 'three'
-  // import NET from 'vanta/dist/vanta.net.min'
-
   export default {
     props :{
       title    : String,

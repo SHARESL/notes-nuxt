@@ -21,7 +21,8 @@ const state = () => ({
   currentPage     : null,
   //メニューの開閉
   isMenuOpen      : false,
-  pickup          : null
+  pickup          : null,
+  searchText      : null
 });
 
 const getters = {
@@ -65,11 +66,17 @@ const getters = {
   currentPage(state){
     return state.currentPage;
   },
+  //メニュー開閉フラグ
   isMenuOpen(state){
     return state.isMenuOpen;
   },
+  //ピックアップ記事
   pickup(state){
     return state.pickup;
+  },
+  //検索キーワード
+  searchText(state){
+    return state.searchText;
   }
 }
 
@@ -168,6 +175,10 @@ const mutations = {
   //ピックアップを保存
   savePickup(state, posts){
     state.pickup = posts
+  },
+  //検索キーワードを保存
+  saveSearchText(state, searchText){
+    state.searchText = searchText;
   }
 }
 
@@ -249,8 +260,14 @@ const actions = {
     commit('toggleMenu');
   },
 
+  //メニューを閉じる
   closeMenu({ state, commit }){
     commit('closeMenu');
+  },
+
+  //検索キーワードを保存
+  saveSearchText({state, commit}, {searchText}){
+    commit('saveSearchText', searchText);
   }
 }
 

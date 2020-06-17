@@ -2,6 +2,7 @@
   &__inner{
 
   }
+
   &__logo{
     position: fixed;
     top:18px;
@@ -27,7 +28,7 @@
       top:30px;
       right:30px;
       bottom:auto;
-      display: block;
+      flex-direction: row;
     }
     @include min-screen($bp_base) {
     }
@@ -38,7 +39,7 @@
       @include fz(12);
       font-weight: 600;
       color:$link-color;
-      background: transparent;
+      background: rgba(#fff,.6);
       border:2px solid $link-color;
       border-radius: 60px;
       backdrop-filter: blur(3px);
@@ -163,5 +164,211 @@
         }
       }
     }
+  }
+
+  &__search{
+    position: fixed;
+    z-index: 2000;
+    @include min-screen($bp_tb_v) {
+      position: relative;
+      margin-left: 15px;
+    }
+    @include min-screen($bp_base) {
+    }
+
+    &-btn{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 45px;
+      height: 45px;
+      @include min-screen($bp_tb_v) {
+        width: 30px;
+        height: 30px;
+        color:$purple;
+        background: rgba(#fff,.6);
+        border:2px solid $link-color;
+        border-radius: 60px;
+        backdrop-filter: blur(3px);
+        backface-visibility: hidden;
+        box-shadow:$boxshadow5;
+      }
+      @include min-screen($bp_base) {
+      }
+
+      &:hover{
+        @include min-screen($bp_tb_v) {
+          color:#fff;
+          background: $purple;
+          box-shadow:$boxshadow6;
+        }
+      }
+
+      &.is-search-open{
+        background:#fff;
+        @include min-screen($bp_tb_v) {
+        }
+        &:hover{
+          @include min-screen($bp_tb_v) {
+            color:$purple;
+            background:#fff;
+            box-shadow:$boxshadow6;
+            transform:scale(1.1);
+          }
+        }
+      }
+    }
+
+    &-icon{
+      display: block;
+      position: relative;
+      width: 13px;
+      height:0;
+      padding-top: 13px;
+      //transition:$transition;
+      @include min-screen($bp_tb_v) {
+      }
+      @include min-screen($bp_base) {
+      }
+
+      path{
+        fill:currentColor;
+      }
+
+      svg{
+        .is-search-open & {
+          opacity: 0;
+          visibility: hidden;
+        }
+      }
+
+      &::before,
+      &::after{
+        opacity: 0;
+        visibility: hidden;
+        content:"";
+        position: absolute;
+        top:0;
+        right:0;
+        bottom:0;
+        left:0;
+        z-index: 10;
+        display: block;
+        width: 10px;
+        height: 1px;
+        margin:auto;
+        background:$purple;
+        transition:.2s $ease-out-back;
+        backface-visibility: hidden;
+
+        .is-search-open & {
+          opacity: 1;
+          visibility: visible;
+        }
+      }
+
+      &::before{
+        transform: scaleX(0) rotate(45deg);
+        .is-search-open & {
+          transform: rotate(45deg);
+        }
+      }
+
+      &::after{
+        transform: scaleX(0) rotate(-45deg);
+        .is-search-open & {
+          transform: rotate(-45deg);
+        }
+      }
+    }
+  }
+
+  &__form{
+    position: fixed;
+    top:0;
+    left:0;
+    z-index: 1500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    background:rgba($purple,.9);
+    backdrop-filter: blur(3px);
+    backface-visibility: hidden;
+    @include min-screen($bp_tb_v) {
+    }
+
+    &-inner{
+      overflow: hidden;
+      position: relative;
+      @include min-screen($bp_tb_v) {
+      }
+    }
+
+    &-input{
+      height: 60px;
+      width: 300px;
+      padding:15px 45px 15px 15px;
+      @include fz(18);
+      line-height: 1.6;
+      color:#fff;
+      border:1px solid currentColor;
+      border-radius: 9px;
+      @include min-screen($bp_tb_v) {
+        padding-right: 60px
+      }
+      @include placeholderColor(#fff)
+    }
+
+    &-submit{
+      position: absolute;
+      top:0;
+      right:0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 45px;
+      height: 100%;
+      @include min-screen($bp_tb_v) {
+        width: 60px;
+        color:#fff;
+      }
+      @include min-screen($bp_base) {
+      }
+
+      &:hover{
+        @include min-screen($bp_tb_v) {
+          .l-header__form-icon{
+            transform:scale(1.2);
+            color:$purple;
+            background:#fff;
+            box-shadow: 0 0 0 6px #fff
+          }
+        }
+      }
+    }
+
+    &-icon{
+      @include min-screen($bp_tb_v) {
+        overflow: hidden;
+        display: block;
+        position: relative;
+        width: 18px;
+        height:0;
+        padding-top: 18px;
+        transition:$transition;
+        border-radius: 50%;
+        @include min-screen($bp_tb_v) {
+        }
+        @include min-screen($bp_base) {
+        }
+
+        path{
+          fill:currentColor;
+        }
+      }
+    }
+
   }
 }

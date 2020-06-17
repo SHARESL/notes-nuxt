@@ -82,7 +82,7 @@
         return;
       }
       return {
-        title : `${member.author_name}の書いた記事｜notes by SHARESL`,
+        title : `${member.author_name}の書いた記事`,
         meta  : [
         { hid: 'description', name: 'description', content: member.fields.description },
         { hid: 'og:type', property: 'og:type', content: 'article' },

@@ -1,8 +1,9 @@
 <template>
   <div class="c-list">
     <Nav class="c-list__nav" v-if="!hideNav" />
-    <div class="c-list__inner">
-      <Card class="c-list__item" v-if="posts" v-for="post in posts" :key="post.id" :post="post" />
+    <div class="c-list__inner" :class="{empty : !posts.length}">
+      <Card class="c-list__item" v-for="post in posts" :key="post.id" :post="post" />
+      <p v-if="!posts.length" class="c-list__empty">記事が見つかりませんでした</p>
     </div>
     <!-- /.c-list__inner -->
   </div>
@@ -35,7 +36,7 @@
       }
     },
     computed: {
-      ...mapGetters(['allPosts']),
+      ...mapGetters(['allPosts', 'searchText']),
       posts(){
         const posts = Vue.util.extend([], this.allPosts);
         //メンバー検索
@@ -52,6 +53,30 @@
             })
             return matchTag;
           })
+        }
+        //検索結果
+        else if(this.routeName === 'search' ){
+          if(!this.searchText){
+            return posts;
+          }
+          else{
+            //正規表現でタイトル・コンテンツ・カテゴリー・タグの文字列の一致を検索
+            const searchTexts = this.searchText.split(' ');
+            let searchReg = '^';
+            searchTexts.forEach((str) => {
+              searchReg += `(?=.*${str})`;
+            });
+            const reg = new RegExp(searchReg, 'i');
+            return posts.filter( (post) => {
+              const tagmatch = post.tags.find((tag) => {
+                return tag.name.match(reg)
+              });
+              if(tagmatch){
+                return tagmatch;
+              }
+              return post.title.match(reg) || post.content.match(reg) || post.category.match(reg);
+            })
+          }
         }
         //カテゴリー検索
         else if(this.routeName !== 'all'){
