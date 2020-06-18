@@ -5,6 +5,7 @@
         <nuxt-link to="/about/">当サイトについて</nuxt-link>
         <a href="https://sharesl.net/policy/" target="_blank" rel="noopener noreferrer">プライバシーポリシー</a>
         <a href="https://sharesl.net/" target="_blank" rel="noopener noreferrer">運営会社</a>
+        <nuxt-link to="/member/">メンバー紹介</nuxt-link>
         <nuxt-link to="/contact/">お問い合わせ</nuxt-link>
       </nav>
       <!-- /.l-footer__nav -->

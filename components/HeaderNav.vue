@@ -1,10 +1,10 @@
 <template>
   <div class="l-header__nav" :class="toggleMenuClass">
     <div class="l-header__nav-inner">
-      <nuxt-link to="/articles">ALL</nuxt-link>
-      <nuxt-link to="/tips">TIPS</nuxt-link>
-      <nuxt-link to="/try">TRY</nuxt-link>
-      <nuxt-link to="/column">COLUMN</nuxt-link>
+      <nuxt-link to="/articles/">ALL</nuxt-link>
+      <nuxt-link to="/tips/">TIPS</nuxt-link>
+      <nuxt-link to="/try/">TRY</nuxt-link>
+      <nuxt-link to="/column/">COLUMN</nuxt-link>
     </div>
     <!-- /.l-header__nav-inner -->
     <div class="l-header__search">
@@ -82,8 +82,9 @@
       }
     },
     methods : {
-      ...mapActions(['toggleMenu', 'saveSearchText']),
+      ...mapActions(['toggleMenu', 'saveSearchText', 'closeMenu']),
       toggleSearchForm() {
+        this.closeMenu();
         this.isSearchFormOpen = !this.isSearchFormOpen;
       },
       closeSearchForm(){
@@ -93,7 +94,16 @@
         this.saveSearchText({
           searchText : this.searchText
         });
-        this.$router.push('search', this.closeSearchForm());
+        this.$router.push({ name: 'search' });
+        this.scrollTop();
+        this.closeMenu();
+        this.closeSearchForm();
+      },
+      scrollTop(){
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth"
+        });
       }
     }
   }

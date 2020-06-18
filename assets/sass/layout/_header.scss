@@ -168,9 +168,13 @@
 
   &__search{
     position: fixed;
+    bottom:12px;
+    left:12px;
     z-index: 2000;
     @include min-screen($bp_tb_v) {
       position: relative;
+      bottom: auto;
+      left: auto;
       margin-left: 15px;
     }
     @include min-screen($bp_base) {
@@ -180,8 +184,12 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      width: 45px;
-      height: 45px;
+      width: 48px;
+      height: 48px;
+      color:#fff;
+      background:$purple;
+      border-radius: 50%;
+      box-shadow:$boxshadow5;
       @include min-screen($bp_tb_v) {
         width: 30px;
         height: 30px;
@@ -191,7 +199,6 @@
         border-radius: 60px;
         backdrop-filter: blur(3px);
         backface-visibility: hidden;
-        box-shadow:$boxshadow5;
       }
       @include min-screen($bp_base) {
       }
@@ -222,11 +229,12 @@
     &-icon{
       display: block;
       position: relative;
-      width: 13px;
+      width: 18px;
       height:0;
-      padding-top: 13px;
-      //transition:$transition;
+      padding-top: 18px;
       @include min-screen($bp_tb_v) {
+        width: 13px;
+        padding-top: 13px;
       }
       @include min-screen($bp_base) {
       }
@@ -330,9 +338,9 @@
       justify-content: center;
       width: 45px;
       height: 100%;
+      color:#fff;
       @include min-screen($bp_tb_v) {
         width: 60px;
-        color:#fff;
       }
       @include min-screen($bp_base) {
       }
@@ -350,23 +358,23 @@
     }
 
     &-icon{
+      display: block;
+      position: relative;
+      width: 18px;
+      height:0;
+      padding-top: 18px;
+
       @include min-screen($bp_tb_v) {
         overflow: hidden;
-        display: block;
-        position: relative;
-        width: 18px;
-        height:0;
-        padding-top: 18px;
         transition:$transition;
         border-radius: 50%;
-        @include min-screen($bp_tb_v) {
-        }
-        @include min-screen($bp_base) {
-        }
+      }
 
-        path{
-          fill:currentColor;
-        }
+      @include min-screen($bp_base) {
+      }
+
+      path{
+        fill:currentColor;
       }
     }
 

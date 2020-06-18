@@ -106,13 +106,7 @@
     data() {
       return {
         title    : 'ABOUT',
-        subtitle : '当サイトについて',
-        meta: {
-          title: 'ABOUT',
-          description: 'notes by SHARESLの運営目的や概要、免責事項やその他の当サイトをご利用いただくに当たっての注意事項などを記載しております。',
-          type: 'article',
-          url: `${process.env.baseUrl}/about`
-        }
+        subtitle : '当サイトについて'
       }
     },
     head() {

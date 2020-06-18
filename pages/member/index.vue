@@ -17,10 +17,8 @@
   import Title from '~/components/Title.vue'
   import Author from '~/components/Author.vue'
   import { mapGetters, mapActions } from 'vuex'
-  import Meta from '~/mixins/meta'
 
   export default {
-    mixins: [Meta],
     components : {
       Title,
       Author
@@ -37,9 +35,17 @@
         await store.commit('saveAllCategories', payload.categories);
         await store.commit('saveAllTags', payload.allTags);
         await store.commit('saveMembers', payload.members);
+        await store.commit('saveAllPages', payload.pages);
+        await store.commit('saveCurrentPageBySlug', route.name);
         return;
       }
       else {
+        if(store.getters.allPages){
+          await store.commit('saveCurrentPageBySlug', route.name);
+        }
+        if(!store.getters.allPages && !store.getters.currentPage){
+          await store.dispatch('fetchPages', route.name);
+        }
         if(!store.getters.allPosts){
           await store.dispatch('fetchAllPost');
         }
@@ -57,13 +63,25 @@
     data() {
       return {
         title    : 'MEMBERS',
-        subtitle : 'メンバー紹介',
-        meta: {
-          title: 'MEMBERS',
-          description: 'notes by SHARESLのメンバーページです。株式会社SHARESLで実際に実務に携わっているエンジニア・デザイナーなどの制作者たちの中で、記事を執筆しているメンバーの一覧です。',
-          type: 'article',
-          url: `${process.env.baseUrl}/member`
-        }
+        subtitle : 'メンバー紹介'
+      }
+    },
+    head() {
+      const page = this.$store.getters.currentPage;
+      if(!page){
+        return;
+      }
+      return {
+        titleTemplate: null,
+        title : page.title,
+        meta  : [
+        { hid: 'description', name: 'description', content: page.description },
+        { hid: 'og:type', property: 'og:type', content: 'article' },
+        { hid: 'og:title', property: 'og:title', content: page.title },
+        { hid: 'og:description', property: 'og:description', content:page.description },
+        { hid: 'og:url', property: 'og:url', content: `${process.env.baseUrl}/${this.$route.name}` },
+        { hid: 'og:image', property: 'og:image', content: page.ogp_img },
+        ]
       }
     },
     computed: {

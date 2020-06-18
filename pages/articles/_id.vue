@@ -34,7 +34,7 @@
             <nuxt-link class="c-pager__prev" :to="{ name: 'articles-id', params: { id : post.prev}}">PREV</nuxt-link>
           </div>
           <!-- /.c-pager__link -->
-          <Card :post="prev" />
+          <Card :post="prev" class="prev" />
         </div>
         <!-- /.c-pager__item -->
         <div class="c-pager__item" v-if="post.next">
@@ -42,7 +42,7 @@
             <nuxt-link class="c-pager__next" :to="{ name: 'articles-id', params: { id : post.next}}">NEXT</nuxt-link>
           </div>
           <!-- /.c-pager__link -->
-          <Card :post="next" />
+          <Card :post="next" class="next" />
         </div>
         <!-- /.c-pager__item  -->
       </div>

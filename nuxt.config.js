@@ -167,7 +167,7 @@ export default {
         })
 
         //その他固定ページ
-        const other_pages = ['/', '/contact', '/about'];
+        const other_pages = ['/', '/contact', '/about', '/search', '/member'];
         const route_page = other_pages.map((page) => {
           return {
             route   : page,

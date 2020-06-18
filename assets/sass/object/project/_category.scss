@@ -21,6 +21,7 @@
     }
 
     &-submit{
+      pointer-events:none;
       position: absolute;
       top:0;
       right:0;
@@ -29,9 +30,9 @@
       justify-content: center;
       width: 45px;
       height: 100%;
+      color:$purple;
       @include min-screen($bp_tb_v) {
         width: 60px;
-        color:$purple;
       }
       @include min-screen($bp_base) {
       }
@@ -49,23 +50,23 @@
     }
 
     &-icon{
+      display: block;
+      position: relative;
+      width: 18px;
+      height:0;
+      padding-top: 18px;
+
       @include min-screen($bp_tb_v) {
         overflow: hidden;
-        display: block;
-        position: relative;
-        width: 18px;
-        height:0;
-        padding-top: 18px;
         transition:$transition;
         border-radius: 50%;
-        @include min-screen($bp_tb_v) {
-        }
-        @include min-screen($bp_base) {
-        }
+      }
 
-        path{
-          fill:currentColor;
-        }
+      @include min-screen($bp_base) {
+      }
+
+      path{
+        fill:currentColor;
       }
     }
   }

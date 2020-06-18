@@ -50,21 +50,36 @@
       @include min-screen($bp_base) {
         height:270px;
       }
+
+      .next &,
+      .prev & {
+        height:sizeCalc(217, $w_sp, 'vw');
+
+        @include min-screen($bp_tb_v) {
+          height:sizeCalc(256, $w, 'vw');
+        }
+
+        @include min-screen($bp_base) {
+          height:256px;
+        }
+      }
     }
 
     &:hover{
-      box-shadow: $boxshadow6;
+      @include min-screen($bp_tb_v) {
+        box-shadow: $boxshadow6;
 
-      img{
-        transform: scale(1.1);
-      }
+        img{
+          transform: scale(1.1);
+        }
 
-      &::before{
-        opacity: 1;
-        visibility: visible;
-        transform: none;
-        @include fz(30);
-        letter-spacing: .09em;
+        &::before{
+          opacity: 1;
+          visibility: visible;
+          transform: none;
+          @include fz(30);
+          letter-spacing: .09em;
+        }
       }
     }
   }
@@ -80,6 +95,14 @@
     @include fz(21);
     font-weight: 600;
     line-height: 1.5;
+
+    .next &,
+    .prev & {
+      @include fz(14);
+      @include min-screen($bp_tb_v) {
+        @include fz(21);
+      }
+    }
 
     a{
       color:#000;
