@@ -187,7 +187,7 @@ export default {
           route_all,
           route_members,
           route_member,
-          route_page,))
+          route_page))
       }))
     },
   },

@@ -88,7 +88,7 @@
       })
     },
     //mixins: [Meta],
-    async fetch({ params, error, payload, store, $axios }) {
+    async fetch({ params, error, payload, store }) {
       if (payload){
         await store.commit('saveAllPosts', payload.allPosts);
         await store.commit('saveCurrentPost', payload.currentPost);
