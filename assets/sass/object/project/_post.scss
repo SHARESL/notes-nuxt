@@ -262,10 +262,33 @@
       }
     }
 
+    .wp-block-code{
+      position: relative;
+      color: #b9b5b8;
+      background: #322931;
+
+      &[data-code]{
+        &::before{
+          position: absolute;
+          top:0;
+          left:0;
+          z-index: 10;
+          content:attr(data-code);
+          width: 60px;
+          text-align: center;
+          padding:3px 9px;
+          @include fz(12);
+          color:#fff;
+          background:$purple;
+        }
+      }
+
+    }
+
     pre code{
       display: block;
       overflow-x: auto;
-      padding: 1em;
+      padding: 30px 1em;
       @include fz(15);
       line-height: 1.6;
       color: #b9b5b8;

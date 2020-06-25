@@ -160,6 +160,7 @@
     mounted(){
       this.replaceTocLink();
       this.highlightCode();
+      this.addWpCodeBlockLabel();
     },
     methods : {
       ...mapActions(['closeMenu']),
@@ -174,6 +175,23 @@
         }
         [...codeblock].forEach((block) => {
           hljs.highlightBlock(block);
+        });
+      },
+      addWpCodeBlockLabel() {
+        if(!('post_contents' in this.$refs)){
+          return
+        }
+        const wp_codeblock = this.$refs.post_contents.querySelectorAll('.wp-block-code');
+        if(!wp_codeblock){
+          return;
+        }
+        [...wp_codeblock].forEach((wpblock) => {
+          const highlightClass = Array.from(wpblock.classList).filter((className) => {
+            return (className !== 'hljs') && (className !== 'wp-block-code');
+          });
+          if(highlightClass.length){
+            wpblock.setAttribute('data-code', highlightClass[0]);
+          }
         });
       },
       //目次のリンクをハッシュ以下のみに置き換え
