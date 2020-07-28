@@ -24,8 +24,7 @@
         :alt="post.title">
       </div>
       <!-- /.p-post__visual -->
-      <div class="p-post__contents" v-html="post.content" ref="post_contents"></div>
-      <!-- /.p-post__contents -->
+      <PostContents :content="post.content" />
       <ShareButton :title="post.title" />
       <Author :post="post" />
       <div class="c-pager" v-if="post.prev || post.next">
@@ -54,40 +53,25 @@
 </template>
 
 <script>
-  import hljs from 'highlight.js/lib/core';
-  import javascript from 'highlight.js/lib/languages/javascript';
-  import xml from 'highlight.js/lib/languages/xml';
-  import scss from 'highlight.js/lib/languages/scss';
-  import css from 'highlight.js/lib/languages/css';
-  import shell from 'highlight.js/lib/languages/shell';
-  import bash from 'highlight.js/lib/languages/bash';
-
-  hljs.registerLanguage('javascript', javascript);
-  hljs.registerLanguage('xml', xml);
-  hljs.registerLanguage('scss', scss);
-  hljs.registerLanguage('css', css);
-  hljs.registerLanguage('shell', shell);
-  hljs.registerLanguage('bash', bash);
-
   import Vue from 'vue'
   import Card from '~/components/Card.vue'
   import ShareButton from '~/components/ShareButton.vue'
   import Author from '~/components/Author.vue'
+  import PostContents from '~/components/PostContents.vue'
   import { mapGetters, mapActions } from 'vuex'
-  import Meta from '~/mixins/meta'
 
   export default {
     components: {
       Card,
       ShareButton,
-      Author
+      Author,
+      PostContents
     },
     beforeRouteEnter (to, from, next) {
       next(vm => {
         vm.closeMenu();
       })
     },
-    //mixins: [Meta],
     async fetch({ params, error, payload, store }) {
       if (payload){
         await store.commit('saveAllPosts', payload.allPosts);
@@ -157,57 +141,8 @@
         });
       }
     },
-    mounted(){
-      this.replaceTocLink();
-      this.highlightCode();
-      this.addWpCodeBlockLabel();
-    },
     methods : {
-      ...mapActions(['closeMenu']),
-      //シンタックスハイライト
-      highlightCode(){
-        if(!('post_contents' in this.$refs)){
-          return
-        }
-        const codeblock = this.$refs.post_contents.querySelectorAll('pre code');
-        if(!codeblock){
-          return;
-        }
-        [...codeblock].forEach((block) => {
-          hljs.highlightBlock(block);
-        });
-      },
-      addWpCodeBlockLabel() {
-        if(!('post_contents' in this.$refs)){
-          return
-        }
-        const wp_codeblock = this.$refs.post_contents.querySelectorAll('.wp-block-code');
-        if(!wp_codeblock){
-          return;
-        }
-        [...wp_codeblock].forEach((wpblock) => {
-          const highlightClass = Array.from(wpblock.classList).filter((className) => {
-            return (className !== 'hljs') && (className !== 'wp-block-code');
-          });
-          if(highlightClass.length){
-            wpblock.setAttribute('data-code', highlightClass[0]);
-          }
-        });
-      },
-      //目次のリンクをハッシュ以下のみに置き換え
-      replaceTocLink(){
-        if(!('post_contents' in this.$refs)){
-          return
-        }
-        const toc = this.$refs.post_contents.querySelectorAll('#ez-toc-container a');
-        if(!toc){
-          return;
-        }
-        [...toc].forEach((link) => {
-          const hash = link.hash;
-          link.setAttribute('href', hash);
-        });
-      }
+      ...mapActions(['closeMenu'])
     }
   }
 </script>

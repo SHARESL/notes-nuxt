@@ -458,4 +458,20 @@
       line-height: 1.6;
     }
   }
+
+  hr{
+    margin: 2em 0;
+    border-top:1px solid $gray;
+  }
+
+  .gist{
+    margin: 2em 0;
+  }
+
+  iframe{
+    overflow: hidden;
+    width: 100%;
+  }
+
+  @import '../../foundation/vendor/monokai';
 }
