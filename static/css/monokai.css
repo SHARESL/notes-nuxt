@@ -1,146 +1,145 @@
-.gist .highlight {
+body .gist .highlight {
     background: #272822;
 }
-.gist .blob-num,
-.gist .blob-code-inner,
-.gist .pl-s2,
-.gist .pl-stj {
+body .gist .blob-num,
+body .gist .blob-code-inner,
+body .gist .pl-s2,
+body .gist .pl-stj {
     color: #f8f8f2;
 }
-.gist .pl-c1 {
+body .gist .pl-c1 {
     color: #ae81ff;
 }
-.gist .pl-enti {
+body .gist .pl-enti {
     color: #a6e22e;
     font-weight: 700;
 }
-.gist .pl-st {
+body .gist .pl-st {
     color: #66d9ef;
 }
-.gist .pl-mdr {
+body .gist .pl-mdr {
     color: #66d9ef;
     font-weight: 400;
 }
-.gist .pl-ms1 {
+body .gist .pl-ms1 {
     background: #fd971f;
 }
-.gist .pl-c,
-.gist .pl-c span,
-.gist .pl-pdc {
+body .gist .pl-c,
+body .gist .pl-c span,
+body .gist .pl-pdc {
     color: #75715e;
     font-style: italic;
 }
-.gist .pl-cce,
-.gist .pl-cn,
-.gist .pl-coc,
-.gist .pl-enc,
-.gist .pl-ens,
-.gist .pl-kos,
-.gist .pl-kou,
-.gist .pl-mh .pl-pdh,
-.gist .pl-mp,
-.gist .pl-mp1 .pl-sf,
-.gist .pl-mq,
-.gist .pl-pde,
-.gist .pl-pse,
-.gist .pl-pse .pl-s2,
-.gist .pl-mp .pl-s3,
-.gist .pl-smi,
-.gist .pl-stp,
-.gist .pl-sv,
-.gist .pl-v,
-.gist .pl-vi,
-.gist .pl-vpf,
-.gist .pl-mri,
-.gist .pl-va,
-.gist .pl-vpu {
+body .gist .pl-cce,
+body .gist .pl-cn,
+body .gist .pl-coc,
+body .gist .pl-enc,
+body .gist .pl-ens,
+body .gist .pl-kos,
+body .gist .pl-kou,
+body .gist .pl-mh .pl-pdh,
+body .gist .pl-mp,
+body .gist .pl-mp1 .pl-sf,
+body .gist .pl-mq,
+body .gist .pl-pde,
+body .gist .pl-pse,
+body .gist .pl-pse .pl-s2,
+body .gist .pl-mp .pl-s3,
+body .gist .pl-smi,
+body .gist .pl-stp,
+body .gist .pl-sv,
+body .gist .pl-v,
+body .gist .pl-vi,
+body .gist .pl-vpf,
+body .gist .pl-mri,
+body .gist .pl-va,
+body .gist .pl-vpu {
     color: #66d9ef;
 }
-.gist .pl-cos,
-.gist .pl-ml,
-.gist .pl-pds,
-.gist .pl-s,
-.gist .pl-s1,
-.gist .pl-s .pl-s1,
-.gist .pl-sol {
+body .gist .pl-cos,
+body .gist .pl-ml,
+body .gist .pl-pds,
+body .gist .pl-s,
+body .gist .pl-s1,
+body .gist .pl-sol {
     color: #e6db74;
 }
-.gist .pl-e,
-.gist .pl-ef,
-.gist .pl-en,
-.gist .pl-enf,
-.gist .pl-enm,
-.gist .pl-entc,
-.gist .pl-entm,
-.gist .pl-eoac,
-.gist .pl-eoac .pl-pde,
-.gist .pl-eoi,
-.gist .pl-mai .pl-sf,
-.gist .pl-mm,
-.gist .pl-pdv,
-.gist .pl-som,
-.gist .pl-sr,
-.gist .pl-vo {
+body .gist .pl-e,
+body .gist .pl-ef,
+body .gist .pl-en,
+body .gist .pl-enf,
+body .gist .pl-enm,
+body .gist .pl-entc,
+body .gist .pl-entm,
+body .gist .pl-eoac,
+body .gist .pl-eoac .pl-pde,
+body .gist .pl-eoi,
+body .gist .pl-mai .pl-sf,
+body .gist .pl-mm,
+body .gist .pl-pdv,
+body .gist .pl-som,
+body .gist .pl-sr,
+body .gist .pl-vo {
     color: #a6e22e;
 }
-.gist .pl-ent,
-.gist .pl-eoa,
-.gist .pl-eoai,
-.gist .pl-eoai .pl-pde,
-.gist .pl-k,
-.gist .pl-ko,
-.gist .pl-kolp,
-.gist .pl-mc,
-.gist .pl-mr,
-.gist .pl-ms,
-.gist .pl-s3,
-.gist .pl-smc,
-.gist .pl-smp,
-.gist .pl-sok,
-.gist .pl-sra,
-.gist .pl-src,
-.gist .pl-sre {
+body .gist .pl-ent,
+body .gist .pl-eoa,
+body .gist .pl-eoai,
+body .gist .pl-eoai .pl-pde,
+body .gist .pl-k,
+body .gist .pl-ko,
+body .gist .pl-kolp,
+body .gist .pl-mc,
+body .gist .pl-mr,
+body .gist .pl-ms,
+body .gist .pl-s3,
+body .gist .pl-smc,
+body .gist .pl-smp,
+body .gist .pl-sok,
+body .gist .pl-sra,
+body .gist .pl-src,
+body .gist .pl-sre {
     color: #f92672;
 }
-.gist .pl-mb,
-.gist .pl-pdb {
+body .gist .pl-mb,
+body .gist .pl-pdb {
     color: #e6db74;
     font-weight: 700;
 }
-.gist .pl-mi,
-.gist .pl-pdi {
+body .gist .pl-mi,
+body .gist .pl-pdi {
     color: #f92672;
     font-style: italic;
 }
-.gist .pl-pdc1,
-.gist .pl-scp {
+body .gist .pl-pdc1,
+body .gist .pl-scp {
     color: #ae81ff;
 }
-.gist .pl-sc,
-.gist .pl-sf,
-.gist .pl-mo,
-.gist .pl-entl {
+body .gist .pl-sc,
+body .gist .pl-sf,
+body .gist .pl-mo,
+body .gist .pl-entl {
     color: #fd971f;
 }
-.gist .pl-mi1,
-.gist .pl-mdht {
+body .gist .pl-mi1,
+body .gist .pl-mdht {
     color: #a6e22e;
     background: rgba(0, 64, 0, .5);
 }
-.gist .pl-md,
-.gist .pl-mdhf {
+body .gist .pl-md,
+body .gist .pl-mdhf {
     color: #f92672;
     background: rgba(64, 0, 0, .5);
 }
-.gist .pl-mdh,
-.gist .pl-mdi {
+body .gist .pl-mdh,
+body .gist .pl-mdi {
     color: #a6e22e;
     font-weight: 400;
 }
-.gist .pl-ib,
-.gist .pl-id,
-.gist .pl-ii,
-.gist .pl-iu {
+body .gist .pl-ib,
+body .gist .pl-id,
+body .gist .pl-ii,
+body .gist .pl-iu {
     background: #a6e22e;
     color: #272822;
 }
