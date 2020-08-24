@@ -13,30 +13,39 @@
 
 <script>
   import * as THREE from 'three'
-  import DOTS from 'vanta/dist/vanta.dots.min'
-
-  if (process.browser) {
-    window.THREE = THREE;
-  }
+  //import HALO from 'vanta/dist/vanta.halo.min'
 
   export default {
-    mounted(){
-      const target = this.$refs.loader;
-      DOTS({
-        el              : target,
-        THREE           : THREE,
-        mouseControls   : true,
-        touchControls   : true,
-        minHeight       : 200.00,
-        minWidth        : 200.00,
-        scale           : 1.00,
-        scaleMobile     : 1.00,
-        color           : 0x653ceb,
-        backgroundColor : 0xffffff,
-        size            : 2.3,
-        spacing         : 21,
-        showLines       : false
-      })
+    data() {
+      return {
+        vantaEffect : null
+      }
+    },
+    async mounted(){
+      if (process.browser) {
+        window.THREE = THREE;
+        const { default: DOTS } = await import("vanta/dist/vanta.dots.min");
+
+        if(this.vantaEffect){
+          this.vantaEffect.destroy();
+        }
+        const target = this.$refs.loader;
+        this.vantaEffect = DOTS({
+          el              : target,
+          THREE           : THREE,
+          mouseControls   : true,
+          touchControls   : true,
+          minHeight       : 200.00,
+          minWidth        : 200.00,
+          scale           : 1.00,
+          scaleMobile     : 1.00,
+          color           : 0x653ceb,
+          backgroundColor : 0xffffff,
+          size            : 2.3,
+          spacing         : 21,
+          showLines       : false
+        });
+      }
     }
   }
 </script>

@@ -12,11 +12,11 @@
     "webserver": "http-server ./dist -o -p 8888"
   },
   "dependencies": {
-    "nuxt": "^2.0.0"
+    "nuxt": "^2.14.3"
   },
   "devDependencies": {
     "@nuxt/typescript-build": "^0.5.7",
-    "@nuxtjs/axios": "^5.10.3",
+    "@nuxtjs/axios": "^5.12.1",
     "@nuxtjs/dotenv": "^1.4.1",
     "@nuxtjs/style-resources": "^1.0.0",
     "axios": "^0.19.2",
@@ -25,15 +25,15 @@
     "http-server": "^0.12.3",
     "netlify-lambda": "^1.6.3",
     "node-sass": "^4.13.1",
-    "nodemailer": "^6.4.8",
+    "nodemailer": "^6.4.11",
     "nodemon": "^1.18.9",
     "nuxt-svg-loader": "^1.2.0",
-    "prismjs": "^1.20.0",
+    "prismjs": "^1.21.0",
     "sass-loader": "^8.0.2",
     "three": "^0.113.2",
-    "vanta": "^0.5.10",
-    "vee-validate": "^3.3.1",
-    "vue-scrollto": "^2.17.1",
-    "vue2-touch-events": "^2.2.1"
+    "vanta": "^0.5.18",
+    "vee-validate": "^3.3.9",
+    "vue-scrollto": "^2.18.2",
+    "vue2-touch-events": "^2.3.1"
   }
 }
