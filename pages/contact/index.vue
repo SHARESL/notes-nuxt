@@ -109,7 +109,7 @@
         vm.closeMenu();
       })
     },
-    async fetch({ store, payload, route }){
+    async asyncData({ store, payload, route }){
       if (payload)
       {
         await store.commit('saveAllPosts', payload.allPosts);

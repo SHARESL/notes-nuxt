@@ -72,7 +72,7 @@
         vm.closeMenu();
       })
     },
-    async fetch({ params, error, payload, store }) {
+    async asyncData({ params, error, payload, store }) {
       if (payload){
         await store.commit('saveAllPosts', payload.allPosts);
         await store.commit('saveCurrentPost', payload.currentPost);
