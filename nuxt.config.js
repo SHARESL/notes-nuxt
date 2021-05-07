@@ -8,7 +8,7 @@ const baseOgp = process.env.BASE_OGP || `${baseUrl}/img/ogp.png`
 const baseDir = process.env.BASE_DIR || '/'
 
 export default {
-  mode: 'universal',
+  target: 'static',
   /*
   ** Headers of the page
   */
@@ -63,11 +63,141 @@ export default {
   ** Nuxt.js modules
   */
   modules: [
+  '@nuxtjs/sitemap',
   '@nuxtjs/dotenv',
   '@nuxtjs/axios',
   '@nuxtjs/style-resources',
   'nuxt-svg-loader'
   ],
+
+  sitemap: {
+    path      : '/sitemap.xml',
+    hostname  : 'https://notes-sharesl.netlify.app',
+    cacheTime : 1000 * 60 * 15,
+    gzip      : true,
+    generate  : false,
+    exclude   : [
+    '/404'
+    ],
+    routes (callback) {
+      Promise.all([
+        axios.get(`${process.env.BASE_API_URL}/custom/v0/all`),
+        axios.get(`${process.env.BASE_API_URL}/wp/v2/categories`),
+        axios.get(`${process.env.BASE_API_URL}/custom/v0/tags`),
+        axios.get(`${process.env.BASE_API_URL}/custom/v0/members`),
+        axios.get(`${process.env.BASE_API_URL}/custom/v0/pages`)
+        ])
+      .then (axios.spread( (allPosts, categories, tags, members, pages) => {
+
+        //記事詳細ページ
+        const route_post = allPosts.data.map((post) => {
+          return {
+            route   : `/articles/${post.id}/`,
+            payload : {
+              allPosts    : allPosts.data,
+              currentPost : post,
+              categories  : categories.data,
+              allTags     : tags.data,
+              members     : members.data,
+              pages       : pages.data
+            }
+          }
+        })
+
+        //カテゴリーページ
+        const route_category = categories.data.map((category) => {
+          return {
+            route   : `/${category.slug}/`,
+            payload : {
+              allPosts        : allPosts.data,
+              categories      : categories.data,
+              currentCategory : category,
+              allTags         : tags.data,
+              members         : members.data,
+              pages       : pages.data
+            }
+          }
+        })
+
+        //タグページ
+        const route_tag = tags.data.map((tag) => {
+          return {
+            route   : `/tag/${tag.slug}/`,
+            payload : {
+              allPosts    : allPosts.data,
+              categories  : categories.data,
+              allTags     : tags.data,
+              currentTag  : tag,
+              members     : members.data,
+              pages       : pages.data
+            }
+          }
+        })
+
+        //新着一覧
+        const route_all = [{
+          route   : '/articles/',
+          payload : {
+            allPosts    : allPosts.data,
+            categories  : categories.data,
+            allTags     : tags.data,
+            members     : members.data,
+            pages       : pages.data
+          }
+        }]
+
+        //メンバー一覧
+        const route_members = [{
+          route   : '/member/',
+          payload : {
+            allPosts    : allPosts.data,
+            categories  : categories.data,
+            allTags     : tags.data,
+            members     : members.data,
+            pages       : pages.data
+          }
+        }]
+
+        //メンバー詳細
+        const route_member = members.data.map((member) => {
+          return {
+            route   : `/member/${member.author_slug}/`,
+            payload : {
+              allPosts      : allPosts.data,
+              categories    : categories.data,
+              allTags       : tags.data,
+              members       : members.data,
+              currentMember : member,
+              pages         : pages.data
+            }
+          }
+        })
+
+        //その他固定ページ
+        const other_pages = ['/', '/contact/', '/about/', '/search/', '/member/'];
+        const route_page = other_pages.map((page) => {
+          return {
+            route   : page,
+            payload : {
+              allPosts    : allPosts.data,
+              categories  : categories.data,
+              allTags     : tags.data,
+              members     : members.data,
+              pages       : pages.data
+            }
+          }
+        })
+
+        callback (null, route_post.concat(
+          route_category,
+          route_tag,
+          route_all,
+          route_members,
+          route_member,
+          route_page))
+      }))
+    }
+  },
 
   generate: {
     fallback : true,
@@ -226,5 +356,10 @@ export default {
     */
     extend(config, ctx) {
     }
-  }
+  },
+
+  router: {
+   trailingSlash : true,
+   middleware    : ['redirect']
+ }
 }

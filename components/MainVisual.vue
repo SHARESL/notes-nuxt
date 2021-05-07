@@ -24,26 +24,27 @@
     async mounted(){
       if (process.browser) {
         window.THREE = THREE;
-        const { default: DOTS } = await import("vanta/dist/vanta.dots.min");
+        const { default: WAVES } = await import("vanta/dist/vanta.waves.min");
 
         if(this.vantaEffect){
           this.vantaEffect.destroy();
         }
         const target = this.$refs.loader;
-        this.vantaEffect = DOTS({
-          el              : target,
-          THREE           : THREE,
-          mouseControls   : true,
-          touchControls   : true,
-          minHeight       : 200.00,
-          minWidth        : 200.00,
-          scale           : 1.00,
-          scaleMobile     : 1.00,
-          color           : 0x653ceb,
-          backgroundColor : 0xffffff,
-          size            : 2.3,
-          spacing         : 21,
-          showLines       : false
+        this.vantaEffect = WAVES({
+          el            : target,
+          THREE         : THREE,
+          mouseControls : true,
+          touchControls : true,
+          gyroControls  : false,
+          minHeight     : 200.00,
+          minWidth      : 200.00,
+          scale         : 1.00,
+          scaleMobile   : 1.00,
+          color         : 0xecd0ff,
+          shininess     : 68.00,
+          waveHeight    : 18.50,
+          waveSpeed     : 1.30,
+          zoom          : 0.76
         });
       }
     }
