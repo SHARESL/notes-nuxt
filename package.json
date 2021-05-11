@@ -5,8 +5,8 @@
   "author": "Yosuke Inoue",
   "private": true,
   "scripts": {
-    "dev": "netlify-lambda serve functions/api --port 9001 & nuxt",
-    "build": "netlify-lambda build functions/api --port 9001 && nuxt generate",
+    "dev": "netlify-lambda serve functions/api & nuxt",
+    "build": "netlify-lambda build functions/api && nuxt generate",
     "start": "nuxt start",
     "generate": "nuxt generate",
     "webserver": "http-server ./dist -o -p 8888"
