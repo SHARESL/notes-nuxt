@@ -201,7 +201,7 @@ export default {
 
   generate: {
     fallback : true,
-    interval : 100,
+    interval : 500,
     routes (callback) {
       Promise.all([
         axios.get(`${process.env.BASE_API_URL}/custom/v0/all`),
