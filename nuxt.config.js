@@ -215,7 +215,7 @@ export default {
         //記事詳細ページ
         const route_post = allPosts.data.map((post) => {
           return {
-            route   : `/articles/${post.id}`,
+            route   : `/articles/${post.id}/`,
             payload : {
               allPosts    : allPosts.data,
               currentPost : post,
@@ -230,7 +230,7 @@ export default {
         //カテゴリーページ
         const route_category = categories.data.map((category) => {
           return {
-            route   : `/${category.slug}`,
+            route   : `/${category.slug}/`,
             payload : {
               allPosts        : allPosts.data,
               categories      : categories.data,
@@ -245,7 +245,7 @@ export default {
         //タグページ
         const route_tag = tags.data.map((tag) => {
           return {
-            route   : `/tag/${tag.slug}`,
+            route   : `/tag/${tag.slug}/`,
             payload : {
               allPosts    : allPosts.data,
               categories  : categories.data,
@@ -259,7 +259,7 @@ export default {
 
         //新着一覧
         const route_all = [{
-          route   : '/articles',
+          route   : '/articles/',
           payload : {
             allPosts    : allPosts.data,
             categories  : categories.data,
@@ -271,7 +271,7 @@ export default {
 
         //メンバー一覧
         const route_members = [{
-          route   : '/member',
+          route   : '/member/',
           payload : {
             allPosts    : allPosts.data,
             categories  : categories.data,
@@ -284,7 +284,7 @@ export default {
         //メンバー詳細
         const route_member = members.data.map((member) => {
           return {
-            route   : `/member/${member.author_slug}`,
+            route   : `/member/${member.author_slug}/`,
             payload : {
               allPosts      : allPosts.data,
               categories    : categories.data,
@@ -297,7 +297,7 @@ export default {
         })
 
         //その他固定ページ
-        const other_pages = ['/', '/contact', '/about', '/search', '/member'];
+        const other_pages = ['/', '/contact/', '/about/', '/search/', '/member/'];
         const route_page = other_pages.map((page) => {
           return {
             route   : page,
