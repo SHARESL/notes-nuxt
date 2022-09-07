@@ -1,3 +1,5 @@
+@use "../../global" as *;
+
 .c-nav{
   @include min-screen($bp_tb_v) {
     display: flex;

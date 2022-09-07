@@ -1,3 +1,5 @@
+@use "../../global" as *;
+
 .u-frame {
   @include min-screen($bp_sp_h) {
     max-width: sizeCalc($frame_w, $w, 'vw');

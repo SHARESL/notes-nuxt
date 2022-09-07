@@ -1,45 +1,5 @@
-@charset "UTF-8";
-/* ---------------------------------------------------------
-Foundation
---------------------------------------------------------- */
-@import 'foundation/variable';
-@import 'foundation/mixin';
-@import 'foundation/function';
-@import 'foundation/reset';
-@import 'foundation/font';
-@import 'foundation/setting';
-
-/* ---------------------------------------------------------
-Layout
---------------------------------------------------------- */
-@import 'layout/cover';
-@import 'layout/header';
-@import 'layout/footer';
-
-/* ---------------------------------------------------------
-Object
---------------------------------------------------------- */
-//component
-@import 'object/component/mv';
-@import 'object/component/nav';
-@import 'object/component/title';
-@import 'object/component/caption';
-@import 'object/component/summary';
-@import 'object/component/btn';
-@import 'object/component/list';
-@import 'object/component/card';
-@import 'object/component/share';
-@import 'object/component/author';
-@import 'object/component/pager';
-
-//project
-@import 'object/project/category';
-@import 'object/project/about';
-@import 'object/project/post';
-@import 'object/project/contact';
-@import 'object/project/member';
-@import 'object/project/404';
-
-//utility
-@import 'object/utility/utility';
-@import 'object/utility/animation';
+@use 'foundation';
+@use 'layout';
+@use 'object/component';
+@use 'object/project';
+@use 'object/utility';

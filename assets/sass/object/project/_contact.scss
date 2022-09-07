@@ -1,4 +1,19 @@
+@use "../../global" as *;
+
 .p-contact{
+
+  .toast-enter-active,
+  .toast-leave-active {
+    transition: .6s $ease-out-expo;
+    will-change: transform;
+    backface-visibility: hidden;
+  }
+
+  .toast-enter,
+  .toast-leave-to {
+    transform:translateY(100%);
+  }
+
   &__inner{
     max-width: 690px;
     margin: auto;

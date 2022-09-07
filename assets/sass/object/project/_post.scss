@@ -1,3 +1,5 @@
+@use "../../global" as *;
+
 .p-post{
   padding-top: 90px;
   @include min-screen($bp_tb_v) {

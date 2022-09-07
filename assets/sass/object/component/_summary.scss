@@ -1,3 +1,5 @@
+@use "../../global" as *;
+
 .c-summary{
   @include fz(15);
   line-height: 1.9;

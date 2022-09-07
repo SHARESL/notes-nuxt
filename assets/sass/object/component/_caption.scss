@@ -1,3 +1,5 @@
+@use "../../global" as *;
+
 .c-caption{
   text-align: center;
   @include fz(36);

@@ -40,20 +40,6 @@
   <!-- /.l-header__nav -->
 </template>
 
-<style lang="scss" scoped>
-.search-enter-active,
-.search-leave-active {
-  transition: .6s $ease-out-expo;
-  will-change: transform;
-  backface-visibility: hidden;
-}
-
-.search-enter,
-.search-leave-to {
-  transform:translateY(100%);
-}
-</style>
-
 <script>
   import SearchIconSvg from '~/assets/svg/search.svg'
   import { mapGetters, mapActions } from 'vuex'

@@ -1,3 +1,5 @@
+@use "../global" as *;
+
 .l-footer{
   padding:18px 18px 60px;
   @include min-screen($bp_tb_v) {

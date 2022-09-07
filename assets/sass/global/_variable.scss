@@ -1,5 +1,6 @@
-//variable ****/
-//prototype color
+@use "sass:math";
+@use "sass:color";
+
 $black      : #111;
 $green      : #81cf7a;
 $blue       : #25bdcf;
@@ -50,27 +51,27 @@ $gradient7   : linear-gradient(to right, $purple 0%, $blue3 100%);
 $gradient8   : linear-gradient(to right, rgba($purple, .7) 0%, rgba($blue3, .7) 100%);
 
 //breakpoint
-$bp_i5: 320px;
-$bp_i6: 375px;
-$bp_i6p: 414px;
-$bp_sp_h: 568px;
-$bp_tb_v: 801px;
-$bp_tb_h: 980px;
-$bp_pc: 1080px;
-$bp_lpc: 1280px;
-$bp_xlpc: 1440px;
+$bp_i5   : 320px;
+$bp_i6   : 375px;
+$bp_i6p  : 414px;
+$bp_sp_h : 568px;
+$bp_tb_v : 801px;
+$bp_tb_h : 980px;
+$bp_pc   : 1080px;
+$bp_lpc  : 1280px;
+$bp_xlpc : 1440px;
 $bp_WSXGA: 1680px;
 $bp_WUXGA: 1920px;
-$bp_base: 1440px;
+$bp_base : 1440px;
 
 //base size
-$w: 1440;
-$w_sp: 750;
+$w      : 1440;
+$w_sp   : 750;
 $frame_w: 1240;
-$frame: ($frame_w / $w * 100vw);
+$frame  :  math.div($frame_w, $w * 100vw);
 
 //retina
-$retina: 'only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2/1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx)';
+$retina: 'only screen and ( -webkit-min-device-pixel-ratio: 2 ), only screen and ( min--moz-device-pixel-ratio: 2 ), only screen and ( -o-min-device-pixel-ratio: 2/1 ), only screen and ( min-device-pixel-ratio: 2 ), only screen and ( min-resolution: 192dpi ), only screen and ( min-resolution: 2dppx )';
 
 // easing
 // sine

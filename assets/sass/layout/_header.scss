@@ -1,3 +1,5 @@
+@use "../global" as *;
+
 .l-header{
   &__inner{
 
@@ -31,6 +33,18 @@
       flex-direction: row;
     }
     @include min-screen($bp_base) {
+    }
+
+    .search-enter-active,
+    .search-leave-active {
+      transition: .6s $ease-out-expo;
+      will-change: transform;
+      backface-visibility: hidden;
+    }
+
+    .search-enter,
+    .search-leave-to {
+      transform:translateY(100%);
     }
 
     a{

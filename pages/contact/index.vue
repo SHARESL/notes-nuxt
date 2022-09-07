@@ -243,17 +243,3 @@
     }
   }
 </script>
-
-<style lang="scss" scoped>
-.toast-enter-active,
-.toast-leave-active {
-  transition: .6s $ease-out-expo;
-  will-change: transform;
-  backface-visibility: hidden;
-}
-
-.toast-enter,
-.toast-leave-to {
-  transform:translateY(100%);
-}
-</style>

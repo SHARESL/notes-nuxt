@@ -1,11 +1,14 @@
 require("dotenv").config()
 import axios from 'axios';
+import Sass from 'sass'
 
 const baseName = process.env.BASE_NAME || 'notes by SHARESL'
 const baseDesc = process.env.BASE_DESC || 'notes by SHARESLは大阪のWeb制作会社・株式会社SHARESLの開発者ブログです。制作者が日々考えていることのアウトプットやメモとして残しておきたい備忘録としての記事を更新していきます。WEB制作の実務の中で気づいたことをまとめて後で見返せるノートのような役割を目的としています。'
 const baseUrl = process.env.BASE_URL || 'http://localhost:3000'
 const baseOgp = process.env.BASE_OGP || `${baseUrl}/img/ogp.png`
 const baseDir = process.env.BASE_DIR || '/'
+
+
 
 export default {
   target: 'static',
@@ -66,7 +69,7 @@ export default {
   '@nuxtjs/sitemap',
   '@nuxtjs/dotenv',
   '@nuxtjs/axios',
-  '@nuxtjs/style-resources',
+  // '@nuxtjs/style-resources',
   'nuxt-svg-loader'
   ],
 
@@ -333,22 +336,34 @@ export default {
     baseURL: process.env.BASE_API_URL
   },
 
-  styleResources: {
-    scss: [
-    '~/assets/sass/foundation/_variable.scss',
-    '~/assets/sass/foundation/_mixin.scss',
-    '~/assets/sass/foundation/_function.scss'
-    ]
-  },
+  // styleResources: {
+  //   scss: [
+  //   '~/assets/sass/foundation/_variable.scss',
+  //   '~/assets/sass/foundation/_mixin.scss',
+  //   '~/assets/sass/foundation/_function.scss'
+  //   ]
+  // },
   /*
   ** Build configuration
   */
   build: {
+    babel: {
+      plugins: [
+      ['@babel/plugin-proposal-class-properties', { loose: true }],
+      ['@babel/plugin-proposal-private-methods', { loose: true }],
+      ['@babel/plugin-proposal-private-property-in-object', { loose: true }]
+      ],
+    },
     transpile: ["vee-validate/dist/rules"],
     extractCSS: true,
     postcss: {
       preset: {
         autoprefixer: { grid: 'autoplace' }
+      }
+    },
+    loaders : {
+      scss : {
+        implementation: Sass
       }
     },
     /*

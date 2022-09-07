@@ -1,3 +1,5 @@
+@use "../../global" as *;
+
 .c-list{
   padding:30px 0;
   @include min-screen($bp_tb_v) {
