@@ -309,6 +309,16 @@
 
     }
 
+    .wp-block-preformatted{
+      display: block;
+      padding: 1em;
+      @include fz(15);
+      line-height: 1.6;
+      white-space: pre-wrap;
+      color: #b9b5b8;
+      background: #322931;
+    }
+
     pre code{
       display: block;
       overflow-x: auto;
